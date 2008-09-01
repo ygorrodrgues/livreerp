@@ -1,0 +1,51 @@
+{
+Projeto ERP Livre - Sistema de Gestão Comercial Livre
+Copyright (c) 2008 Sérgio Guedes
+
+O ERP Livre é um software de livre distribuição, que pode ser copiado e
+distribuído sob os termos da Licença Pública Geral GNU, conforme publicada
+pela Free Software Foundation, versão 2 da licença ou qualquer versão posterior.
+
+Este programa é distribuído na expectativa de ser útil aos seus usuários,
+porém  NÃO TEM NENHUMA GARANTIA, EXPLÍCITAS OU IMPLÍCITAS,
+COMERCIAIS OU DE ATENDIMENTO A UMA DETERMINADA FINALIDADE.
+
+Consulte a Licença Pública Geral GNU para maiores detalhes.
+
+@project-name: ERP Livre
+@project-email: ERPLivre@yahoo.com.br
+@autor-name: Sérgio Guedes
+@autor-email: sergio_rj45@yahoo.com.br
+
+}
+
+program Retaguarda;
+
+uses
+  Forms,
+  UfrmBase in '..\Compartilhado\Forms Bases\UfrmBase.pas' {frmBase},
+  udmBase in '..\Compartilhado\Forms Bases\udmBase.pas' {dmBase: TDataModule},
+  Udmprincipal in '..\Compartilhado\DataModule\Udmprincipal.pas' {dmprincipal: TDataModule},
+  UVariaveisGerais in '..\Compartilhado\Procedimentos\UVariaveisGerais.pas',
+  ufrmCadBase in '..\Compartilhado\Forms Bases\ufrmCadBase.pas' {frmCadBase},
+  ufrmCadBaseDB in '..\Compartilhado\Forms Bases\ufrmCadBaseDB.pas' {frmCadBaseDB},
+  UFuncoes_Gerais in '..\Compartilhado\Procedimentos\UFuncoes_Gerais.pas',
+  UfrmLstBase in '..\Compartilhado\Forms Bases\UfrmLstBase.pas' {frmLstBase},
+  UdbFuncoes in '..\Compartilhado\Procedimentos\UdbFuncoes.pas',
+  ufrmLstBaseDB in '..\Compartilhado\Forms Bases\ufrmLstBaseDB.pas' {frmLstBaseDB},
+  UfrmLstAgencia in '..\Controle Bancario\Agencia\UfrmLstAgencia.pas' {frmLstAgencia},
+  UdmCadastroBase in '..\Compartilhado\Forms Bases\UdmCadastroBase.pas' {dmCadastroBase: TDataModule},
+  uFuncoes_Sistema in '..\Compartilhado\Procedimentos\uFuncoes_Sistema.pas',
+  UfrmMensagem in '..\Compartilhado\Forms Comuns\UfrmMensagem.pas' {frmMensagem},
+  UMensagem in '..\Compartilhado\Procedimentos\UMensagem.pas',
+  UfrmSobre in '..\Compartilhado\Forms Comuns\UfrmSobre.pas' {frmSobre},
+  UfrmPrincipal in 'UfrmPrincipal.pas' {frmPrincipal};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(Tdmprincipal, dmprincipal);
+  Application.CreateForm(TfrmLstBase, frmLstBase);
+  Application.Run;
+end.
