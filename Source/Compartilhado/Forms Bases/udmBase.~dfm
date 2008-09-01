@@ -1,0 +1,15 @@
+object dmBase: TdmBase
+  OldCreateOrder = False
+  Left = 530
+  Top = 206
+  Height = 242
+  Width = 335
+  object xpmnfstBase: TXPManifest
+    Left = 72
+    Top = 24
+  end
+  object aplctnvntsBase: TApplicationEvents
+    Left = 136
+    Top = 24
+  end
+end
