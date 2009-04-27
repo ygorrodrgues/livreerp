@@ -150,17 +150,18 @@ end;
 
 procedure TfrmKernel_Login.FormCreate(Sender: TObject);
 begin
+  kernel_str_form := 'Login de Acesso';
   inherited;
   // Mostra a Quantidade de Tentativas
-  statBase.Panels[1].Text := IntToStr(Kernel_Login.Login_RetornaQuantidadeTentativa);
+  statBase.Panels[1].Text := '1';
   Tentativas              := 0; // tentativa inicial
   LimiteTentativas        := Kernel_Login.Login_RetornaQuantidadeTentativa;
-  statBase.Panels[3].Text := IntToStr(LimiteTentativas);
+  statBase.Panels[3].Text := IntToStr(Kernel_Login.Login_RetornaQuantidadeTentativa);
 end;
 
 procedure TfrmKernel_Login.FormShow(Sender: TObject);
 begin
-  kernel_str_form := 'Login de Acesso';
+
   inherited;
 
   {Carega Imagem que será mostrada no Timage}

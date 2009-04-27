@@ -8,13 +8,15 @@ uses
 
 type
   TdmKernel_Relatorio = class(TdmKernel_Base)
-    frxReport1: TfrxReport;
-    frxDesigner1: TfrxDesigner;
+    rprtCadBase: TfrxReport;
+    dsgnrCadBase: TfrxDesigner;
   private
     { Private declarations }
   public
-    procedure Kernel_Imprimir(str_relatorio: string);
+    procedure Kernel_Imprimir(str_relatorio: string; Mostra_Cabecalho: Boolean = False);
+    // Preenche informações do cabeçalho do relatorio baseado no template do framework
     procedure Kernel_Cabecalho_Relatorio;
+    procedure Adicionar_Parametro(str_parametro, str_vl_parametro: string);
   end;
 
 var
@@ -22,11 +24,20 @@ var
 
 implementation
 
-uses UKernel_DB, UKernel_VariaveisPublic;
+uses UKernel_DB, UKernel_VariaveisPublic, UKernel_SysUtils, UKernel_Exception,
+  UKernel_Mensagem;
 
 {$R *.dfm}
 
 { TdmKernel_Relatorio }
+
+procedure TdmKernel_Relatorio.Adicionar_Parametro(str_parametro,  str_vl_parametro: string);
+begin
+  with rprtCadBase do
+  begin
+    Variables[str_parametro] :=str_vl_parametro;
+  end;
+end;
 
 procedure TdmKernel_Relatorio.Kernel_Cabecalho_Relatorio;
 var
@@ -60,17 +71,34 @@ begin
 
 end;
 
-procedure TdmKernel_Relatorio.Kernel_Imprimir(str_relatorio: string);
+procedure TdmKernel_Relatorio.Kernel_Imprimir(str_relatorio: string; Mostra_Cabecalho: Boolean = False);
 begin
   with rprtCadBase do
   begin
-    LoadFromFile(str_relatorio);
-    // Passa as informacoes da empresa por parametro
-    Kernel_Cabecalho_Relatorio;
-    // Passa o usuario logado por parametro
-    Variables['usuario']:= Kernel_Terminal.int_filial;
-    
-    ShowReport();
+    if Kernel_Caminho_Relatorio('PARAMETRO','CAMINHORELATORIO') = '' then
+      begin
+        raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_Relatorio_NaoEncontrado,['( '+ str_relatorio +' )']);
+      end;
+
+    str_relatorio := Kernel_DiretorioBarras(Kernel_Caminho_Relatorio('PARAMETRO','CAMINHORELATORIO'))+ str_relatorio;
+
+    if FileExists(str_relatorio) then
+      Begin
+        LoadFromFile(str_relatorio);
+        
+        // Passa as informacoes da empresa por parametro
+        if Mostra_Cabecalho then       
+          Kernel_Cabecalho_Relatorio;
+          
+        // Passa o usuario logado por parametro
+        Variables['usuario']:= Kernel_Terminal.int_filial;
+
+        ShowReport();
+      End
+     else
+      Begin
+        raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_Relatorio_NaoEncontrado,['( '+ str_relatorio +' )']);
+      End; 
   end;
 end;
 

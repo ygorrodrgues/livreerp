@@ -11,7 +11,4 @@ inherited dmKernel_Cliente: TdmKernel_Cliente
     SQL.Strings = (
       'SELECT * FROM CLIENTE WHERE CODCLI=:CODCLI')
   end
-  inherited qryLstAux: TSQLQuery
-    Left = 56
-  end
 end

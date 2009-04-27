@@ -6,7 +6,7 @@ inherited frmKernel_Login: TfrmKernel_Login
   Color = clWhite
   OnShow = FormShow
   ExplicitWidth = 643
-  ExplicitHeight = 453
+  ExplicitHeight = 459
   DesignSize = (
     637
     427)

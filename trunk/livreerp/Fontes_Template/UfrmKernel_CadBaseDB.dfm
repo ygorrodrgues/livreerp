@@ -9,19 +9,18 @@ inherited frmKernel_CadBaseDB: TfrmKernel_CadBaseDB
   inherited pgcntrlcadastro: TcxPageControl
     Width = 740
     Height = 314
-    ExplicitLeft = 62
-    ExplicitTop = 84
-    ExplicitHeight = 300
+    ExplicitWidth = 740
+    ExplicitHeight = 314
     ClientRectBottom = 314
     ClientRectRight = 740
     inherited tbshtDados: TcxTabSheet
-      ExplicitHeight = 281
+      ExplicitWidth = 740
+      ExplicitHeight = 295
       inherited pnlIdentificacao: TRzPanel
         Width = 740
         Height = 295
-        ExplicitLeft = -96
-        ExplicitTop = -57
-        ExplicitHeight = 281
+        ExplicitWidth = 740
+        ExplicitHeight = 295
         DesignSize = (
           740
           295)
@@ -40,16 +39,20 @@ inherited frmKernel_CadBaseDB: TfrmKernel_CadBaseDB
   end
   inherited PnlTitulo: TRzPanel
     Width = 740
-    ExplicitLeft = 24
-    ExplicitTop = 48
+    ExplicitWidth = 740
+    DesignSize = (
+      740
+      39)
     inherited imgCadBase: TImage
       ExplicitHeight = 32
     end
     inherited Label11: TLabel
       Left = 439
+      ExplicitLeft = 439
     end
     inherited DBlcbCadastros: TcxDBLookupComboBox
       Left = 530
+      ExplicitLeft = 530
     end
   end
   inherited RzToolbar1: TRzToolbar
@@ -69,23 +72,31 @@ inherited frmKernel_CadBaseDB: TfrmKernel_CadBaseDB
       ExplicitLeft = 260
     end
   end
-  inherited RzStatusBar1: TRzStatusBar
+  inherited rzstsbrStatus: TRzStatusBar
     Top = 416
     Width = 740
-    ExplicitTop = 402
+    ExplicitTop = 416
+    ExplicitWidth = 740
   end
   inherited RzPanel1: TRzPanel
     Top = 382
     Width = 740
-    ExplicitTop = 368
+    ExplicitTop = 382
+    ExplicitWidth = 740
+    DesignSize = (
+      740
+      34)
     inherited btnCancelarK: TJvXPButton
       Left = 563
+      ExplicitLeft = 563
     end
     inherited btnFecharK: TJvXPButton
       Left = 652
+      ExplicitLeft = 652
     end
     inherited btnSalvarK: TJvXPButton
       Left = 483
+      ExplicitLeft = 483
     end
   end
   inherited imglPageBase: TImageList

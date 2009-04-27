@@ -17,6 +17,7 @@ object frmKernel_LstBase: TfrmKernel_LstBase
   ShowHint = True
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -40,6 +41,7 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     Height = 401
     Align = alClient
     TabOrder = 1
+    ExplicitTop = 108
     object cxgrdLst_BaseDBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsBase
@@ -296,12 +298,12 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     TabOrder = 4
   end
   object aplctnvntsBase: TApplicationEvents
-    Left = 372
-    Top = 152
+    Left = 212
+    Top = 264
   end
   object imgLBase: TImageList
-    Left = 560
-    Top = 152
+    Left = 400
+    Top = 264
     Bitmap = {
       494C010103000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
@@ -444,12 +446,13 @@ object frmKernel_LstBase: TfrmKernel_LstBase
   end
   object dsBase: TDataSource
     AutoEdit = False
-    Left = 419
-    Top = 152
+    DataSet = dmKernel_CadBase.cdsLstBase
+    Left = 259
+    Top = 264
   end
   object ilLstBase: TImageList
-    Left = 607
-    Top = 152
+    Left = 447
+    Top = 264
     Bitmap = {
       494C01010D000F00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
@@ -988,8 +991,8 @@ object frmKernel_LstBase: TfrmKernel_LstBase
   end
   object actlstCadBase: TActionList
     Images = ilLstBase
-    Left = 466
-    Top = 152
+    Left = 306
+    Top = 264
     object actNovo: TAction
       Caption = '&Incluir (Ins)'
       Hint = 'Novo Registro'
@@ -1049,8 +1052,8 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     end
   end
   object cxspyBase: TcxStyleRepository
-    Left = 702
-    Top = 152
+    Left = 542
+    Top = 264
     PixelsPerInch = 96
     object cxStyle1: TcxStyle
       AssignedValues = [svColor, svFont, svTextColor]
@@ -1170,11 +1173,11 @@ object frmKernel_LstBase: TfrmKernel_LstBase
   end
   object actlstPropria: TActionList
     Images = ilPropria
-    Left = 513
-    Top = 152
+    Left = 353
+    Top = 264
   end
   object ilPropria: TImageList
-    Left = 654
-    Top = 152
+    Left = 494
+    Top = 264
   end
 end

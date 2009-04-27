@@ -3,8 +3,8 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
   ClientWidth = 548
   OnDestroy = FormDestroy
   OnShow = FormShow
-  ExplicitWidth = 564
-  ExplicitHeight = 510
+  ExplicitWidth = 556
+  ExplicitHeight = 508
   PixelsPerInch = 96
   TextHeight = 13
   object cxPageControl1: TcxPageControl

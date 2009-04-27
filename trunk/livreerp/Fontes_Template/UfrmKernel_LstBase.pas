@@ -122,6 +122,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure actFiltrarExecute(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
    obj_Dt: TDataModule;
   public
@@ -625,7 +626,7 @@ var
   dmClass : TDataModuleClass;
 begin
   // Localiza classe
-  dmClass := TDataModuleClass(FindClass(strdmclasss));
+ { dmClass := TDataModuleClass(FindClass(strdmclasss));
   try
     // Verifica se nao existe o objeto na memoria
     if not Assigned(obj_Dt) then
@@ -633,7 +634,7 @@ begin
       obj_Dt := dmClass.Create(self);
   except
     FreeAndNil(obj_Dt);
-  end;
+  end;   }
 
   // Depois de Criar o datamodule mostra o titulo
   kernel_str_form := 'Listagem de ' + kernel_srt_nmformbase;
@@ -646,6 +647,12 @@ begin
 
   {Verifica as permissoes do usuario logado}
  // PermissoesForm;
+end;
+
+procedure TfrmKernel_LstBase.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  //FreeAndNil(obj_Dt);
 end;
 
 procedure TfrmKernel_LstBase.FormKeyDown(Sender: TObject; var Key: Word;

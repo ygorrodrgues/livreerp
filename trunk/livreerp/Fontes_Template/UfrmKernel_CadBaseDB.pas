@@ -80,6 +80,7 @@ type
     procedure Executa_ImprimirRegistro; override;
     {Executa Depois de executar o Imprimir registro}
     procedure DepoisImprimirRegistro; override;
+
   end;
 
 var

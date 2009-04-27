@@ -295,7 +295,7 @@ object frmKernel_CadBase: TfrmKernel_CadBase
       Top = 2
     end
   end
-  object RzStatusBar1: TRzStatusBar
+  object rzstsbrStatus: TRzStatusBar
     Left = 0
     Top = 442
     Width = 678

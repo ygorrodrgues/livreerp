@@ -33,29 +33,29 @@ type
     RzLabel2: TRzLabel;
     RzLabel3: TRzLabel;
     RzLabel4: TRzLabel;
-    RzToolbar1: TRzToolbar;
-    cxgrdLst_Base: TcxGrid;
-    cxgrdLst_BaseDBTableView1: TcxGridDBTableView;
-    cxgrdLst_BaseLevel1: TcxGridLevel;
-    pnlItem: TRzPanel;
-    RzLabel5: TRzLabel;
-    RzLabel6: TRzLabel;
-    RzLabel7: TRzLabel;
-    edtCoddesc: TRzEdit;
-    edtqtdunit: TJvCalcEdit;
-    edtprecounit: TJvCalcEdit;
-    RzToolButton1: TRzToolButton;
-    RzToolButton2: TRzToolButton;
-    RzToolButton3: TRzToolButton;
     dbedtCODIGO: TDBEdit;
-    btnPesquisaProduto: TSpeedButton;
     DBText1: TDBText;
     DBText2: TDBText;
     DBText3: TDBText;
     DBText4: TDBText;
     actPesquisaProduto: TAction;
-    RzLabel8: TRzLabel;
     RzLabel9: TRzLabel;
+    RzToolbar2: TRzToolbar;
+    RzToolButton1: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    RzToolButton3: TRzToolButton;
+    pnlItem: TRzPanel;
+    RzLabel5: TRzLabel;
+    RzLabel6: TRzLabel;
+    RzLabel7: TRzLabel;
+    btnPesquisaProduto: TSpeedButton;
+    RzLabel8: TRzLabel;
+    edtCoddesc: TRzEdit;
+    edtqtdunit: TJvCalcEdit;
+    edtprecounit: TJvCalcEdit;
+    cxgrdLst_Base: TcxGrid;
+    cxgrdLst_BaseDBTableView1: TcxGridDBTableView;
+    cxgrdLst_BaseLevel1: TcxGridLevel;
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure actNovoItemExecute(Sender: TObject);
@@ -137,7 +137,8 @@ var
 
 implementation
 
-uses UKernel_VariaveisPublic;
+uses UKernel_VariaveisPublic, UKernel_SysUtils, UKernel_Mensagem,
+  UKernel_Exception, UKernel_DB;
 
 {$R *.dfm}
 
@@ -178,21 +179,20 @@ begin
     // Instancia formulario
     obj := frmclass.Create(self);
     // Executa antes de alterar o registro
-    AntesAlterarRegistro;
+    AntesAlterarRegistroitm;
 
     // Mostra para o usuario
     obj.ShowModal;
   finally
-    if obj.ModalResult = mrok then
+    //if obj.ModalResult = mrok then
       begin
         // Executa depois de alterar o registro
-        DepoisAlterarRegistro;
+        DepoisAlterarRegistroitm;
 
         PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 
         // Volta o foco para o registro alterado depois de atualizar os dados
-        DsBase.DataSet.Locate(Kernel_Cadastro.str_CampoChave,
-        DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value,[]);
+        dsBaseItm.DataSet.Locate(Kernel_Cadastro.str_ItemCampoChave, DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value,[]);
       end;
 
     // Libera Instancia da memoria
@@ -249,12 +249,12 @@ begin
   begin
     if DatasetCadastro.State in [dsinsert] then
     begin
-      AntesSalvarRegistro;
+      //AntesSalvarRegistro;
 
       DatasetCadastro.Post;
       DatasetCadastro.ApplyUpdates(0);
 
-      DepoisSalvarRegistro;
+      //DepoisSalvarRegistro;
 
       DatasetCadastro.edit;
 
@@ -268,7 +268,7 @@ end;
 
 procedure TfrmKernel_CadMovBase.DepoisAlterarRegistro;
 begin
-
+  PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 end;
 
 procedure TfrmKernel_CadMovBase.DepoisAlterarRegistroItm;
@@ -288,7 +288,7 @@ end;
 
 procedure TfrmKernel_CadMovBase.DepoisNovoRegistro;
 begin
-
+  PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 end;
 
 procedure TfrmKernel_CadMovBase.DepoisNovoRegistroItm;
@@ -313,7 +313,8 @@ end;
 
 procedure TfrmKernel_CadMovBase.ExcluirRegistroItm;
 begin
-
+  Kernel_Apaga_Registro(Kernel_Cadastro.str_ItemTabela, Kernel_Cadastro.str_ItemCampoChave,
+    DatasetListagemItem.FieldByName(Kernel_Cadastro.str_ItemCampoChave).Value);
 end;
 
 procedure TfrmKernel_CadMovBase.Executa_AlterarRegistro;
@@ -332,8 +333,38 @@ begin
 end;
 
 procedure TfrmKernel_CadMovBase.Executa_ExcluirRegistroItm;
+var
+  int_codigo: Integer;
 begin
-  ExcluirRegistroItm;
+  // Chama o Evento Antes de Excluir
+  AntesExcluirRegistro;
+
+  if Kernel_Confirmacao_acao(Kernel_Confirmacao_Apaga_Registro, 'D') then
+    begin
+      {Apaga registro atual}
+      try
+        try
+          int_codigo:= DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value;
+
+          ExcluirRegistroItm;;
+
+          // Chama o Evento Apos Excluir
+          DepoisExcluirRegistroitm;
+
+          Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(Kernel_PropriedadesProjeto.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
+
+          PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
+
+          DatasetListagem.Locate( Kernel_Cadastro.str_CampoChave,int_codigo ,[]);          
+        except
+          raise Livre_Mensagem_Global.CreateFmt(Kernel_Erro_FalhaInesperada +' o registro %s . ', ['(' +
+            IntToStr(DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value) + ')']);
+        end;
+      finally
+        Kernel_DestroyAguarde;
+      end;
+    end;
+
 end;
 
 procedure TfrmKernel_CadMovBase.Executa_NovoRegistro;
@@ -360,9 +391,10 @@ begin
   {Campo codigo da tabela}
   dbedtCODIGO.DataField := Kernel_Cadastro.str_CampoChave;
 
-  if dsBase.DataSet.State in [dsInsert] then
+  if DatasetCadastro.State in [dsInsert] then
     begin
       HabilitaBotoes(False);
+      PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
     end;
 end;
 
@@ -382,6 +414,7 @@ end;
 
 procedure TfrmKernel_CadMovBase.NovoRegistro;
 Begin
+
 end;
 
 procedure TfrmKernel_CadMovBase.NovoRegistroItm;
@@ -395,21 +428,20 @@ begin
     // Instancia formulario
     obj := frmclass.Create(self);
     // Executa antes de novo o registro
-    AntesNovoRegistro;
+    AntesNovoRegistroitm;
 
     // Mostra para o usuario
     obj.ShowModal;
   finally
-    if obj.ModalResult = mrok then
+   // if obj.ModalResult = mrok then
       begin
         // Executa depois de novo o registro
-        DepoisNovoRegistro;
+        DepoisNovoRegistroitm;
 
         PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 
         // Volta o foco para o registro alterado depois de atualizar os dados
-        DsBase.DataSet.Locate(Kernel_Cadastro.str_CampoChave,
-        DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value,[]);
+        dsBaseItm.DataSet.Locate(Kernel_Cadastro.str_ItemCampoChave, DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value,[]);
       end;
 
     // Libera Instancia da memoria
@@ -420,7 +452,7 @@ end;
 procedure TfrmKernel_CadMovBase.PesquisaItens(int_codchave: integer);
 begin
   inherited;
- {Pesquisa os itens da movimentação passada como parametro}
+  {Pesquisa os itens da movimentação passada como parametro}
   with DatasetListagemItem do
   begin
     close;

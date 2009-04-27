@@ -15,6 +15,9 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
     Align = alBottom
     TabOrder = 0
     VisualStyle = vsGradient
+    DesignSize = (
+      592
+      32)
     object JvXPButton1: TJvXPButton
       Left = 399
       Top = 4
@@ -22,6 +25,7 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
       Height = 23
       Action = actConfirmar
       TabOrder = 0
+      Anchors = [akTop, akRight, akBottom]
     end
     object JvXPButton2: TJvXPButton
       Left = 494
@@ -30,6 +34,7 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
       Height = 23
       Action = actCancelar
       TabOrder = 1
+      Anchors = [akTop, akRight, akBottom]
     end
   end
   object RzPanel2: TRzPanel
@@ -40,7 +45,7 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
     Align = alTop
     TabOrder = 1
     VisualStyle = vsGradient
-    object Label3: TLabel
+    object lblSubtitulo: TLabel
       Left = 12
       Top = 23
       Width = 52
