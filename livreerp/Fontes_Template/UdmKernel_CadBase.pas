@@ -96,6 +96,8 @@ begin
 
   {Fomata com mascara de valor todos os fields de valor}
   kernel_Formata_Fields_Valores;
+
+  kernel_CaregaConfiguracoes();  
 end;
 
 procedure TdmKernel_CadBase.dspCadBaseAfterUpdateRecord(Sender: TObject;
@@ -135,7 +137,7 @@ end;
 function TdmKernel_CadBase.Kernel_Nome_Tabela(DataSet: TDataSet): String;
 begin
   Result:= GetTableNameFromSQL(((FindComponent((DataSet as TClientDataSet).ProviderName) as
-     TDataSetProvider).DataSet as  TSQLQuery).Text)
+     TDataSetProvider).DataSet as  TSQLQuery).Text);
 end;
 
 procedure TdmKernel_CadBase.BeforePost(ds: Tdataset; str_tabela, str_campochave: string);

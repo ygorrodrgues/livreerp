@@ -6,8 +6,8 @@ inherited frmKernel_Principal: TfrmKernel_Principal
   WindowState = wsMaximized
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  ExplicitWidth = 787
-  ExplicitHeight = 539
+  ExplicitWidth = 779
+  ExplicitHeight = 537
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
@@ -29,56 +29,74 @@ inherited frmKernel_Principal: TfrmKernel_Principal
     BorderSides = [sdLeft, sdTop, sdRight, sdBottom]
     BorderWidth = 0
     TabOrder = 0
+    ExplicitTop = 470
     object stspnServidor: TRzStatusPane
-      Left = 0
+      Left = 65
       Top = 0
-      Width = 137
+      Width = 112
       Height = 19
       Align = alLeft
     end
-    object stspnModulo: TRzStatusPane
-      Left = 137
+    object stspnBanco: TRzStatusPane
+      Left = 177
       Top = 0
       Width = 104
       Height = 19
       Align = alLeft
       Alignment = taCenter
-      Caption = 'SISCMO'
-      ExplicitLeft = 201
     end
     object stspnEmpresa: TRzStatusPane
-      Left = 241
+      Left = 437
       Top = 0
-      Width = 168
+      Width = 226
       Height = 19
       Align = alLeft
-      ExplicitLeft = 299
-      ExplicitTop = 6
+      ExplicitLeft = 423
     end
     object stspnUsuario: TRzStatusPane
-      Left = 409
+      Left = 337
       Top = 0
       Height = 19
       Align = alLeft
-      ExplicitLeft = 321
-      ExplicitTop = -8
+      ExplicitLeft = 317
+      ExplicitTop = 6
     end
     object RzClockStatus1: TRzClockStatus
-      Left = 509
+      Left = 663
       Top = 0
       Width = 116
       Height = 19
       Align = alLeft
+      ExplicitLeft = 509
     end
     object RzStatusPane1: TRzStatusPane
-      Left = 625
+      Left = 281
       Top = 0
-      Width = 146
+      Width = 56
       Height = 19
-      Align = alClient
-      ExplicitLeft = 771
-      ExplicitWidth = 100
-      ExplicitHeight = 20
+      Align = alLeft
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Caption = 'Usu'#225'rio:'
+      ExplicitLeft = 409
+    end
+    object RzStatusPane2: TRzStatusPane
+      Left = 0
+      Top = 0
+      Width = 65
+      Height = 19
+      Align = alLeft
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Caption = 'Servidor:'
     end
   end
   object RzToolbar1: TRzToolbar

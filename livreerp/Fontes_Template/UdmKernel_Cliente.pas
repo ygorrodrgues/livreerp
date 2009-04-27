@@ -12,7 +12,7 @@ type
   private
     { Private declarations }
   public
-    procedure kernel_CaregaConfiguracoes(str_tabela: string);override;    { Public declarations }
+    procedure kernel_CaregaConfiguracoes();override;    { Public declarations }
   end;
 
 var
@@ -33,10 +33,10 @@ begin
   {99-Final do Bloco Framework. Modificações não serão preservadas}
 
   //Passa para a classe informacoes dados da tabela de cadastro
-  kernel_CaregaConfiguracoes(Kernel_Cadastro.str_Tabela);
+  kernel_CaregaConfiguracoes();
 end;
 
-procedure TdmKernel_Cliente.kernel_CaregaConfiguracoes(str_tabela: string);
+procedure TdmKernel_Cliente.kernel_CaregaConfiguracoes();
 begin
   inherited;
   {Nome do Campo chave da tabela}

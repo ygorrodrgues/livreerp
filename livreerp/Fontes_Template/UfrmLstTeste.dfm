@@ -1,6 +1,5 @@
 inherited frmLstTeste: TfrmLstTeste
   Caption = 'frmLstTeste'
-  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlFiltro: TRzPanel
@@ -18,11 +17,16 @@ inherited frmLstTeste: TfrmLstTeste
     ToolbarControls = (
       btnNovo
       btnAlterar
-      btnSalvar
-      btnCancelar
       btnImprimir
-      btnFechar
-      RzToolButton1)
+      btnFechar)
+    inherited btnImprimir: TRzToolButton
+      Left = 185
+      ExplicitLeft = 185
+    end
+    inherited btnFechar: TRzToolButton
+      Left = 281
+      ExplicitLeft = 281
+    end
   end
   inherited cxspyBase: TcxStyleRepository
     inherited GridTableViewStyleSheetUserFormat2: TcxGridTableViewStyleSheet

@@ -47,6 +47,8 @@ Const
   Kernel_Aviso_Alteracao_RegistroPadrao : string = 'Alteração Impossivel. '+ #13 +
                            ' Motivo: Registro Padrão do Banco de Dados';
   Kernel_Aviso_FecharSistema : string = 'O sistema será encerrado automaticamente para evitar futuros problemas!';
+  Kernel_Aviso_Registri_Existente : string = 'Registro já inserido nesse documento!';
+  Kernel_Aviso_Relatorio_NaoEncontrado : string = 'Relatorio %s não encontrado!';
 
   //==============================================================================
   // Mensagens do Empresa de SoftHouse

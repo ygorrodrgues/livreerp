@@ -25,11 +25,10 @@ type
     RzStatusBar1: TRzStatusBar;
     Image1: TImage;
     stspnServidor: TRzStatusPane;
-    stspnModulo: TRzStatusPane;
+    stspnBanco: TRzStatusPane;
     stspnEmpresa: TRzStatusPane;
     stspnUsuario: TRzStatusPane;
     RzClockStatus1: TRzClockStatus;
-    RzStatusPane1: TRzStatusPane;
     RzToolbar1: TRzToolbar;
     actlstPrincipal: TActionList;
     RzToolButton1: TRzToolButton;
@@ -38,6 +37,8 @@ type
     actSobre: TAction;
     Sistema1: TMenuItem;
     Sobre1: TMenuItem;
+    RzStatusPane1: TRzStatusPane;
+    RzStatusPane2: TRzStatusPane;
     procedure FormCreate(Sender: TObject);
     procedure actFecharExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -82,8 +83,9 @@ procedure TfrmKernel_Principal.CaregaConfiguracoestela;
 begin
   {Atualiza Informacoes do statusbar}
   stspnEmpresa.caption  :=  Kernel_PropriedadesProjeto.str_SoftHouse;
-  stspnServidor.caption :=  Kernel_Conexao.str_server+ '  ' + Kernel_Conexao.str_database;
-  stspnUsuario.caption  :=  Kernel_Login.str_nomeusu
+  stspnServidor.caption :=  Kernel_Conexao.str_server;
+  stspnUsuario.caption  :=  Kernel_Login.str_nomeusu;
+  stspnBanco.Caption    :=  Kernel_Conexao.str_database
 end;
 
 procedure TfrmKernel_Principal.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

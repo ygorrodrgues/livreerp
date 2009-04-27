@@ -46,10 +46,49 @@ interface
   Autor: Sérgio Guedes  }    
   Function InstanciaQuery(): TSQLQuery;
 
+  function Kernel_Caminho_Relatorio(TableName, Campo: String): string;
+  {Preenche com informacoes o comobox informado como parametro}
+  procedure Kernel_Preenche_TComobox(var Cb: TComboBox;  Tabela,
+    campo, condicao : String);
+
 implementation
 
 uses UdmPrincipal, UfrmKernel_Mensagem, UKernel_Mensagem, uKernel_Sistema,
   UKernel_VariaveisPublic;
+
+procedure Kernel_Preenche_TComobox(var Cb: TComboBox;  Tabela,
+  campo, condicao : String);
+var
+  Qry:TsqlQuery;
+begin
+  Qry := InstanciaQuery(); {: cria uma instância do objeto}
+  try
+    with Qry do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Add('select ' +  campo + ' from ' + Tabela);
+
+      // se tiver condicao aplica na consulta
+      if condicao <> '' then
+        SQL.Add(condicao);          
+
+      SQL.Add('order by ' + campo);
+      Open;
+
+      if recordcount > 0 then
+        Cb.Clear;
+        First;
+        While not Eof do
+          Begin
+            Cb.Items.Add(Fieldbyname(campo).asstring);
+            Next;
+          End;
+      end;
+   finally
+    FreeAndNil(Qry);  {: libera o objeto da memória}
+  end;
+end;
 
 Function InstanciaQuery(): TSQLQuery;
 var
@@ -71,6 +110,26 @@ procedure Kernel_Apaga_Registro(str_tabela, str_campo_chave: string; vrt_valor_c
 begin
   FConexao.ExecuteDirect('delete from ' + str_tabela+ ' where ' + str_campo_chave + '=' +
    QuotedStr(vrt_valor_chave) );
+end;
+
+function Kernel_Caminho_Relatorio(TableName, Campo: String): string;
+var
+  Qry:TsqlQuery;
+begin
+  Result:= '';
+  qry := InstanciaQuery; {: cria uma instância do objeto}
+  try
+    with Qry do
+    begin
+      SQL.Add('SELECT MAX('+Campo+')FROM '+ TableName);
+      Open;
+
+      if not IsEmpty then
+        Result := Fields[0].asstring;
+    end;
+  finally
+    FreeAndNil(Qry);  {: libera o objeto da memória}
+  end;
 end;
 
 function Kernel_Incrementa(TableName, Campo: String): Integer;

@@ -89,7 +89,7 @@ type
     btnNovo: TRzToolButton;
     btnAlterar: TRzToolButton;
     btnImprimir: TRzToolButton;
-    RzStatusBar1: TRzStatusBar;
+    rzstsbrStatus: TRzStatusBar;
     RzPanel1: TRzPanel;
     btnCancelarK: TJvXPButton;
     btnFecharK: TJvXPButton;
@@ -110,11 +110,6 @@ type
       Shift: TShiftState);
     procedure actCancelarExecute(Sender: TObject);
   private
-    FTableDisplayName: string;
-    FKeyField: string;
-    FCurHeight: Integer;
-    FCurWidth: Integer;
-    FMaxHeight: Integer;
     //sdsMetaData: TSimpleDataSet;
     // Variaveis Usadas para controle de permissao
     bol_actAlterar, bol_actnovo, bol_actapagar, bol_salvou: Boolean;
@@ -190,6 +185,8 @@ type
     procedure DefineControle(Primeiro, Ultimo: TWinControl); virtual;
 
     procedure HabilitaBotoes;
+    {Atualiza os datasets auxiliares que podem existir na tela}
+    procedure Atualiza_Datasets_Auxiliares; virtual;
   end;
 
 var
@@ -330,6 +327,8 @@ begin
   inherited;
   // Verifica permissao do usuario na tela
   // PermissoesForm;
+
+  Atualiza_Datasets_Auxiliares;  
 
   // Seta Primeira opcao pro comobox de Telas
   DBlcbCadastros.ItemIndex := 0;
@@ -557,7 +556,8 @@ end;
 
 procedure TfrmKernel_CadBase.AntesAlterarRegistro;
 begin
-  // aqui sera codificado no filhos
+  // Ativa a aba de cadastro quando for inserir um novo registro
+  pgcntrlcadastro.ActivePage := tbshtDados;
 end;
 
 procedure TfrmKernel_CadBase.AntesCancelarRegistro;
@@ -579,13 +579,19 @@ end;
 
 procedure TfrmKernel_CadBase.AntesNovoRegistro;
 begin
-  // aqui sera codificado no filhos
+  // Ativa a aba de cadastro quando for inserir um novo registro
+  pgcntrlcadastro.ActivePage := tbshtDados;
 end;
 
 procedure TfrmKernel_CadBase.AntesSalvarRegistro;
 begin
   {Valida se os campos obrigatorios estao todos preechidos}
   ValidaCampos;
+end;
+
+procedure TfrmKernel_CadBase.Atualiza_Datasets_Auxiliares;
+begin
+  // aqui sera codificada nos filhos
 end;
 
 procedure TfrmKernel_CadBase.CancelarRegistro;
@@ -611,7 +617,9 @@ procedure TfrmKernel_CadBase.DepoisAlterarRegistro;
 begin
   primeiroControle;
   HabilitaBotoes;
-  EnableDisableControls(true);  
+  EnableDisableControls(true);
+  {Atualiza os datasets auxiliares que podem existir na tela}
+  Atualiza_Datasets_Auxiliares;  
 end;
 
 procedure TfrmKernel_CadBase.DepoisCancelarRegistro;
@@ -628,7 +636,6 @@ end;
 
 procedure TfrmKernel_CadBase.DepoisImprimirRegistro;
 begin
-  HabilitaBotoes;
   // aqui sera codificado no filhos
 end;
 
@@ -637,6 +644,8 @@ begin
   primeiroControle;
   HabilitaBotoes;
   EnableDisableControls(true);
+  {Atualiza os datasets auxiliares que podem existir na tela}  
+  Atualiza_Datasets_Auxiliares;
 end;
 
 procedure TfrmKernel_CadBase.DepoisSalvarRegistro;

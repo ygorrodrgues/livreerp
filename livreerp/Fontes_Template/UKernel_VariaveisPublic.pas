@@ -45,7 +45,7 @@ interface
     FConexao : TSQLConnection;
 
     // Usada para autoinstanciamento de formularios
-    strclass, strclassItem, strdmclasss : string;
+    strclass, strclassItem,strclass_anterior, strclassItem_anterior, strdmclasss : string;
 
     /// -------------------------- variaveis gerais ---------------///
 
@@ -68,6 +68,13 @@ interface
     DatasetListagemItem: TClientDataSet;
     DatasetColunas: TClientDataSet;
     DatasetqryCadastro: TSQLQuery;
+
+    DatasetCadastro_Anterior: TClientDataSet;
+    DatasetListagem_Anterior: TClientDataSet;
+    DatasetCadastroItem_Anterior: TClientDataSet;
+    DatasetListagemItem_Anterior: TClientDataSet;
+    DatasetColunas_Anterior: TClientDataSet;
+    DatasetqryCadastro_Anterior: TSQLQuery;
 
     {Define nome da tela}
     kernel_str_form, kernel_srt_nmformbase: string;

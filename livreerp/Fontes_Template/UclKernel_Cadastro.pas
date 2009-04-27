@@ -17,6 +17,10 @@ type
     // usada para os itens da mov
     Fstr_ItemTabela: string;
     Fstr_ItemCampoChave: string;
+    Fstr_ItemCampoChave_Anterior: string;
+    Fstr_CampoChave_Anterior: string;
+    Fstr_ItemTabela_Anterior: string;
+    Fstr_CampoDescricao_Anterior: string;
     function Getstr_CampoChave: string;
     function Getstr_CampoDescricao: string;
     function Getstr_ItemCampoChave: string;
@@ -41,8 +45,24 @@ type
     // Campo chave da tabela detalhe
     property str_ItemCampoChave: string read Getstr_ItemCampoChave write Setstr_ItemCampoChave;
 
+    // Dados anteriores
+
+     property str_Tabela_Anterior: string read Getstr_Tabela write Setstr_Tabela;
+    // Campo descricao da tabela
+    property str_CampoDescricao_Anterior: string read Fstr_CampoDescricao_Anterior write Fstr_CampoDescricao_Anterior;
+    // Campo chave primaria da tabela
+    property str_CampoChave_Anterior: string read Fstr_CampoChave_Anterior write Fstr_CampoChave_Anterior;
+
+    // Tabela Detalhe
+    property str_ItemTabela_Anterior: string read Fstr_ItemTabela_Anterior write Fstr_ItemTabela_Anterior;
+    // Campo chave da tabela detalhe
+    property str_ItemCampoChave_Anterior: string read Fstr_ItemCampoChave_Anterior write Fstr_ItemCampoChave_Anterior;
+
     Constructor Create();
     Destructor Destroy();
+
+    procedure Kernel_Guarda_Classe;
+    procedure Kernel_Retorna_Classe;
   end;
 
 implementation
@@ -85,6 +105,26 @@ end;
 function TKernel_Cadastro.Getstr_Tabela: string;
 begin
   Getstr_Tabela := Fstr_Tabela;
+end;
+
+procedure TKernel_Cadastro.Kernel_Guarda_Classe;
+begin
+  str_Tabela_Anterior :=  str_Tabela;
+  str_CampoDescricao_Anterior := str_CampoDescricao;
+  str_CampoChave_Anterior :=  str_CampoChave;
+
+  str_ItemTabela_Anterior :=str_ItemTabela;
+  str_ItemCampoChave_Anterior  := str_ItemCampoChave;
+end;
+
+procedure TKernel_Cadastro.Kernel_Retorna_Classe;
+begin
+  str_Tabela :=  str_Tabela_Anterior;
+  str_CampoDescricao := str_CampoDescricao_Anterior;
+  str_CampoChave :=  str_CampoChave_Anterior;
+
+  str_ItemTabela :=str_ItemTabela_Anterior;
+  str_ItemCampoChave  := str_ItemCampoChave_Anterior;
 end;
 
 procedure TKernel_Cadastro.Setstr_CampoChave(const Value: string);

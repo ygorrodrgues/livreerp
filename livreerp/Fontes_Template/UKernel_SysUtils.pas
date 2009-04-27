@@ -24,7 +24,7 @@ uses
 
   // Mostra a Versao do Sistema
   function Kernel_GetVersaoArq: string;
-  // Valida Documentos usandl acbrvalidador
+  // Valida Documentos usando acbrvalidador
   function Kernel_ValidaCampos(Objeto: string; WinControl: TWinControl;
    TipoDoc: TACBrValTipoDocto ): Boolean;
 
@@ -52,11 +52,42 @@ uses
   {retona serador de texto. pula uma linha com alinhamento}
   function Kernel_SKIP(pLinhas: Integer = 1): String;
 
+  // Gambi
+  procedure Guarda_Dataset;
+  procedure Retorna_Dataset;
+
 implementation
 
 uses UfrmKernel_Splash, UKernel_Mensagem, UfrmKernel_Mensagem,  UKernel_Registry,
   UKernel_DB, UdmPrincipal, uKernel_Sistema,  UKernel_VariaveisPublic,
   csDXFunctions, UKernel_Exception, UfrmKernel_Aguarde;
+
+procedure Guarda_Dataset;
+begin
+  DatasetCadastro_Anterior:=  DatasetCadastro;
+  DatasetListagem_Anterior:= DatasetListagem;
+  DatasetCadastroItem_Anterior:= DatasetCadastroItem;
+  DatasetListagemItem_Anterior:= DatasetListagemItem;
+  DatasetColunas_Anterior:= DatasetColunas;
+  DatasetqryCadastro_Anterior:= DatasetqryCadastro;
+
+  strclass_anterior  := strclass;
+  strclassItem_anterior := strclassItem;
+end;
+
+procedure Retorna_Dataset;
+begin
+  DatasetCadastro:=  DatasetCadastro_Anterior;
+  DatasetListagem:= DatasetListagem_Anterior;
+  DatasetCadastroItem:= DatasetCadastroItem_Anterior;
+  DatasetListagemItem:= DatasetListagemItem_Anterior;
+  DatasetColunas:= DatasetColunas_Anterior;
+  DatasetqryCadastro:= DatasetqryCadastro_Anterior;
+
+  strclass  := strclass_anterior;
+  strclassItem := strclassItem_anterior;
+end;
+
 
 function Kernel_SKIP(pLinhas: Integer = 1): String;
 var i: Integer;
@@ -224,7 +255,7 @@ begin
     end
    else
     begin
-      // Se não Existir imagem do produto mostra fotopadra
+      // Se não Existir imagem do produto mostra foto padrao
       Caminho2 := kernel_Diretorio + 'Imagens\LogoTipos\'+ ImagemAlternativa + '.gif';
       if FileExists(Caminho2) then
         Begin
