@@ -16,7 +16,7 @@ interface
   procedure kernel_RefreshCds (aCds : TClientDataSet);
   { Verifica se o pode excluir o registro, se tem relacionamento}
   function kernel_ExisteRelacionamento(str_Tabela, str_Coluna, str_status, str_where : string; int_ValorChave : Variant):Boolean;
-  {Retorna a data atual do servidor do sql server}
+  {Retorna a data atual do servidor de banco de dados}
   function Kernel_Data_Servidor: Tdatetime;
 
   {  -- funcoes para auditoria  -----------------}

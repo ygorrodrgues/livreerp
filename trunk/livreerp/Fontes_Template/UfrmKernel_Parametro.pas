@@ -26,7 +26,7 @@ type
     actAbrir: TAction;
     dsBase: TDataSource;
     cxPageControl1: TcxPageControl;
-    cxTabSheet1: TcxTabSheet;
+    tbshtDadosBasicos: TcxTabSheet;
     RzPanel1: TRzPanel;
     RzPanel2: TRzPanel;
     imgCadBase: TImage;
@@ -61,7 +61,7 @@ var
 
 implementation
 
-uses UKernel_VariaveisPublic;
+uses UKernel_VariaveisPublic, UfrmKernel_Mensagem, UKernel_Mensagem;
 
 {$R *.dfm}
 
@@ -83,6 +83,8 @@ begin
   TClientDataSet(dsBase.DataSet).ApplyUpdates(0);
 
   dsBase.DataSet.edit;
+  TFrmKernel_Mensagem.Mensagem(Kernel_Aviso_Alteracao,'I',[mbOk]);
+
 end;
 
 procedure TfrmKernel_Parametro.FormCreate(Sender: TObject);

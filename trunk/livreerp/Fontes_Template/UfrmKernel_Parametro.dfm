@@ -12,13 +12,13 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
     Top = 38
     Width = 548
     Height = 405
-    ActivePage = cxTabSheet1
+    ActivePage = tbshtDadosBasicos
     Align = alClient
     TabOrder = 0
     ClientRectBottom = 405
     ClientRectRight = 548
     ClientRectTop = 24
-    object cxTabSheet1: TcxTabSheet
+    object tbshtDadosBasicos: TcxTabSheet
       Caption = 'Informa'#231#245'es'
       ImageIndex = 0
     end
@@ -216,7 +216,7 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
       548
       31)
     object btnSalvar: TJvXPButton
-      Left = 370
+      Left = 368
       Top = 4
       Width = 86
       Height = 22

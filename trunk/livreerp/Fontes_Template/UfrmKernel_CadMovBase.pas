@@ -344,9 +344,9 @@ begin
       {Apaga registro atual}
       try
         try
-          int_codigo:= DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value;
+          int_codigo:= DatasetListagemItem.FieldByName(Kernel_Cadastro.str_ItemCampoChave).Value;
 
-          ExcluirRegistroItm;;
+          ExcluirRegistroItm;
 
           // Chama o Evento Apos Excluir
           DepoisExcluirRegistroitm;
@@ -355,10 +355,10 @@ begin
 
           PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 
-          DatasetListagem.Locate( Kernel_Cadastro.str_CampoChave,int_codigo ,[]);          
+          DatasetListagemItem.Locate( Kernel_Cadastro.str_ItemCampoChave,int_codigo ,[]);          
         except
           raise Livre_Mensagem_Global.CreateFmt(Kernel_Erro_FalhaInesperada +' o registro %s . ', ['(' +
-            IntToStr(DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value) + ')']);
+            IntToStr(DatasetListagemItem.FieldByName(Kernel_Cadastro.str_ItemCampoChave).Value) + ')']);
         end;
       finally
         Kernel_DestroyAguarde;

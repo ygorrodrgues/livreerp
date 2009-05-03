@@ -29,7 +29,6 @@ inherited frmKernel_Principal: TfrmKernel_Principal
     BorderSides = [sdLeft, sdTop, sdRight, sdBottom]
     BorderWidth = 0
     TabOrder = 0
-    ExplicitTop = 470
     object stspnServidor: TRzStatusPane
       Left = 65
       Top = 0

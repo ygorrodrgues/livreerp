@@ -49,6 +49,7 @@ type
     { Private declarations }
   public
     procedure CaregaConfiguracoestela;
+    procedure AppMessage(var Msg : TMsg; var Handled : Boolean);     
   end;
 
 var
@@ -77,6 +78,13 @@ procedure TfrmKernel_Principal.actSobreExecute(Sender: TObject);
 begin
   inherited;
   Kernel_AbreForm(TfrmKernel_Sobre,frmKernel_Sobre);
+end;
+
+procedure TfrmKernel_Principal.AppMessage(var Msg: TMsg; var Handled: Boolean);
+begin
+  if Msg.message = WM_CHAR then
+    if Msg.wParam and $FF in [Ord('a')..Ord('z')] then
+      Dec(Msg.wParam, 32); 
 end;
 
 procedure TfrmKernel_Principal.CaregaConfiguracoestela;
@@ -117,6 +125,8 @@ procedure TfrmKernel_Principal.FormShow(Sender: TObject);
 begin
   inherited;
   //imgBackground.Picture.LoadFromFile();
+  // Deixa tudo o que for digitado na aplicação em maisculo
+  Application.OnMessage := AppMessage; 
 end;
 
 end.

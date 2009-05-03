@@ -10,12 +10,6 @@ uses
 
 type
   TfrmPrincipal = class(TfrmKernel_Principal)
-    actFechamentoConvenio: TAction;
-    RzSpacer1: TRzSpacer;
-    actSobre: TAction;
-    Sistema1: TMenuItem;
-    SobreoSistema1: TMenuItem;
-    procedure actSobreExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,11 +24,5 @@ implementation
 uses UKernel_SysUtils, UfrmKernel_Sobre;
 
 {$R *.dfm}
-
-procedure TfrmPrincipal.actSobreExecute(Sender: TObject);
-begin
-  inherited;
-  Kernel_AbreForm(TfrmKernel_Sobre,frmKernel_Sobre);
-end;
 
 end.

@@ -3,31 +3,31 @@ inherited dmPrincipal: TdmPrincipal
   Height = 264
   Width = 383
   inherited qryKernel_Gerenerica: TSQLQuery
-    Left = 120
-    Top = 136
+    Left = 144
+    Top = 152
   end
   inherited conPrincipalKernel: TSQLConnection
-    ConnectionName = 'systoch'
+    ConnectionName = 'siscmo'
     Params.Strings = (
       'DriverName=MSSQL'
       'SchemaOverride=%.dbo'
-      'DriverUnit=DBXDynalink'
+      'DriverUnit=DBXMSSQL'
       
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXDynalinkDriver10' +
-        '0.bpl'
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver120.' +
+        'bpl'
       
         'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-        'nd.Data.DbxDynalinkDriver,Version=11.0.5000.0,Culture=neutral,Pu' +
-        'blicKeyToken=91d62ebb5b0d1b1b'
+        'nd.Data.DbxCommonDriver,Version=12.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
       
-        'MetaDataPackageLoader=TDBXMsSqlMetaDataCommandFactory,DbxReadOnl' +
-        'yMetaData100.bpl'
+        'MetaDataPackageLoader=TDBXMsSqlMetaDataCommandFactory,DbxMSSQLDr' +
+        'iver120.bpl'
       
         'MetaDataAssemblyLoader=Borland.Data.TDBXMsSqlMetaDataCommandFact' +
-        'ory,Borland.Data.DbxReadOnlyMetaData,Version=11.0.5000.0,Culture' +
-        '=neutral,PublicKeyToken=91d62ebb5b0d1b1b'
-      'HostName=SERGIO-PC'
-      'DataBase=SYSTOCH'
+        'ory,Borland.Data.DbxMSSQLDriver,Version=12.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'HostName=sergio-pc'
+      'DataBase=SiSCLINICA'
       'User_Name=SYS'
       'Password=SYS'
       'BlobSize=-1'
@@ -36,7 +36,7 @@ inherited dmPrincipal: TdmPrincipal
       'MSSQL TransIsolation=ReadCommited'
       'OS Authentication=False'
       'Prepare SQL=False')
-    Left = 120
-    Top = 40
+    Left = 144
+    Top = 56
   end
 end

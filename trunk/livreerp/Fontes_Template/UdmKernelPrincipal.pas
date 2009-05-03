@@ -5,7 +5,8 @@ interface
 uses
   SysUtils, Classes, WideStrings, ADODB, DB, SqlExpr, Dialogs, Forms,
   FMTBcd, DBXDynalink, DbxMsSql,untKernel_Interface_RegrasBD,
-   UntKernel_Classe_Firebird,UclKernel_Conexao, UntKernel_Classe_SQLServer;
+   UntKernel_Classe_Firebird,UclKernel_Conexao, UntKernel_Classe_SQLServer,
+    UclKernel_Cadastro;
 
 type
   TdmKernelPrincipal = class(TDataModule)
@@ -121,6 +122,9 @@ begin
   {Instancia Classe de parametros de conexao com o banco}
   Kernel_Conexao := TKernel_Conexao.Create;
 
+  {Cria classe de cadastro}
+  Kernel_Cadastro := TKernel_Cadastro.Create;  
+
   {Instancia Classe de parametros de conexao com o banco}
   Kernel_login := TKernel_Login.Create;
 
@@ -140,6 +144,8 @@ begin
   Kernel_login.Free;
   Kernel_PropriedadesProjeto.Free;
   Kernel_Terminal.Free;
+  {Libera classes da memoria}
+  Kernel_Cadastro.Free;  
 
   {Desconecta do servidor}
   DesconectaServidor;

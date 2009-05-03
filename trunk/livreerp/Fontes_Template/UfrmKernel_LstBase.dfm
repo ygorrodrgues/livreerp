@@ -41,7 +41,6 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     Height = 401
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 108
     object cxgrdLst_BaseDBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsBase

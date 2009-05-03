@@ -61,11 +61,11 @@ type
     Constructor Create();
     Destructor Destroy();
 
-    procedure Kernel_Guarda_Classe;
-    procedure Kernel_Retorna_Classe;
   end;
 
 implementation
+
+uses UKernel_SysUtils;
 
 { TObjBanco }
 
@@ -105,26 +105,6 @@ end;
 function TKernel_Cadastro.Getstr_Tabela: string;
 begin
   Getstr_Tabela := Fstr_Tabela;
-end;
-
-procedure TKernel_Cadastro.Kernel_Guarda_Classe;
-begin
-  str_Tabela_Anterior :=  str_Tabela;
-  str_CampoDescricao_Anterior := str_CampoDescricao;
-  str_CampoChave_Anterior :=  str_CampoChave;
-
-  str_ItemTabela_Anterior :=str_ItemTabela;
-  str_ItemCampoChave_Anterior  := str_ItemCampoChave;
-end;
-
-procedure TKernel_Cadastro.Kernel_Retorna_Classe;
-begin
-  str_Tabela :=  str_Tabela_Anterior;
-  str_CampoDescricao := str_CampoDescricao_Anterior;
-  str_CampoChave :=  str_CampoChave_Anterior;
-
-  str_ItemTabela :=str_ItemTabela_Anterior;
-  str_ItemCampoChave  := str_ItemCampoChave_Anterior;
 end;
 
 procedure TKernel_Cadastro.Setstr_CampoChave(const Value: string);
