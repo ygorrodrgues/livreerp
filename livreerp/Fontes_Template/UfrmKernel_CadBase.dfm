@@ -1081,11 +1081,11 @@ object frmKernel_CadBase: TfrmKernel_CadBase
   end
   object actlstCadBaseUser: TActionList
     Images = ilCadBaseUser
-    Left = 216
-    Top = 154
+    Left = 392
+    Top = 42
   end
   object ilCadBaseUser: TImageList
-    Left = 288
-    Top = 154
+    Left = 448
+    Top = 42
   end
 end

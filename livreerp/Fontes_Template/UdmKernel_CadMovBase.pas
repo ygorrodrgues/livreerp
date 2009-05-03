@@ -17,13 +17,12 @@ type
     qryPesqProd: TSQLQuery;
     dspPesqProd: TDataSetProvider;
     cdsPesqProd: TClientDataSet;
-    procedure DataModuleCreate(Sender: TObject);
     procedure cdsCadItemBeforePost(DataSet: TDataSet);
     procedure cdsCadItemAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure kernel_CaregaConfiguracoes();override;
   end;
 
 var
@@ -47,7 +46,7 @@ begin
   BeforePost(DataSet,Kernel_Cadastro.str_ItemTabela,Kernel_Cadastro.str_ItemCampoChave);
 end;
 
-procedure TdmKernel_CadMovBase.DataModuleCreate(Sender: TObject);
+procedure TdmKernel_CadMovBase.kernel_CaregaConfiguracoes;
 begin
   inherited;
   {carega datasets bases}

@@ -4,7 +4,7 @@ object frmKernel_Sobre: TfrmKernel_Sobre
   BorderStyle = bsDialog
   Caption = 'Sobre o Sistema'
   ClientHeight = 264
-  ClientWidth = 557
+  ClientWidth = 543
   Color = clBtnHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,11 +20,12 @@ object frmKernel_Sobre: TfrmKernel_Sobre
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 557
+    Width = 543
     Height = 264
     Align = alClient
     Color = clWindow
     TabOrder = 0
+    ExplicitWidth = 557
     object imgLogo: TImage
       Left = 19
       Top = 23
@@ -739,11 +740,11 @@ object frmKernel_Sobre: TfrmKernel_Sobre
         450014514500145145007FFFD9}
     end
     object lblempresa: TRzLabel
-      Left = 59
-      Top = 178
-      Width = 83
-      Height = 26
-      Caption = 'SYSAM'
+      Left = 11
+      Top = 184
+      Width = 210
+      Height = 52
+      Caption = 'Sistemas Integrados '#13#10'      da Amaz'#244'nia'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -24
@@ -755,11 +756,11 @@ object frmKernel_Sobre: TfrmKernel_Sobre
       TextStyle = tsRecessed
     end
     object lblsistema: TRzLabel
-      Left = 264
-      Top = 9
-      Width = 229
+      Left = 256
+      Top = 23
+      Width = 137
       Height = 26
-      Caption = 'SISCMO (SYSTOCH)'
+      Caption = 'SISCLINICA'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -24
@@ -772,11 +773,11 @@ object frmKernel_Sobre: TfrmKernel_Sobre
     end
     object JvLinkLabel1: TJvLinkLabel
       Left = 256
-      Top = 188
+      Top = 204
       Height = 16
-      Caption = 'www.sysam.com.br'#13#10
+      Caption = 'www.siamanaus.com.br'#13#10
       Text.Strings = (
-        'www.sysam.com.br'#13#10)
+        'www.siamanaus.com.br'#13#10)
       LinkStyle = [fsBold, fsUnderline]
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -787,12 +788,12 @@ object frmKernel_Sobre: TfrmKernel_Sobre
     end
     object JvLinkLabel2: TJvLinkLabel
       Left = 256
-      Top = 204
+      Top = 220
       Width = 225
       Height = 32
-      Caption = 'Rua Humaitar, n.12 - Terra nova II '#13#10'(092) 91530969'#13#10#13#10
+      Caption = 'Rua Humait'#225', N'#186'12 - Terra Nova II '#13#10'(092) 3636-6609'#13#10#13#10
       Text.Strings = (
-        'Rua Humaitar, n.12 - Terra nova II '#13#10'(092) 91530969'#13#10#13#10)
+        'Rua Humait'#225', N'#186'12 - Terra Nova II '#13#10'(092) 3636-6609'#13#10#13#10)
       LinkStyle = [fsBold, fsUnderline]
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -804,8 +805,8 @@ object frmKernel_Sobre: TfrmKernel_Sobre
     object Panel2: TPanel
       Left = 256
       Top = 59
-      Width = 281
-      Height = 97
+      Width = 278
+      Height = 139
       BevelInner = bvRaised
       BevelOuter = bvLowered
       TabOrder = 0
@@ -825,7 +826,7 @@ object frmKernel_Sobre: TfrmKernel_Sobre
       end
       object Label8: TLabel
         Left = 8
-        Top = 47
+        Top = 63
         Width = 66
         Height = 16
         Caption = 'USU'#193'RIO: '
@@ -838,8 +839,8 @@ object frmKernel_Sobre: TfrmKernel_Sobre
         Transparent = True
       end
       object lblsenharegistro: TLabel
-        Left = 157
-        Top = 69
+        Left = 8
+        Top = 117
         Width = 119
         Height = 16
         Caption = '11111111111111111'
@@ -847,41 +848,41 @@ object frmKernel_Sobre: TfrmKernel_Sobre
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Arial'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         Transparent = True
       end
       object lblcliente: TLabel
-        Left = 87
-        Top = 23
-        Width = 104
+        Left = 8
+        Top = 41
+        Width = 248
         Height = 16
-        Caption = 'Lojas Rychardson'
+        Caption = 'NOBRE ASSESSORIA EM SEG E SA'#218'DE'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Arial'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         Transparent = True
       end
       object lblnomeusu: TLabel
-        Left = 87
-        Top = 47
-        Width = 66
+        Left = 8
+        Top = 79
+        Width = 74
         Height = 16
         Caption = 'lblnomeusu'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Arial'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         Transparent = True
       end
       object Label1: TLabel
         Left = 8
-        Top = 69
+        Top = 101
         Width = 143
         Height = 16
         Caption = 'Identifica'#231#227'o do Produto:'
@@ -896,13 +897,14 @@ object frmKernel_Sobre: TfrmKernel_Sobre
       object Panel3: TPanel
         Left = 2
         Top = 2
-        Width = 277
+        Width = 274
         Height = 16
         Align = alTop
         BevelInner = bvSpace
         BevelOuter = bvNone
         Color = 14803937
         TabOrder = 0
+        ExplicitWidth = 277
         object Label6: TLabel
           Left = 16
           Top = 35
@@ -920,7 +922,7 @@ object frmKernel_Sobre: TfrmKernel_Sobre
         object Label7: TLabel
           Left = 1
           Top = 1
-          Width = 275
+          Width = 272
           Height = 14
           Align = alClient
           Alignment = taCenter
@@ -933,8 +935,8 @@ object frmKernel_Sobre: TfrmKernel_Sobre
           ParentFont = False
           Transparent = True
           Layout = tlCenter
-          ExplicitWidth = 191
-          ExplicitHeight = 15
+          ExplicitLeft = 4
+          ExplicitWidth = 275
         end
       end
     end

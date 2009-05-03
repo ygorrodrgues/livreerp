@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UdmKernelPrincipal, WideStrings, FMTBcd, ADODB, SqlExpr, DB,
-  DBClient, Provider, DBXDynalink, DBXMsSQL, inifiles;
+  DBClient, Provider, DBXDynalink, DBXMsSQL, inifiles, AppProt, untKernel_Interface_RegrasBD;
 
 type
   TdmPrincipal = class(TdmKernelPrincipal)
@@ -37,7 +37,10 @@ end;
 
 procedure TdmPrincipal.DataModuleCreate(Sender: TObject);
 begin
+  // Define qual o banco de dados sera utilizado
+  Tipo_DB:= bdSQLServer;
   inherited;
+
   // Passa a conexao atual para uma variavel
   FConexao := conPrincipalKernel;
 end;

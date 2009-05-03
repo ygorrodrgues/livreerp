@@ -88,12 +88,6 @@ end;
 procedure TdmKernel_CadBase.DataModuleCreate(Sender: TObject);
 begin
   inherited;
-  {Define qual e o clientdataset de cadastro}
-  DatasetCadastro    := cdsCadBase;
-  DatasetqryCadastro := qryCadBase;
-  DatasetColunas     := cdsLstColunas;
-  DatasetListagem    := cdsLstBase;
-
   {Fomata com mascara de valor todos os fields de valor}
   kernel_Formata_Fields_Valores;
 
@@ -109,6 +103,11 @@ end;
 
 procedure TdmKernel_CadBase.kernel_CaregaConfiguracoes();
 begin
+  {Define qual e o clientdataset de cadastro}
+  DatasetCadastro    := cdsCadBase;
+  DatasetqryCadastro := qryCadBase;
+  DatasetColunas     := cdsLstColunas;
+  DatasetListagem    := cdsLstBase;
   // aqui sera implementado no filho
 end;
 
@@ -148,13 +147,5 @@ begin
     ds.FieldByName(str_campochave).value:= Kernel_Incrementa(str_tabela,str_campochave);
   end;
 end;
-
-initialization
-  {Cria classe de cadastro}
-  Kernel_Cadastro := TKernel_Cadastro.Create;
-
-finalization
-  {Libera classes da memoria}
-  Kernel_Cadastro.Free;
 
 end.
