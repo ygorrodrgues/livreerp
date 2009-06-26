@@ -294,7 +294,7 @@ begin
   case Key of
     VK_F2: Executa_AlterarRegistro;
     VK_INSERT: Executa_NovoRegistro;
-    Vk_F7: Executa_SalvarRegistro;
+    Vk_F7: Executa_ImprimirRegistro;
     Vk_F8:   Executa_SalvarRegistro;
     Vk_F3: Executa_AlterarRegistro;
     Vk_F12: Executa_Fechar;

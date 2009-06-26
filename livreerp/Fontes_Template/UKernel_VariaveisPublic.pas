@@ -61,6 +61,9 @@ interface
     // Guarda o codigo do registro atual da tela de ListagemBase
     int_chave: Integer;
 
+    // Guarda o codigo da pessoa juridica do procedimento medico
+    int_pessjuri: Integer;
+
     // Data usado para o cadastro 
     DatasetCadastro: TClientDataSet;
     DatasetListagem: TClientDataSet;

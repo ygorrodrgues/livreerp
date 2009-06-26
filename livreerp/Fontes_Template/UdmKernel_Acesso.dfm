@@ -299,8 +299,8 @@ object dmKernel_Acesso: TdmKernel_Acesso
     CommandText = 'SELECT CODEMP, NOMEEMP, FANTASIAEMP FROM EMPRESA'
     Params = <>
     ProviderName = 'dspAux'
-    Left = 344
-    Top = 192
+    Left = 264
+    Top = 184
     object cdsLstEmpCODEMP: TIntegerField
       FieldName = 'CODEMP'
       Required = True
@@ -316,7 +316,7 @@ object dmKernel_Acesso: TdmKernel_Acesso
   end
   object dsLstEmp: TDataSource
     DataSet = cdsLstEmp
-    Left = 416
-    Top = 192
+    Left = 328
+    Top = 184
   end
 end

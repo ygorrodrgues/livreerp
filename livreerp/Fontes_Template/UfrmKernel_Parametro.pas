@@ -84,7 +84,6 @@ begin
 
   dsBase.DataSet.edit;
   TFrmKernel_Mensagem.Mensagem(Kernel_Aviso_Alteracao,'I',[mbOk]);
-
 end;
 
 procedure TfrmKernel_Parametro.FormCreate(Sender: TObject);
@@ -123,10 +122,7 @@ begin
   dsBase.DataSet.close;
   dsBase.DataSet.Open;
 
-  if not (dsBase.DataSet.IsEmpty) then
-    dsBase.DataSet.Edit
-   else
-    dsBase.DataSet.Append;
+  dsBase.DataSet.Edit;
 end;
 
 procedure TfrmKernel_Parametro.Habilita_Cadastro_Axilizar(bol_acao: Boolean);

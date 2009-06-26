@@ -52,11 +52,85 @@ uses
   {retona serador de texto. pula uma linha com alinhamento}
   function Kernel_SKIP(pLinhas: Integer = 1): String;
 
+  function Kernel_Copia_Arquivos_Mascara(cFrom, cTo, Mask: string): Boolean;
+  function Kernel_Copia_Arquivos(cFrom, cTo: string): Boolean;
+
 implementation
 
 uses UfrmKernel_Splash, UKernel_Mensagem, UfrmKernel_Mensagem,  UKernel_Registry,
   UKernel_DB, UdmPrincipal, uKernel_Sistema,  UKernel_VariaveisPublic,
   csDXFunctions, UKernel_Exception, UfrmKernel_Aguarde;
+
+function Kernel_Copia_Arquivos(cFrom, cTo: string): Boolean;
+var
+  SizeBloco, Size: Longint;
+  FileFrom, FileTo: file;
+  Buffer: Pointer;
+
+  function FRead(var Reg): Boolean;
+  var
+    Buff: Byte absolute Reg;
+  begin
+    {$I-}BlockRead(FileFrom, Buff, SizeBloco); {$I+}
+    Result := IOResult = 0;
+  end;
+
+  function FWrite(var Reg): Boolean;
+  var
+    Buff: Byte absolute Reg;
+  begin
+    {$I-}BlockWrite(FileTo, Buff, SizeBloco); {$I+}
+    Result := IOResult = 0;
+  end;
+
+begin
+  Result := False;
+  AssignFile(FileFrom, cFrom);
+  AssignFile(FileTo, cTo);
+  {$I-}Reset(FileFrom, 1); {$I+}
+  if IOResult <> 0 then
+    Exit;
+  {$I-}Rewrite(FileTo, 1); {$I+}
+  if IOResult <> 0 then
+  begin
+    {$I-}CloseFile(FileFrom); {$I+}
+    Exit;
+  end;
+  GetMem(Buffer, 32767);
+  Size := FileSize(FileFrom);
+  SizeBloco := 32767;
+  while Size > 0 do
+  begin
+    if Size < 32767 then
+      SizeBloco := Size;
+    if not FRead(Buffer^) then
+      Break;
+    if not FWrite(Buffer^) then
+      Break;
+    Size := Size - SizeBloco;
+  end;
+  Result := Size = 0;
+  {$I-}CloseFile(FileFrom); {$I+}
+  if IOResult <> 0 then
+    Result := False;
+  {$I-}CloseFile(FileTo); {$I+}
+  if IOResult <> 0 then
+    Result := False;
+  FreeMem(Buffer, 32767);
+  if not Result then
+    DeleteFile(PAnsiChar(cTo));
+end;
+
+function Kernel_Copia_Arquivos_Mascara(cFrom, cTo, Mask: string): Boolean;
+var
+  DirInfo: TSearchRec;
+begin
+  Result := True;
+  if FindFirst(Kernel_DiretorioBarras(cFrom) + Mask, faArchive, DirInfo) = 0 then
+    repeat
+      Result := Kernel_Copia_Arquivos(Kernel_DiretorioBarras(cFrom) + DirInfo.Name, Kernel_DiretorioBarras(cTo) + DirInfo.Name );
+    until FindNext(DirInfo) <> 0;
+end;
 
 function Kernel_SKIP(pLinhas: Integer = 1): String;
 var i: Integer;

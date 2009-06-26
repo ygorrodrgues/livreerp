@@ -61,6 +61,7 @@ begin
   case ini of
     TiConexao : str_arquivo := Kernel_arquivo_ConexaoDB;
     TiTerminal : str_arquivo := Kernel_arquivo_Terminal;
+    TiECF : str_arquivo := Kernel_arquivo_ECF;    
   end;
 
   result := ExtractFilePath(Application.ExeName) + str_arquivo;

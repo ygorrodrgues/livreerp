@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UfrmKernel_Base, ImgList, ActnList, ExtCtrls, JvExControls, JvXPCore,
-  JvXPButtons, StdCtrls;
+  JvXPButtons, StdCtrls, jpeg;
 
 type
   TfrmKernel_Valida_Senha = class(TfrmKernel_Base)
@@ -88,14 +88,14 @@ procedure TfrmKernel_Valida_Senha.Kernel_Valida_Dados;
 begin
   if edtLoginUsu.Text = '' then
     begin
-      TFrmKernel_Mensagem.Mensagem(Kernel_Informe_SenhaValida, 'I', [mbOk]);
+      TFrmKernel_Mensagem.Mensagem(Kernel_Informe_LoginValido, 'I', [mbOk]);
       edtLoginUsu.SetFocus;
       Exit;
     end;
 
   if edtSenhaUsu.Text = '' then
     begin
-      TFrmKernel_Mensagem.Mensagem(Kernel_Informe_LoginValido, 'I', [mbOk]);
+      TFrmKernel_Mensagem.Mensagem(Kernel_Informe_SenhaValida, 'I', [mbOk]);
       edtSenhaUsu.SetFocus;
       Exit;
     end;

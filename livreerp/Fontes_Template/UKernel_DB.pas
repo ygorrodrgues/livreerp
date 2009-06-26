@@ -121,7 +121,7 @@ begin
   try
     with Qry do
     begin
-      SQL.Add('SELECT MAX('+Campo+')FROM '+ TableName);
+      SQL.Add('SELECT '+Campo+' FROM '+ TableName);
       Open;
 
       if not IsEmpty then
