@@ -94,8 +94,9 @@ begin
         Variables['usuario']:= Kernel_Terminal.int_filial;
 
         ShowReport();
+       // DesignReport();
       End
-     else
+    else
       Begin
         raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_Relatorio_NaoEncontrado,['( '+ str_relatorio +' )']);
       End; 

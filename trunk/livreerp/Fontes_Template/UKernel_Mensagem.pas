@@ -10,6 +10,7 @@ uses
 Const
    Kernel_arquivo_ConexaoDB : string = 'Conexao.conf'; // arquivo de configuracoes da conexao com o db
    Kernel_arquivo_Terminal : string = 'Terminal.conf'; // arquivo de configuracoes do modulo de pedido
+   Kernel_arquivo_ECF  : string = 'ECF.conf'; // arquivo de configuracoes do modulo de ECF
 
    Kernel_RegLivreFrame = '\Software\LivreFrameWizard\';
 
@@ -58,7 +59,7 @@ Const
   Kernel_Frase_SoftHouse : string = 'Sua necessidade! Nossa Inspiração';
   Kernel_SuporteTecnico : string = 'Qualquer dúvida entre em contato com o Suporte Técnico ou Administrador do Sistema.';
 
-  
+
 implementation
 
 end.

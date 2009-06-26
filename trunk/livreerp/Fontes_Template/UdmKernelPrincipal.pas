@@ -31,7 +31,8 @@ var
 implementation
 
 uses UKernel_VariaveisPublic, // Unit de variaveis publicas a todo kernel
-  UclKernel_Login, UclKernel_PropriedadesProjeto, UclKernel_Terminal;
+  UclKernel_Login, UclKernel_PropriedadesProjeto, UclKernel_Terminal,
+  UKernel_Exception;
 
 {$R *.dfm}
 
@@ -102,13 +103,12 @@ begin
                     raise  Exception.Create('Banco de dados MySQL ainda não suportado.');
                   End;                      
       end;
-      
+
       Connected := True;
 
     except on E: Exception do
       begin
-        MessageDlg('Ocorreu um erro ao conectar-se ao banco.' + #13 +  E.Message, mtError, [mbOk], 0);
-
+        raise Livre_Mensagem_Global.CreateFmt('Ocorreu um erro ao conectar-se ao banco %s ',['('+ E.Message +')']);
         Application.Terminate;
       end;
     end;

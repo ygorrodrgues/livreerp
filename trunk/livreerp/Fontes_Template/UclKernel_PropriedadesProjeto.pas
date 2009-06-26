@@ -39,7 +39,7 @@ implementation
 
 constructor TKernel_PropriedadesProjeto.Create;
 begin
-
+  str_SoftHouse := 'SIA MANAUS';
 end;
 
 destructor TKernel_PropriedadesProjeto.Destroy;

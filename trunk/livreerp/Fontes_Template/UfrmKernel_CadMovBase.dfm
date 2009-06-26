@@ -3,7 +3,7 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
   ClientHeight = 527
   ClientWidth = 773
   ExplicitWidth = 779
-  ExplicitHeight = 559
+  ExplicitHeight = 553
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcntrlcadastro: TcxPageControl
@@ -246,7 +246,6 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
     inherited DBlcbCadastros: TcxDBLookupComboBox
       Left = 564
       ExplicitLeft = 564
-      ExplicitHeight = 22
     end
   end
   object RzPanel3: TRzPanel [2]
@@ -562,7 +561,6 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
     Top = 5
   end
   inherited actlstCadBaseUser: TActionList
-    Left = 408
     Top = 282
   end
 end

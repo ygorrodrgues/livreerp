@@ -81,8 +81,8 @@ begin
         aos passados nos edits.}
         sql.Add (' SELECT CODUSU, NOMEUSU, PRIVADMUSU ' +
                    '  FROM USUARIO ' +
-                   ' WHERE LOGINUSU = ' + QuotedStr(str_usuario) +
-                   '   AND SENHAUSU = ' + QuotedStr(str_senha));
+                   ' WHERE LOGINUSU = ' + QuotedStr(UpperCase(str_usuario)) +
+                   '   AND SENHAUSU = ' + QuotedStr(UpperCase(str_senha)));
         Open;
 
         if not IsEmpty then // Se não retornar vazio
@@ -100,8 +100,8 @@ begin
           Begin
             TfrmKernel_Mensagem.Mensagem('Usuário ou Senha Inválidos ' +#13#10+
                                    ' - Tentativa '+ IntToStr(Tentativas) + ' de ' +  IntToStr(LimiteTentativas) ,'E',[mbOK]);
-            statBase.Panels[3].Text := IntToStr(Tentativas);
-            inc(Tentativas);
+            inc(Tentativas);                                   
+            statBase.Panels[1].Text := IntToStr(Tentativas);
             edtLoginUsu.SetFocus;
           end;
       end
@@ -154,25 +154,19 @@ begin
   inherited;
   // Mostra a Quantidade de Tentativas
   statBase.Panels[1].Text := '1';
-  Tentativas              := 0; // tentativa inicial
+  Tentativas              := 1; // tentativa inicial
   LimiteTentativas        := Kernel_Login.Login_RetornaQuantidadeTentativa;
   statBase.Panels[3].Text := IntToStr(Kernel_Login.Login_RetornaQuantidadeTentativa);
 end;
 
 procedure TfrmKernel_Login.FormShow(Sender: TObject);
 begin
-
   inherited;
-
   {Carega Imagem que será mostrada no Timage}
   Kernel_MostraFotoImage('LogoSoftHouse','LogoSoftHouse',imgLogo);
 
   // Receber a data do computador
   lblData.Caption :=  FormatDateTime('dddd,dd" de "mmmm"',date)+'  '+(FormatDateTime('hh:mm',date));
-
-  kernel_RefreshCds(dmKernel_Acesso.cdsLstEmp);
-
-  Tentativas:= 1;
 
   edtloginusu.SetFocus;
 end;

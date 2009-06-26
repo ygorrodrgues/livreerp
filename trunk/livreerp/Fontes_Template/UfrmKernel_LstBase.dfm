@@ -26,7 +26,7 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     Left = 0
     Top = 68
     Width = 745
-    Height = 34
+    Height = 55
     Align = alTop
     BorderOuter = fsNone
     Color = clWhite
@@ -36,11 +36,13 @@ object frmKernel_LstBase: TfrmKernel_LstBase
   end
   object cxgrdLst_Base: TcxGrid
     Left = 0
-    Top = 102
+    Top = 123
     Width = 745
-    Height = 401
+    Height = 380
     Align = alClient
     TabOrder = 1
+    ExplicitTop = 102
+    ExplicitHeight = 401
     object cxgrdLst_BaseDBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsBase

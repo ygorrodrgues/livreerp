@@ -46,6 +46,7 @@ begin
   { Carega os parametros de conexao do arquivo ini }
   str_server     :=  Kernel_Config.Kernel_LerTexto('CONEXAO','SERVIDOR',TiConexao);
   str_database   :=  Kernel_Config.Kernel_LerTexto('CONEXAO','BANCO',TiConexao);
+
 end;
 
 constructor TKernel_Conexao.Create;

@@ -16,6 +16,8 @@ type
     Fint_terminal: Integer;
     Fint_filial: integer;
     Fint_estoque: integer;
+    Fint_porta_print: integer;
+
     function Getint_terminal: integer;
     procedure setint_terminal(const Value: integer);
     function Getint_estoque: integer;
@@ -56,7 +58,7 @@ begin
       TFrmKernel_Mensagem.Mensagem('Arquivo de Configuração '+ Kernel_arquivo_Terminal +' não encontrado'+Kernel_SKIP +
         Kernel_Aviso_FecharSistema+Kernel_SKIP +Kernel_SKIP+
         Kernel_SuporteTecnico,'I',[mbOk]);
-        
+
       Application.Terminate;
     end; 
 end;
