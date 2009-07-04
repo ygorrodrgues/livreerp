@@ -34,6 +34,9 @@ type
     cxgrdLst_BaseDBTableView1CLN_CAPTION: TcxGridDBColumn;
     cxgrdLst_BaseDBTableView1SMA_SOMA: TcxGridDBColumn;
     cxgrdLst_BaseDBTableView1CLN_NOME_AMIGAVEL: TcxGridDBColumn;
+    procedure dbedtTLA_TABELAKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure dbedtTLA_NOMEKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -52,6 +55,26 @@ uses UdmKernel_Colunas, UfrmKernel_CadItemColunas, UKernel_Exception,
 {$R *.dfm}
 
 { TfrmKernel_CadColunas }
+
+procedure TfrmKernel_CadColunas.dbedtTLA_NOMEKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+  {: troca ENTER por TAB}
+  if key = #13 then
+  begin
+    Perform (CM_DialogKey, VK_TAB, 0);
+    key:=#0;
+  end;
+end;
+
+procedure TfrmKernel_CadColunas.dbedtTLA_TABELAKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if KEY = VK_RETURN then
+    cxgrdLst_Base.SETFOCUS;  
+end;
 
 function TfrmKernel_CadColunas.ValidaCampos: Boolean;
 begin

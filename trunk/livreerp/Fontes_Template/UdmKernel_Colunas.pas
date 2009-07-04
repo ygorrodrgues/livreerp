@@ -36,7 +36,6 @@ type
     qryCadItemCLN_CHAVE: TStringField;
     qryCadItemCLN_CAPTION: TStringField;
     qryCadItemSMA_SOMA: TIntegerField;
-    qryCadItemCLN_NOME_AMIGAVEL: TWideStringField;
     cdsCadItemCLN_COLUNA: TIntegerField;
     cdsCadItemCLN_NOME: TStringField;
     cdsCadItemTLA_TELA: TIntegerField;
@@ -47,7 +46,6 @@ type
     cdsCadItemCLN_CHAVE: TStringField;
     cdsCadItemCLN_CAPTION: TStringField;
     cdsCadItemSMA_SOMA: TIntegerField;
-    cdsCadItemCLN_NOME_AMIGAVEL: TWideStringField;
     qryLstItemCLN_COLUNA: TIntegerField;
     qryLstItemCLN_NOME: TStringField;
     qryLstItemTLA_TELA: TIntegerField;
@@ -58,7 +56,6 @@ type
     qryLstItemCLN_CHAVE: TStringField;
     qryLstItemCLN_CAPTION: TStringField;
     qryLstItemSMA_SOMA: TIntegerField;
-    qryLstItemCLN_NOME_AMIGAVEL: TWideStringField;
     cdsLstItemCLN_COLUNA: TIntegerField;
     cdsLstItemCLN_NOME: TStringField;
     cdsLstItemTLA_TELA: TIntegerField;
@@ -69,10 +66,13 @@ type
     cdsLstItemCLN_CHAVE: TStringField;
     cdsLstItemCLN_CAPTION: TStringField;
     cdsLstItemSMA_SOMA: TIntegerField;
-    cdsLstItemCLN_NOME_AMIGAVEL: TWideStringField;
     CdsLstSoma: TClientDataSet;
     CdsLstSomaSMA_SOMA: TIntegerField;
     CdsLstSomaSMA_NOME: TStringField;
+    qryCadItemCLN_NOME_AMIGAVEL: TStringField;
+    cdsCadItemCLN_NOME_AMIGAVEL: TStringField;
+    qryLstItemCLN_NOME_AMIGAVEL: TStringField;
+    cdsLstItemCLN_NOME_AMIGAVEL: TStringField;
     procedure cdsCadItemBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
@@ -85,7 +85,7 @@ var
 
 implementation
 
-uses UKernel_VariaveisPublic;
+uses UKernel_VariaveisPublic, UKernel_DB;
 
 {$R *.dfm}
 
@@ -96,6 +96,10 @@ begin
   inherited;
   // Faz ligação entre master e detail
   cdsCadItemTLA_TELA.AsInteger := cdsCadBaseTLA_TELA.AsInteger;
+
+  // Gera codigo incremento do campo Ordem
+  if DataSet.state in [dsinsert] then
+    cdsCadItemCLN_ORDEM.AsInteger := Incrementa_Itens('TLS_COLUNA','CLN_ORDEM','TLA_TELA',cdsCadBaseTLA_TELA.AsInteger );
 end;
 
 procedure TdmKernel_Colunas.kernel_CaregaConfiguracoes;
@@ -103,6 +107,10 @@ begin
   inherited;
   {Nome da tabela}
   Kernel_Cadastro.str_Tabela := 'TLS_TELA';
+
+  {View / Tabela onde se encontrar os campos que serao mostrados no grid}
+  Kernel_Cadastro.str_view:= 'VW_LST_COLUNAS';
+    
   {Nome do Campo chave da tabela}
   Kernel_Cadastro.str_CampoChave := 'TLA_TELA';
   {Nome da tela de Cadastro}

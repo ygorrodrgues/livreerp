@@ -21,6 +21,7 @@ type
     Fstr_CampoChave_Anterior: string;
     Fstr_ItemTabela_Anterior: string;
     Fstr_CampoDescricao_Anterior: string;
+    Fstr_view: string;
     function Getstr_CampoChave: string;
     function Getstr_CampoDescricao: string;
     function Getstr_ItemCampoChave: string;
@@ -35,6 +36,9 @@ type
   public
     // Nome da tabela do cadastro
     property str_Tabela: string read Getstr_Tabela write Setstr_Tabela;
+
+    property str_view: string read Fstr_view write Fstr_view ;
+
     // Campo descricao da tabela
     property str_CampoDescricao: string read Getstr_CampoDescricao write Setstr_CampoDescricao;
     // Campo chave primaria da tabela

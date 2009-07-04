@@ -383,7 +383,7 @@ begin
       with DatasetColunas do
       begin
         close;
-        Params[0].Value := Kernel_Cadastro.str_Tabela;
+        Params[0].Value := Kernel_Cadastro.str_view;
         Open;
 
         if not IsEmpty then

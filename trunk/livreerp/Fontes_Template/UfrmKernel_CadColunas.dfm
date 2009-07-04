@@ -1,6 +1,5 @@
 inherited frmKernel_CadColunas: TfrmKernel_CadColunas
   Caption = 'frmKernel_CadColunas'
-  ExplicitTop = -4
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcntrlcadastro: TcxPageControl
@@ -10,6 +9,7 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
         ExplicitHeight = 132
         inherited lblCamposObrigatorio: TLabel
           Top = 111
+          ExplicitTop = 111
         end
         object Label1: TLabel [3]
           Left = 10
@@ -54,6 +54,7 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
           DataField = 'TLA_NOME'
           DataSource = dsBase
           TabOrder = 1
+          OnKeyPress = dbedtTLA_NOMEKeyPress
         end
         object dbedtTLA_TITULO: TDBEdit
           Left = 223
@@ -63,6 +64,7 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
           DataField = 'TLA_TITULO'
           DataSource = dsBase
           TabOrder = 2
+          OnKeyPress = dbedtTLA_NOMEKeyPress
         end
         object dbedtTLA_CLASSE: TDBEdit
           Left = 529
@@ -72,19 +74,22 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
           DataField = 'TLA_CLASSE'
           DataSource = dsBase
           TabOrder = 3
+          OnKeyPress = dbedtTLA_NOMEKeyPress
         end
         object dbedtTLA_TABELA: TDBEdit
           Left = 10
-          Top = 100
+          Top = 103
           Width = 200
           Height = 21
           DataField = 'TLA_TABELA'
           DataSource = dsBase
           TabOrder = 4
+          OnKeyDown = dbedtTLA_TABELAKeyDown
         end
       end
       inherited RzToolbar2: TRzToolbar
         Top = 132
+        ExplicitTop = 132
         ToolbarControls = (
           RzToolButton1
           RzToolButton2
@@ -92,10 +97,13 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
       end
       inherited pnlItem: TRzPanel
         Top = 161
+        ExplicitTop = 161
       end
       inherited cxgrdLst_Base: TcxGrid
         Top = 202
         Height = 144
+        ExplicitTop = 202
+        ExplicitHeight = 144
         inherited cxgrdLst_BaseDBTableView1: TcxGridDBTableView
           object cxgrdLst_BaseDBTableView1CLN_COLUNA: TcxGridDBColumn
             Caption = 'C'#243'digo'
@@ -149,6 +157,11 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
           end
         end
       end
+    end
+  end
+  inherited PnlTitulo: TRzPanel
+    inherited DBlcbCadastros: TcxDBLookupComboBox
+      ExplicitHeight = 22
     end
   end
   inherited RzToolbar1: TRzToolbar

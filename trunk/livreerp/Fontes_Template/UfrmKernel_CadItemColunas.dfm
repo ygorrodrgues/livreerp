@@ -28,6 +28,7 @@ inherited frmKernel_CadItemColunas: TfrmKernel_CadItemColunas
   inherited RzPanel3: TRzPanel
     Width = 602
     Height = 259
+    ExplicitTop = 63
     ExplicitWidth = 602
     ExplicitHeight = 259
     object Label1: TLabel
@@ -97,6 +98,7 @@ inherited frmKernel_CadItemColunas: TfrmKernel_CadItemColunas
       DataField = 'CLN_NOME'
       DataSource = dsBase
       TabOrder = 1
+      OnKeyPress = dbedtCLN_NOMEKeyPress
     end
     object dbchkCLN_FILTRA: TDBCheckBox
       Left = 13
@@ -130,6 +132,7 @@ inherited frmKernel_CadItemColunas: TfrmKernel_CadItemColunas
       DataField = 'CLN_NOME_AMIGAVEL'
       DataSource = dsBase
       TabOrder = 5
+      OnKeyPress = dbedtCLN_NOMEKeyPress
     end
     object dbedtCLN_TAMANHO: TDBEdit
       Left = 258
@@ -139,6 +142,7 @@ inherited frmKernel_CadItemColunas: TfrmKernel_CadItemColunas
       DataField = 'CLN_TAMANHO'
       DataSource = dsBase
       TabOrder = 2
+      OnKeyPress = dbedtCLN_NOMEKeyPress
     end
     object dbchkCLN_CHAVE: TDBCheckBox
       Left = 195
@@ -164,6 +168,7 @@ inherited frmKernel_CadItemColunas: TfrmKernel_CadItemColunas
         end>
       Properties.ListSource = dsLstSoma
       TabOrder = 4
+      OnKeyPress = dbedtCLN_NOMEKeyPress
       Width = 190
     end
     object dbedtCLN_CAPTION: TDBEdit
@@ -174,6 +179,7 @@ inherited frmKernel_CadItemColunas: TfrmKernel_CadItemColunas
       DataField = 'CLN_CAPTION'
       DataSource = dsBase
       TabOrder = 3
+      OnKeyPress = dbedtCLN_NOMEKeyPress
     end
   end
   inherited RzPanel4: TRzPanel

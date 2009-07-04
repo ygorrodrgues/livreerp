@@ -28,6 +28,7 @@ type
     dbedtCLN_CAPTION: TDBEdit;
     Label3: TLabel;
     procedure FormShow(Sender: TObject);
+    procedure dbedtCLN_NOMEKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -43,6 +44,18 @@ implementation
 uses UdmKernel_Colunas, UKernel_DB, UKernel_Mensagem, UKernel_Exception;
 
 {$R *.dfm}
+
+procedure TfrmKernel_CadItemColunas.dbedtCLN_NOMEKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+  {: troca ENTER por TAB}
+  if key = #13 then
+  begin
+    Perform (CM_DialogKey, VK_TAB, 0);
+    key:=#0;
+  end;
+end;
 
 procedure TfrmKernel_CadItemColunas.FormShow(Sender: TObject);
 begin
