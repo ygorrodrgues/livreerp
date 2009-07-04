@@ -28,7 +28,7 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
     object imgDeletar: TImage
       Left = 0
       Top = 0
-      Width = 70
+      Width = 32
       Height = 32
       Align = alTop
       AutoSize = True
@@ -61,11 +61,12 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
         FFE33FFF}
       Transparent = True
       Visible = False
+      ExplicitWidth = 70
     end
     object imgQuestao: TImage
       Left = 0
       Top = 32
-      Width = 70
+      Width = 32
       Height = 32
       Align = alTop
       AutoSize = True
@@ -108,11 +109,12 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
         FFE01FFF}
       Transparent = True
       Visible = False
+      ExplicitWidth = 70
     end
     object imgCuidado: TImage
       Left = 0
       Top = 64
-      Width = 70
+      Width = 32
       Height = 32
       Align = alTop
       AutoSize = True
@@ -164,11 +166,12 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
         E0070000E00F0000F00F0000F01F0000F81F0000F83F0000FC7F0000}
       Transparent = True
       Visible = False
+      ExplicitWidth = 70
     end
     object imgInformacao: TImage
       Left = 0
       Top = 96
-      Width = 70
+      Width = 32
       Height = 32
       Align = alTop
       AutoSize = True
@@ -220,11 +223,12 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
         0000000000000000000100008001000080030000C0070000F01F0000}
       Transparent = True
       Visible = False
+      ExplicitWidth = 70
     end
     object imgErro: TImage
       Left = 0
       Top = 128
-      Width = 70
+      Width = 32
       Height = 32
       Align = alTop
       AutoSize = True
@@ -276,6 +280,7 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
         00000000000100008001000080030000C0070000E00F0000F83F0000}
       Transparent = True
       Visible = False
+      ExplicitWidth = 70
     end
   end
   object pnlBotoes: TPanel
@@ -462,13 +467,11 @@ object frmKernel_Mensagem: TfrmKernel_Mensagem
     object lblMensagem: TLabel
       Left = 10
       Top = 10
-      Width = 387
-      Height = 187
+      Width = 61
+      Height = 13
       Align = alClient
       Caption = 'lblMensagem'
       WordWrap = True
-      ExplicitWidth = 61
-      ExplicitHeight = 13
     end
   end
 end

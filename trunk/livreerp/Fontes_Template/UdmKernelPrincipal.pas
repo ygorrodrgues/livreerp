@@ -129,9 +129,9 @@ begin
   Kernel_login := TKernel_Login.Create;
 
   {Instancia Classe de parametros de Propriedades do Projeto}  
-  Kernel_PropriedadesProjeto := TKernel_PropriedadesProjeto.create;
+  PropriedadesPrj := TKernel_PropriedadesProjeto.create;
 
-  Kernel_Terminal := TKernel_Terminal.Create();
+  //Kernel_Terminal := TKernel_Terminal.Create();
 
   {Tenta se conectar ao Servidor}
   ConectaServidor;
@@ -142,8 +142,8 @@ begin
   {Libera objetos da memoria}
   Kernel_Conexao.Free;
   Kernel_login.Free;
-  Kernel_PropriedadesProjeto.Free;
-  Kernel_Terminal.Free;
+  PropriedadesPrj.Free;
+  //Kernel_Terminal.Free;
   {Libera classes da memoria}
   Kernel_Cadastro.Free;  
 

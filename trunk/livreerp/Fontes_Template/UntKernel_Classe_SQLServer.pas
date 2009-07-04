@@ -39,9 +39,30 @@ uses SysUtils, Uclkernel_Config, UKernel_VariaveisPublic;
 { TRegrasSQLServer }
 
 constructor TRegrasSQLServer.Create;
+var
+  F : TextFile;
+  str_tpusuario, str_tpsenha, str_temp: string;
 begin
-  str_usuario    :=  Kernel_Config.Kernel_LerTexto('CONEXAO','USUARIO',TiConexao);
-  str_senha      :=  Kernel_Config.Kernel_LerTexto('CONEXAO','SENHA',TiConexao);
+  case TTipo_CON(Tipo_CON) of
+    CONarq_texto: Begin
+                    AssignFile(F,'conexao.ini');
+                    Reset(F);
+                    Readln(F,str_temp);
+                    Readln(F,str_temp);
+                    Readln(F,str_tpusuario);
+                    Readln(F,str_tpsenha);                    
+
+                    CloseFile(F);
+
+                    str_usuario := str_tpusuario;
+                    str_senha := str_tpsenha;                    
+                  End;
+                  
+    CONLivre :  Begin
+                  str_usuario    :=  Kernel_Config.Kernel_LerTexto('CONEXAO','USUARIO',TiConexao);
+                  str_senha      :=  Kernel_Config.Kernel_LerTexto('CONEXAO','SENHA',TiConexao);
+                End;
+  end;
 end;
 
 destructor TRegrasSQLServer.Destroy;
@@ -78,7 +99,7 @@ end;
 procedure TRegrasSQLServer.Setstr_senha(const Value: string);
 begin
   if (Trim(Value) = '') then
-    FSenha := 'sa'
+    FSenha := ''
   else
     FSenha := Value;
 end;
@@ -86,7 +107,7 @@ end;
 procedure TRegrasSQLServer.Setstr_usuario(const Value: string);
 begin
   if (Trim(Value) = '') then
-    FUsuario := ''
+    FUsuario := 'sa'
   else
     FUsuario := Value;
 end;

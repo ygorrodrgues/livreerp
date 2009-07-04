@@ -22,27 +22,17 @@ object frmKernel_LstBase: TfrmKernel_LstBase
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object pnlFiltro: TRzPanel
-    Left = 0
-    Top = 68
-    Width = 745
-    Height = 55
-    Align = alTop
-    BorderOuter = fsNone
-    Color = clWhite
-    TabOrder = 0
-    Visible = False
-    VisualStyle = vsClassic
-  end
   object cxgrdLst_Base: TcxGrid
     Left = 0
-    Top = 123
+    Top = 155
     Width = 745
-    Height = 380
+    Height = 348
     Align = alClient
-    TabOrder = 1
-    ExplicitTop = 102
-    ExplicitHeight = 401
+    TabOrder = 3
+    ExplicitLeft = 94
+    ExplicitTop = 212
+    ExplicitWidth = 690
+    ExplicitHeight = 435
     object cxgrdLst_BaseDBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsBase
@@ -72,7 +62,7 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     Align = alTop
     BorderOuter = fsNone
     Color = 40704
-    TabOrder = 2
+    TabOrder = 0
     VisualStyle = vsClassic
     DesignSize = (
       745
@@ -214,7 +204,7 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     BorderOuter = fsGroove
     BorderSides = [sdTop]
     BorderWidth = 0
-    TabOrder = 3
+    TabOrder = 1
     VisualStyle = vsGradient
     ToolbarControls = (
       btnNovo
@@ -297,6 +287,63 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     BorderSides = [sdLeft, sdTop, sdRight, sdBottom]
     BorderWidth = 0
     TabOrder = 4
+  end
+  object pnlFiltraCampos: TRzPanel
+    Left = 0
+    Top = 68
+    Width = 745
+    Height = 32
+    Align = alTop
+    BorderOuter = fsNone
+    TabOrder = 2
+    Visible = False
+    VisualStyle = vsClassic
+    object Label1: TLabel
+      Left = 12
+      Top = 10
+      Width = 72
+      Height = 13
+      Caption = 'Pesquisar por :'
+    end
+    object edtValor: TEdit
+      Left = 247
+      Top = 7
+      Width = 130
+      Height = 21
+      TabStop = False
+      CharCase = ecUpperCase
+      TabOrder = 0
+      OnKeyDown = edtValorKeyDown
+      OnKeyPress = edtValorKeyPress
+    end
+    object btnFiltraCampos: TJvXPButton
+      Left = 383
+      Top = 6
+      Width = 26
+      Height = 20
+      Action = actFiltraCampos
+      TabOrder = 1
+    end
+    object cbbCampos: TcxComboBox
+      Left = 91
+      Top = 7
+      Properties.ReadOnly = False
+      TabOrder = 2
+      Width = 150
+    end
+  end
+  object pnlFiltro: TRzPanel
+    Left = 0
+    Top = 100
+    Width = 745
+    Height = 55
+    Align = alTop
+    BorderOuter = fsNone
+    Color = clWhite
+    TabOrder = 5
+    Visible = False
+    VisualStyle = vsClassic
+    ExplicitTop = 480
   end
   object aplctnvntsBase: TApplicationEvents
     Left = 212
@@ -1050,6 +1097,9 @@ object frmKernel_LstBase: TfrmKernel_LstBase
       Caption = 'Consultar'
       ImageIndex = 12
       OnExecute = actConsultarExecute
+    end
+    object actFiltraCampos: TAction
+      ImageIndex = 12
     end
   end
   object cxspyBase: TcxStyleRepository

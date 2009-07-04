@@ -159,8 +159,8 @@ procedure Kernel_CaregaPropriedades;
 begin
   //  Kernel_PropriedadesProjeto.str_ImagemSplash   := 
   //  Kernel_PropriedadesProjeto.str_Background     :=
-  Kernel_PropriedadesProjeto.str_TituloPrograma := 'Sistema Comercial';
-  Kernel_PropriedadesProjeto.str_SoftHouse      := 'SIA MANAUS';
+  PropriedadesPrj.str_TituloPrograma := 'Sistema Comercial';
+  PropriedadesPrj.str_SoftHouse      := 'Vap Informática';
 end;
 
 function Kernel_Confirmacao_acao(str_msn_acao: string; str_acao: char):Boolean;

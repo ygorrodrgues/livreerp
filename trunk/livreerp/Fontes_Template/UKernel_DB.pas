@@ -42,6 +42,8 @@ interface
   Autor: Sérgio Guedes  }
   procedure Kernel_Apaga_Registro(str_tabela, str_campo_chave: string; vrt_valor_chave: Variant);
 
+  function Kernel_Nome_Coluna(str_titulo_coluna: String): string;
+    
   {Descrição: Instancia objeto Tsqlquery na memoria, economizando codigo
   Autor: Sérgio Guedes  }    
   Function InstanciaQuery(): TSQLQuery;
@@ -110,6 +112,27 @@ procedure Kernel_Apaga_Registro(str_tabela, str_campo_chave: string; vrt_valor_c
 begin
   FConexao.ExecuteDirect('delete from ' + str_tabela+ ' where ' + str_campo_chave + '=' +
    QuotedStr(vrt_valor_chave) );
+end;
+
+function Kernel_Nome_Coluna(str_titulo_coluna: String): string;
+var
+  Qry:TsqlQuery;
+begin
+  Result:= '';
+  qry := InstanciaQuery; {: cria uma instância do objeto}
+  try
+    with Qry do
+    begin
+      close;
+      SQL.Add('SELECT CLN_NOME FROM VW_LST_COLUNAS WHERE CLN_CAPTION='+ str_titulo_coluna);
+      Open;
+
+      if not IsEmpty then
+        Result := Fields[0].asstring;
+    end;
+  finally
+    FreeAndNil(Qry);  {: libera o objeto da memória}
+  end;
 end;
 
 function Kernel_Caminho_Relatorio(TableName, Campo: String): string;
@@ -258,8 +281,8 @@ begin
     Begin
       close;
       SQL.Clear;
-      SQL.Add('insert into auditoriaitm (CODAUDITM,CODAUD,CAMPOAUD, NOVOVALORAUD, ANTIGOVALORAUD) values');
-      SQL.Add('(:CODAUDITM,:CODAUD, :CAMPOAUD, :NOVOVALORAUD, :ANTIGOVALORAUD)');
+      SQL.Add('insert into ADI_AUDITORIAITM (ADI_AUDITORIAITM,ADT_AUDITORIA,ADI_CAMPO, ADI_NOVO_VALOR, ADI_ANTIGO_VALOR) values');
+      SQL.Add('(:ADI_AUDITORIAITM,:ADT_AUDITORIA,:ADI_CAMPO, :ADI_NOVO_VALOR, :ADI_ANTIGO_VALOR)');
       Params[0].Value := Kernel_Incrementa('AUDITORIAITM','CODAUDITM');
       Params[1].Value := CODAUD;
       Params[2].Value := CAMPOAUD;
@@ -284,8 +307,8 @@ begin
     Begin
       close;
       SQL.Clear;
-      SQL.Add('insert into auditoria (CODAUD, CODTPAUD, CODUSUCADAUD, MOTIVOAUD, IPAUD, TABELAAUD) values');
-      SQL.Add('(:CODAUD, :CODTPAUD, :CODUSUCADAUD, :MOTIVOAUD, :IPAUD, :TABELAAUD)');
+      SQL.Add('insert into ADI_AUDITORIA (ADT_AUDITORIA, ADT_TIPO, ADT_USUARIO_CADASTRO, ADT_MOTIVO, ADT_IP, ADT_TABELA) values');
+      SQL.Add('(:ADT_AUDITORIA, :ADT_TIPO, :ADT_USUARIO_CADASTRO, :ADT_MOTIVO, :ADT_IP, :ADT_TABELA)');
       cod:= Kernel_Incrementa('AUDITORIA','CODAUD');
       Params[0].Value := cod;
       Params[1].Value := CODTPAUD;

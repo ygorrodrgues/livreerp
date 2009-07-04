@@ -39,6 +39,8 @@ type
     Sobre1: TMenuItem;
     RzStatusPane1: TRzStatusPane;
     RzStatusPane2: TRzStatusPane;
+    ilUser: TImageList;
+    actlstUser: TActionList;
     procedure FormCreate(Sender: TObject);
     procedure actFecharExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -90,7 +92,7 @@ end;
 procedure TfrmKernel_Principal.CaregaConfiguracoestela;
 begin
   {Atualiza Informacoes do statusbar}
-  stspnEmpresa.caption  :=  Kernel_PropriedadesProjeto.str_SoftHouse;
+  stspnEmpresa.caption  :=  PropriedadesPrj.str_SoftHouse;
   stspnServidor.caption :=  Kernel_Conexao.str_server;
   stspnUsuario.caption  :=  Kernel_Login.str_nomeusu;
   stspnBanco.Caption    :=  Kernel_Conexao.str_database
@@ -111,7 +113,7 @@ end;
 
 procedure TfrmKernel_Principal.FormCreate(Sender: TObject);
 begin
-  kernel_str_form := Kernel_PropriedadesProjeto.str_TituloPrograma;
+  kernel_str_form := PropriedadesPrj.str_TituloPrograma;
   inherited;
 
   {carega configuracoes basicas da tela}

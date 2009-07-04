@@ -7,6 +7,9 @@ uses IniFiles, Forms, SysUtils, Controls;
 type
   TTipo_INI = (TiConexao, TiTerminal, TiECF) ;
 
+type
+  TTipo_CON = (CONLivre, CONarq_texto) ;
+
   type
     TKernel_Config = class
   private

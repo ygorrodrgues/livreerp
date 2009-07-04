@@ -24,6 +24,8 @@ interface
 
    Tipo_DB: TTipoBD;
 
+   Tipo_CON: TTipo_CON;
+
     // Variavel recebe classe de conexao
     Kernel_Conexao: TKernel_Conexao;
 
@@ -36,7 +38,7 @@ interface
     Kernel_Terminal : TKernel_Terminal;
 
     // Variavel recebe classe de Propriedades Projeto
-    Kernel_PropriedadesProjeto: TKernel_PropriedadesProjeto;
+    PropriedadesPrj: TKernel_PropriedadesProjeto;
 
     kernel_config : Tkernel_config;
     // Variavel recebe classe de leitura e gravação de ini

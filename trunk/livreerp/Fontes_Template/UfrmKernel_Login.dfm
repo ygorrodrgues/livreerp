@@ -7,50 +7,8 @@ inherited frmKernel_Login: TfrmKernel_Login
   OnShow = FormShow
   ExplicitWidth = 643
   ExplicitHeight = 459
-  DesignSize = (
-    637
-    427)
   PixelsPerInch = 96
   TextHeight = 13
-  object lbldata: TLabel
-    Left = 8
-    Top = 359
-    Width = 40
-    Height = 19
-    Anchors = [akTop]
-    Caption = 'lbldata'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clBlack
-    Font.Height = -16
-    Font.Name = 'Times New Roman'
-    Font.Style = []
-    ParentFont = False
-  end
-  object statBase: TStatusBar
-    Left = 0
-    Top = 408
-    Width = 637
-    Height = 19
-    Panels = <
-      item
-        Text = 'Tentativa :'
-        Width = 134
-      end
-      item
-        Alignment = taCenter
-        Text = '0'
-        Width = 134
-      end
-      item
-        Text = 'M'#225'ximo de Tentativas'
-        Width = 134
-      end
-      item
-        Alignment = taCenter
-        Text = '0'
-        Width = 134
-      end>
-  end
   object pnlFudo: TPanel
     Left = 0
     Top = 0
@@ -2266,15 +2224,19 @@ inherited frmKernel_Login: TfrmKernel_Login
         AD85BC4C3F896301BF3EB5768A2B26DBDCB492D828A28A430A28A2800A28A280
         0A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2803FFFD9}
     end
-    object edtLoginUsu: TEdit
-      Left = 57
-      Top = 169
-      Width = 196
-      Height = 21
+    object lbldata: TLabel
+      Left = 4
+      Top = 384
+      Width = 40
+      Height = 19
       Anchors = [akTop]
-      CharCase = ecUpperCase
-      TabOrder = 0
-      OnKeyPress = edtLoginUsuKeyPress
+      Caption = 'lbldata'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -16
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
     end
     object edtSenhaUsu: TEdit
       Left = 57
@@ -2283,15 +2245,15 @@ inherited frmKernel_Login: TfrmKernel_Login
       Height = 21
       Anchors = [akTop]
       PasswordChar = '*'
-      TabOrder = 1
-      OnKeyPress = edtLoginUsuKeyPress
+      TabOrder = 0
+      OnKeyPress = cbbNomeUsuarioKeyPress
     end
     object Panel2: TPanel
       Left = 262
       Top = 7
       Width = 1
       Height = 368
-      TabOrder = 4
+      TabOrder = 3
     end
     object btnConfirmar: TJvXPButton
       Left = 78
@@ -2299,7 +2261,7 @@ inherited frmKernel_Login: TfrmKernel_Login
       Width = 86
       Height = 26
       Action = actConfirmar
-      TabOrder = 2
+      TabOrder = 1
       Anchors = [akLeft, akBottom]
     end
     object btnSair: TJvXPButton
@@ -2308,7 +2270,7 @@ inherited frmKernel_Login: TfrmKernel_Login
       Width = 86
       Height = 26
       Action = actSair
-      TabOrder = 3
+      TabOrder = 2
       Glyph.Data = {
         07544269746D6170B6020000424DB602000000000000B6010000280000001000
         000010000000010008000000000000010000120B0000120B0000600000006000
@@ -2335,8 +2297,44 @@ inherited frmKernel_Login: TfrmKernel_Login
         0202}
       Anchors = [akLeft, akBottom]
     end
+    object cbbNomeUsuario: TComboBox
+      Left = 57
+      Top = 169
+      Width = 196
+      Height = 21
+      ItemHeight = 13
+      TabOrder = 4
+      Text = '['
+      OnKeyPress = cbbNomeUsuarioKeyPress
+    end
+  end
+  object statBase: TStatusBar
+    Left = 0
+    Top = 408
+    Width = 637
+    Height = 19
+    Panels = <
+      item
+        Text = 'Tentativa :'
+        Width = 134
+      end
+      item
+        Alignment = taCenter
+        Text = '0'
+        Width = 134
+      end
+      item
+        Text = 'M'#225'ximo de Tentativas'
+        Width = 134
+      end
+      item
+        Alignment = taCenter
+        Text = '0'
+        Width = 134
+      end>
   end
   object tmrTempo: TTimer
+    OnTimer = tmrTempoTimer
     Left = 264
     Top = 11
   end

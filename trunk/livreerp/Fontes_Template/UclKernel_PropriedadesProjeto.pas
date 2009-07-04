@@ -14,6 +14,7 @@ type
     Fstr_Background : string;
     Fstr_TituloPrograma : string;
     Fstr_SoftHouse : string;
+
     function Getstr_ImagemSplash: string;
     procedure Setstr_ImagemSplash(const Value: string);
     function Getstr_Background: string;
@@ -39,7 +40,7 @@ implementation
 
 constructor TKernel_PropriedadesProjeto.Create;
 begin
-  str_SoftHouse := 'SIA MANAUS';
+  str_SoftHouse := 'Vap Informática';
 end;
 
 destructor TKernel_PropriedadesProjeto.Destroy;

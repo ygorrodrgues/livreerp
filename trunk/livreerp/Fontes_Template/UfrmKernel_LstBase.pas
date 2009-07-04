@@ -52,7 +52,8 @@ uses
   dxSkinPumpkin, dxSkinSilver, dxSkinStardust, dxSkinSummer2008,
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
   dxSkinscxPCPainter, cxLookAndFeelPainters, cxButtons, cxContainer, cxTextEdit,
-  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
+  pngextra;
 
 type
   TfrmKernel_LstBase = class(TfrmKernel_Base)
@@ -86,7 +87,6 @@ type
     cxStyle11: TcxStyle;
     actlstPropria: TActionList;
     ilPropria: TImageList;
-    pnlFiltro: TRzPanel;
     cxgrdLst_Base: TcxGrid;
     cxgrdLst_BaseDBTableView1: TcxGridDBTableView;
     cxgrdLst_BaseLevel1: TcxGridLevel;
@@ -107,6 +107,13 @@ type
     RzSpacer1: TRzSpacer;
     RzSpacer2: TRzSpacer;
     RzSpacer3: TRzSpacer;
+    pnlFiltraCampos: TRzPanel;
+    edtValor: TEdit;
+    Label1: TLabel;
+    actFiltraCampos: TAction;
+    btnFiltraCampos: TJvXPButton;
+    pnlFiltro: TRzPanel;
+    cbbCampos: TcxComboBox;
     procedure btnLstTodosClick(Sender: TObject);
     procedure dbgBaseKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -123,6 +130,12 @@ type
     procedure FormShow(Sender: TObject);
     procedure actFiltrarExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure edtValorKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edtValorKeyPress(Sender: TObject; var Key: Char);
+    procedure cbbCampoEnter(Sender: TObject);
+    procedure cbbCampoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
    obj_Dt: TDataModule;
   public
@@ -179,6 +192,10 @@ type
     function AnalisaPodePesquisa(): Boolean; virtual;
 
     procedure CaregaColunas;
+
+    procedure VerificaDataType(cds: TClientDataSet); virtual;
+    procedure PreencheComboFiltro(J: Integer; cbb : TComboBox); virtual;
+    function Poscampo(campo: String): Integer; virtual;    
   end;
 
   TDataModuleClass = class of TDataModule;  
@@ -360,7 +377,8 @@ var
   int_coluna: Integer;
 begin
   {So adiciona as Colunas se nao tiver colunas adicionadas manualmente}
-  if cxgrdLst_BaseDBTableView1.Columns[0].DataBinding.FieldName = '' then
+  //if cxgrdLst_BaseDBTableView1.Columns[0].DataBinding.FieldName = '' then  
+  if cxgrdLst_BaseDBTableView1.ColumnCount = 0 then
     Begin
       with DatasetColunas do
       begin
@@ -412,6 +430,22 @@ begin
           end;
       end;
     End;
+end;
+
+procedure TfrmKernel_LstBase.cbbCampoEnter(Sender: TObject);
+begin
+  inherited;
+  edtValor.Text := '';
+end;
+
+procedure TfrmKernel_LstBase.cbbCampoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = vk_return  then
+  begin
+    edtValor.SetFocus;
+  end;
 end;
 
 procedure TfrmKernel_LstBase.NovoRegistro;
@@ -490,6 +524,39 @@ begin
   // Sobrescrever no form filho
 end;
 
+procedure TfrmKernel_LstBase.edtValorKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = vk_return  then
+    begin
+      actFiltraCampos.Execute;
+    end;
+end;
+
+procedure TfrmKernel_LstBase.edtValorKeyPress(Sender: TObject; var Key: Char);
+  var
+  j: Integer;
+begin
+  inherited;
+  with dsBase.DataSet as TClientDataSet do
+  begin
+    for J := 0 to fields.count -1 do
+    begin
+      // verifica se o campo e igual ao escolhido
+      if Fields[j].FieldName =  Kernel_Nome_Coluna(cbbCampos.Text) then
+        Begin
+          // Verifica se e Integer
+          if Fields[j] is TIntegerField  then
+            Begin
+              If not( key in['0'..'9',#8] ) then
+                 key:=#0;
+            end;
+        end;
+    end;
+  end;
+end;
+
 procedure TfrmKernel_LstBase.PermissoesForm;
 begin
   inherited;
@@ -534,6 +601,47 @@ begin
   // Sobrescrever no form filho
 end;
 
+function TfrmKernel_LstBase.Poscampo(campo: String): Integer;
+begin
+
+end;
+
+procedure TfrmKernel_LstBase.PreencheComboFiltro(J: Integer; cbb: TComboBox);
+begin
+
+end;
+
+procedure TfrmKernel_LstBase.VerificaDataType(cds: TClientDataSet);
+Var
+  j: Integer;
+begin
+  inherited;
+  with cds do
+  begin
+    for J := 0 to fields.count -1 do
+    begin
+      // verifica se o campo e igual ao escolhido
+      if Fields[j].FieldName =  Kernel_Nome_Coluna(cbbCampos.Text) then
+        Begin
+          // Verifica se e inteiro
+          if Fields[j] is TIntegerField  then begin
+            Filter :=  Kernel_Nome_Coluna(cbbCampos.Text) + '=' + quotedstr(edtValor.Text);
+          end;
+
+          // Verifica se e string
+          if Fields[j] is TStringField  then
+            Begin
+              FilterOptions:= [foCaseInsensitive];
+              Filter :=  Kernel_Nome_Coluna(cbbCampos.Text) + ' like ' + quotedstr(edtValor.Text + '%' ) ;
+            end;
+          // faz o filtro (Ativa)
+          Filtered := True;
+        end;
+    end;
+  end;
+
+end;
+
 procedure TfrmKernel_LstBase.ExcluirRegistro;
 begin
   Kernel_Apaga_Registro(Kernel_Cadastro.str_Tabela, Kernel_Cadastro.str_CampoChave,
@@ -575,7 +683,7 @@ begin
           // Chama o Evento Apos Excluir
           DepoisExcluirRegistro;
 
-          Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(Kernel_PropriedadesProjeto.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
+          Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(PropriedadesPrj.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
 
           ExecutaPesquisaBase;
 

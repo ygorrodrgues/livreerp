@@ -1,50 +1,56 @@
 inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
+  BorderStyle = bsDialog
   Caption = 'frmKernel_CadItemBase'
-  ClientHeight = 353
-  ClientWidth = 592
+  ClientHeight = 355
+  ClientWidth = 594
   Menu = mmCadbase
-  ExplicitWidth = 608
-  ExplicitHeight = 409
+  ExplicitWidth = 600
+  ExplicitHeight = 407
   PixelsPerInch = 96
   TextHeight = 13
   object RzPanel1: TRzPanel
     Left = 0
-    Top = 321
-    Width = 592
+    Top = 323
+    Width = 594
     Height = 32
     Align = alBottom
     TabOrder = 0
     VisualStyle = vsGradient
+    ExplicitTop = 321
+    ExplicitWidth = 592
     DesignSize = (
-      592
+      594
       32)
     object JvXPButton1: TJvXPButton
-      Left = 399
+      Left = 401
       Top = 4
       Width = 92
       Height = 23
       Action = actConfirmar
       TabOrder = 0
       Anchors = [akTop, akRight, akBottom]
+      ExplicitLeft = 399
     end
     object JvXPButton2: TJvXPButton
-      Left = 494
+      Left = 496
       Top = 4
       Width = 92
       Height = 23
       Action = actCancelar
       TabOrder = 1
       Anchors = [akTop, akRight, akBottom]
+      ExplicitLeft = 494
     end
   end
   object RzPanel2: TRzPanel
     Left = 0
     Top = 0
-    Width = 592
+    Width = 594
     Height = 38
     Align = alTop
     TabOrder = 1
     VisualStyle = vsGradient
+    ExplicitWidth = 592
     object lblSubtitulo: TLabel
       Left = 12
       Top = 23
@@ -69,33 +75,37 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
   object RzPanel3: TRzPanel
     Left = 0
     Top = 65
-    Width = 592
-    Height = 256
+    Width = 594
+    Height = 258
     Align = alClient
     TabOrder = 2
     VisualStyle = vsGradient
+    ExplicitWidth = 592
+    ExplicitHeight = 256
   end
   object RzPanel4: TRzPanel
     Left = 0
     Top = 38
-    Width = 592
+    Width = 594
     Height = 27
     Align = alTop
     TabOrder = 3
     VisualStyle = vsGradient
+    ExplicitWidth = 592
     DesignSize = (
-      592
+      594
       27)
     object Label11: TLabel
-      Left = 234
+      Left = 236
       Top = 6
       Width = 131
       Height = 13
       Anchors = [akTop, akRight]
       Caption = 'Abrir Cadastros Auxiliares :'
+      ExplicitLeft = 234
     end
     object SpeedButton1: TSpeedButton
-      Left = 565
+      Left = 567
       Top = 1
       Width = 23
       Height = 22
@@ -136,9 +146,10 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
+      ExplicitLeft = 565
     end
     object cbbCadAuxiliar: TComboBox
-      Left = 371
+      Left = 373
       Top = 3
       Width = 193
       Height = 21
@@ -150,6 +161,7 @@ inherited frmKernel_CadItemBase: TfrmKernel_CadItemBase
       Text = 'Informe a Tela que Deseja Abrir '
       Items.Strings = (
         'Informe a Tela que Deseja Abrir ')
+      ExplicitLeft = 371
     end
   end
   object dsBase: TDataSource

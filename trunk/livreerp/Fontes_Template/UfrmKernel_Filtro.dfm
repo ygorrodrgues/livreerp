@@ -2,8 +2,8 @@ inherited frmKernel_Filtro: TfrmKernel_Filtro
   Caption = 'frmKernel_Filtro'
   ClientHeight = 352
   ClientWidth = 482
-  ExplicitWidth = 498
-  ExplicitHeight = 388
+  ExplicitWidth = 490
+  ExplicitHeight = 386
   PixelsPerInch = 96
   TextHeight = 13
   object cxDBFilterControl1: TcxDBFilterControl
@@ -40,9 +40,6 @@ inherited frmKernel_Filtro: TfrmKernel_Filtro
     BorderOuter = fsFlat
     TabOrder = 3
     VisualStyle = vsGradient
-    ExplicitLeft = 112
-    ExplicitTop = 280
-    ExplicitWidth = 185
   end
   object actlstFiltro: TActionList
     Images = ilFiltro

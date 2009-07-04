@@ -118,13 +118,17 @@ inherited dmKernel_CadBase: TdmKernel_CadBase
       FieldName = 'CLN_CAPTION'
       Size = 100
     end
+    object cdsLstColunasCLN_NOME_AMIGAVEL: TStringField
+      FieldName = 'CLN_NOME_AMIGAVEL'
+      Size = 100
+    end
   end
   object qryLstAux: TSQLQuery
     MaxBlobSize = -1
     Params = <
       item
-        DataType = ftInteger
-        Name = 'TLA_TELA'
+        DataType = ftString
+        Name = 'TLS_NOME_TELA'
         ParamType = ptInput
       end>
     SQLConnection = dmPrincipal.conPrincipalKernel
