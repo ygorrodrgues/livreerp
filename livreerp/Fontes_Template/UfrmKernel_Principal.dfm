@@ -297,4 +297,13 @@ inherited frmKernel_Principal: TfrmKernel_Principal
       OnExecute = actSobreExecute
     end
   end
+  object ilUser: TImageList
+    Left = 416
+    Top = 160
+  end
+  object actlstUser: TActionList
+    Images = ilUser
+    Left = 336
+    Top = 160
+  end
 end

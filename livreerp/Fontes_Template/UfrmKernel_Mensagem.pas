@@ -68,7 +68,7 @@ begin
 
   try
     frm.lblMensagem.Caption := Texto;
-    frm.Caption := Kernel_PropriedadesProjeto.str_SoftHouse;
+    frm.Caption := PropriedadesPrj.str_SoftHouse;
 
     // Mostra os Controle e Botoes conforme parametro Botoes
     for i:=0 to Length(Botoes)-1 do

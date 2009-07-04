@@ -29,15 +29,7 @@ type
     actAlterarItem: TAction;
     actExcluirItem: TAction;
     RzPanel3: TRzPanel;
-    RzLabel1: TRzLabel;
-    RzLabel2: TRzLabel;
-    RzLabel3: TRzLabel;
-    RzLabel4: TRzLabel;
     dbedtCODIGO: TDBEdit;
-    DBText1: TDBText;
-    DBText2: TDBText;
-    DBText3: TDBText;
-    DBText4: TDBText;
     actPesquisaProduto: TAction;
     RzLabel9: TRzLabel;
     RzToolbar2: TRzToolbar;
@@ -208,7 +200,15 @@ end;
 
 procedure TfrmKernel_CadMovBase.AntesAlterarRegistroItm;
 begin
+  {DatasetCadastro deve ser informado na criação do form de listagem}
+  with DatasetCadastroItem do
+  begin
+    Close;
+    Params[0].Value := DsBase.DataSet.FieldByName(Kernel_Cadastro.str_ItemCampoChave).value;
+    Open;
 
+    edit;
+  end;
 end;
 
 procedure TfrmKernel_CadMovBase.AntesExcluirRegistro;
@@ -228,6 +228,15 @@ end;
 
 procedure TfrmKernel_CadMovBase.AntesNovoRegistroItm;
 begin
+  {DatasetCadastro deve ser informado na criação do form de listagem}
+  with DatasetCadastroItem do
+  begin
+    Close;
+    Params[0].Value := null;
+    Open;
+
+    Append;
+  end;
 
 end;
 
@@ -249,12 +258,12 @@ begin
   begin
     if DatasetCadastro.State in [dsinsert] then
     begin
-      //AntesSalvarRegistro;
+      AntesSalvarRegistro;
 
       DatasetCadastro.Post;
       DatasetCadastro.ApplyUpdates(0);
 
-      //DepoisSalvarRegistro;
+      DepoisSalvarRegistro;
 
       DatasetCadastro.edit;
 
@@ -351,7 +360,7 @@ begin
           // Chama o Evento Apos Excluir
           DepoisExcluirRegistroitm;
 
-          Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(Kernel_PropriedadesProjeto.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
+          Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(PropriedadesPrj.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
 
           PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 
@@ -394,8 +403,9 @@ begin
   if DatasetCadastro.State in [dsInsert] then
     begin
       HabilitaBotoes(False);
-      PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
     end;
+
+  PesquisaItens(DatasetCadastro.FieldByName(Kernel_Cadastro.str_CampoChave).value);
 end;
 
 procedure TfrmKernel_CadMovBase.HabilitaBotoes(Value : Boolean);

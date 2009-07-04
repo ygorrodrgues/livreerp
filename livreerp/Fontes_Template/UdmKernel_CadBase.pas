@@ -39,6 +39,7 @@ type
     cdsLstTabelaTLA_TITULO: TStringField;
     cdsLstTabelaTLA_CLASSE: TStringField;
     cdsLstTabelaCLN_NOME: TStringField;
+    cdsLstColunasCLN_NOME_AMIGAVEL: TStringField;
     procedure cdsCadBaseBeforePost(DataSet: TDataSet);
     procedure cdsCadBaseAfterInsert(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);

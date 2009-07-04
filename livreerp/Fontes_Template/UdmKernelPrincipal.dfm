@@ -3,7 +3,7 @@ object dmKernelPrincipal: TdmKernelPrincipal
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   Height = 314
-  Width = 260
+  Width = 348
   object qryKernel_Gerenerica: TSQLQuery
     MaxBlobSize = -1
     Params = <>

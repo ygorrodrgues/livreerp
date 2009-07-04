@@ -8,7 +8,7 @@ uses
   IniFiles, Registry, ShellAPI,ComObj, ExtCtrls;
 
 Const
-   Kernel_arquivo_ConexaoDB : string = 'Conexao.conf'; // arquivo de configuracoes da conexao com o db
+   Kernel_arquivo_ConexaoDB : string = 'Config.ini'; // arquivo de configuracoes da conexao com o db
    Kernel_arquivo_Terminal : string = 'Terminal.conf'; // arquivo de configuracoes do modulo de pedido
    Kernel_arquivo_ECF  : string = 'ECF.conf'; // arquivo de configuracoes do modulo de ECF
 

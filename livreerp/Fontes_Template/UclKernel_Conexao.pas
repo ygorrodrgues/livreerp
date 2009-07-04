@@ -42,11 +42,31 @@ uses UKernel_Mensagem, Uclkernel_Config, UKernel_VariaveisPublic;
 { TKernel_Conexao }
 
 procedure TKernel_Conexao.CaregaConexao;
+var
+  F : TextFile;
+  str_temp: string;
+  str_tpserver, str_tpdatabase: string;
 begin
-  { Carega os parametros de conexao do arquivo ini }
-  str_server     :=  Kernel_Config.Kernel_LerTexto('CONEXAO','SERVIDOR',TiConexao);
-  str_database   :=  Kernel_Config.Kernel_LerTexto('CONEXAO','BANCO',TiConexao);
+  case TTipo_CON(Tipo_CON) of
+    CONarq_texto: Begin
+                    AssignFile(F,'conexao.ini');
+                    Reset(F);
+                    Readln(F,str_tpserver);
+                    Readln(F,str_tpdatabase);
+                    Readln(F,str_temp);
+                    Readln(F,str_temp);
+                    CloseFile(F);
 
+                    str_server := str_tpserver;
+                    str_database := str_tpdatabase;
+                  End;
+                  
+    CONLivre :  Begin
+                  { Carega os parametros de conexao do arquivo ini }
+                  str_server     :=  Kernel_Config.Kernel_LerTexto('CONEXAO','SERVIDOR',TiConexao);
+                  str_database   :=  Kernel_Config.Kernel_LerTexto('CONEXAO','BANCO',TiConexao);
+                End;
+  end;
 end;
 
 constructor TKernel_Conexao.Create;

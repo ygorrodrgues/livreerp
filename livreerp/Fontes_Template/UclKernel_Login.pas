@@ -19,6 +19,8 @@ type
     Fstr_adminusu : string;
     Fstr_Expirausu : string;
     Fdt_DataExpusu : TDateTime;
+    Fstr_Tabela_Parametro: string;
+    Fstr_Qtd_Tent_Login: string;
     function Getint_codusu: integer;
     procedure Setint_codusu(const Value: integer);
     function Getstr_nomeusu: string;
@@ -30,12 +32,16 @@ type
     function Getdt_DataExpusu: TDateTime;
     procedure Setdt_DataExpusu(const Value: TDateTime);
   public
-    // Guarda o nome do servidor de db
+    // 
     property int_codusu: integer read Getint_codusu write Setint_codusu;
     property str_nomeusu: string read Getstr_nomeusu write Setstr_nomeusu;
     property str_adminusu: string read Getstr_adminusu write Setstr_adminusu;
     property str_Expirausu: string read Getstr_Expirausu write Setstr_Expirausu;
     property dt_DataExpusu: TDateTime read Getdt_DataExpusu write Setdt_DataExpusu;
+
+    // Parametro
+    property str_Tabela_Parametro: string read Fstr_Tabela_Parametro write Fstr_Tabela_Parametro;
+    property str_Qtd_Tent_Login: string read Fstr_Qtd_Tent_Login write Fstr_Qtd_Tent_Login;    
 
     Constructor Create();
     Destructor Destroy();
@@ -47,7 +53,7 @@ type
 
 implementation
 
-uses UKernel_DB;
+uses UKernel_DB, UKernel_VariaveisPublic;
 
 { TKernel_Login }
 
@@ -96,10 +102,10 @@ begin
     begin
       close;
       SQL.Clear;
-      SQL.Add('SELECT QTDTENTLOGIN FROM PARAMETRO');
+      SQL.Add('SELECT '+ Kernel_Login.str_Qtd_Tent_Login +' FROM '+ Kernel_Login.str_Tabela_Parametro);
       Open;
 
-      result := FieldByName('QTDTENTLOGIN').asinteger;
+      result := FieldByName(Kernel_Login.str_Qtd_Tent_Login).asinteger;
     end;
   finally
     FreeAndNil(Qry);  {: libera o objeto da memória}

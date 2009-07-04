@@ -3,7 +3,7 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
   ClientHeight = 527
   ClientWidth = 773
   ExplicitWidth = 779
-  ExplicitHeight = 553
+  ExplicitHeight = 559
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcntrlcadastro: TcxPageControl
@@ -103,6 +103,7 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
         Align = alTop
         BorderOuter = fsNone
         TabOrder = 2
+        Visible = False
         VisualStyle = vsGradient
         object RzLabel5: TRzLabel
           Left = 3
@@ -212,6 +213,7 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
         Align = alClient
         TabOrder = 3
         OnEnter = cxgrdLst_BaseEnter
+        ExplicitTop = 195
         object cxgrdLst_BaseDBTableView1: TcxGridDBTableView
           OnKeyDown = cxgrdLst_BaseDBTableView1KeyDown
           NavigatorButtons.ConfirmDelete = False
@@ -257,82 +259,6 @@ inherited frmKernel_CadMovBase: TfrmKernel_CadMovBase
     BorderOuter = fsNone
     TabOrder = 4
     VisualStyle = vsGradient
-    object RzLabel1: TRzLabel
-      Left = 10
-      Top = 16
-      Width = 130
-      Height = 13
-      Caption = 'Sub-Total + Impostos :'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object RzLabel2: TRzLabel
-      Left = 210
-      Top = 16
-      Width = 91
-      Height = 13
-      Caption = 'Descontos (%) :'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object RzLabel3: TRzLabel
-      Left = 377
-      Top = 16
-      Width = 85
-      Height = 13
-      Caption = 'Descontos ($) :'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object RzLabel4: TRzLabel
-      Left = 599
-      Top = 16
-      Width = 90
-      Height = 13
-      Caption = 'Total da Venda :'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object DBText1: TDBText
-      Left = 697
-      Top = 16
-      Width = 65
-      Height = 17
-    end
-    object DBText2: TDBText
-      Left = 468
-      Top = 16
-      Width = 65
-      Height = 17
-    end
-    object DBText3: TDBText
-      Left = 306
-      Top = 16
-      Width = 65
-      Height = 17
-    end
-    object DBText4: TDBText
-      Left = 146
-      Top = 16
-      Width = 65
-      Height = 17
-    end
   end
   inherited RzToolbar1: TRzToolbar
     Width = 773

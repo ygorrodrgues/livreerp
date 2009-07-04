@@ -19,12 +19,11 @@ type
     lblsenharegistro: TLabel;
     lblcliente: TLabel;
     lblnomeusu: TLabel;
-    imgLogo: TImage;
     lblempresa: TRzLabel;
     lblsistema: TRzLabel;
     Label1: TLabel;
     JvLinkLabel1: TJvLinkLabel;
-    JvLinkLabel2: TJvLinkLabel;
+    imgLogo: TImage;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
