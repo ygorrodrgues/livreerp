@@ -99,9 +99,6 @@ inherited dmKernel_Colunas: TdmKernel_Colunas
       Size = 100
     end
   end
-  inherited qryLstAux: TSQLQuery
-    Params = <>
-  end
   inherited cdsLstTabela: TClientDataSet
     Top = 144
   end
@@ -155,9 +152,9 @@ inherited dmKernel_Colunas: TdmKernel_Colunas
     object qryLstItemSMA_SOMA: TIntegerField
       FieldName = 'SMA_SOMA'
     end
-    object qryLstItemCLN_NOME_AMIGAVEL: TWideStringField
+    object qryLstItemCLN_NOME_AMIGAVEL: TStringField
       FieldName = 'CLN_NOME_AMIGAVEL'
-      FixedChar = True
+      Size = 100
     end
   end
   inherited dspLstItem: TDataSetProvider
@@ -212,8 +209,9 @@ inherited dmKernel_Colunas: TdmKernel_Colunas
     object cdsLstItemSMA_SOMA: TIntegerField
       FieldName = 'SMA_SOMA'
     end
-    object cdsLstItemCLN_NOME_AMIGAVEL: TWideStringField
+    object cdsLstItemCLN_NOME_AMIGAVEL: TStringField
       FieldName = 'CLN_NOME_AMIGAVEL'
+      Size = 100
     end
   end
   inherited qryCadItem: TSQLQuery
@@ -267,9 +265,9 @@ inherited dmKernel_Colunas: TdmKernel_Colunas
     object qryCadItemSMA_SOMA: TIntegerField
       FieldName = 'SMA_SOMA'
     end
-    object qryCadItemCLN_NOME_AMIGAVEL: TWideStringField
+    object qryCadItemCLN_NOME_AMIGAVEL: TStringField
       FieldName = 'CLN_NOME_AMIGAVEL'
-      FixedChar = True
+      Size = 100
     end
   end
   inherited dspCadItem: TDataSetProvider
@@ -277,7 +275,6 @@ inherited dmKernel_Colunas: TdmKernel_Colunas
     Top = 248
   end
   inherited cdsCadItem: TClientDataSet
-    Active = True
     Params = <
       item
         DataType = ftInteger
@@ -326,8 +323,9 @@ inherited dmKernel_Colunas: TdmKernel_Colunas
     object cdsCadItemSMA_SOMA: TIntegerField
       FieldName = 'SMA_SOMA'
     end
-    object cdsCadItemCLN_NOME_AMIGAVEL: TWideStringField
+    object cdsCadItemCLN_NOME_AMIGAVEL: TStringField
       FieldName = 'CLN_NOME_AMIGAVEL'
+      Size = 100
     end
   end
   object CdsLstSoma: TClientDataSet

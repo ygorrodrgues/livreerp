@@ -29,10 +29,6 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     Height = 348
     Align = alClient
     TabOrder = 3
-    ExplicitLeft = 94
-    ExplicitTop = 212
-    ExplicitWidth = 690
-    ExplicitHeight = 435
     object cxgrdLst_BaseDBTableView1: TcxGridDBTableView
       NavigatorButtons.ConfirmDelete = False
       DataController.DataSource = dsBase
@@ -343,7 +339,6 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     TabOrder = 5
     Visible = False
     VisualStyle = vsClassic
-    ExplicitTop = 480
   end
   object aplctnvntsBase: TApplicationEvents
     Left = 212

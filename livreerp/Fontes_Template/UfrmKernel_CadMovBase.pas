@@ -204,7 +204,7 @@ begin
   with DatasetCadastroItem do
   begin
     Close;
-    Params[0].Value := DsBase.DataSet.FieldByName(Kernel_Cadastro.str_ItemCampoChave).value;
+    Params[0].Value := dsBaseItm.DataSet.FieldByName(Kernel_Cadastro.str_ItemCampoChave).value;
     Open;
 
     edit;

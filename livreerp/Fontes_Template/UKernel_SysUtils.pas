@@ -157,7 +157,7 @@ end;
 
 procedure Kernel_CaregaPropriedades;
 begin
-  //  Kernel_PropriedadesProjeto.str_ImagemSplash   := 
+  //  Kernel_PropriedadesProjeto.str_ImagemSplash   :=
   //  Kernel_PropriedadesProjeto.str_Background     :=
   PropriedadesPrj.str_TituloPrograma := 'Sistema Comercial';
   PropriedadesPrj.str_SoftHouse      := 'Vap Informática';
