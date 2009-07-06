@@ -1,6 +1,8 @@
 inherited frmKernel_Parametro: TfrmKernel_Parametro
+  BorderStyle = bsDialog
   Caption = 'frmKernel_Parametro'
-  ClientWidth = 548
+  ClientHeight = 476
+  ClientWidth = 550
   OnDestroy = FormDestroy
   OnShow = FormShow
   ExplicitWidth = 556
@@ -10,33 +12,35 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
   object cxPageControl1: TcxPageControl
     Left = 0
     Top = 38
-    Width = 548
-    Height = 405
+    Width = 550
+    Height = 407
     ActivePage = tbshtDadosBasicos
     Align = alClient
     TabOrder = 0
-    ClientRectBottom = 405
-    ClientRectRight = 548
+    ExplicitWidth = 548
+    ExplicitHeight = 405
+    ClientRectBottom = 407
+    ClientRectRight = 550
     ClientRectTop = 24
     object tbshtDadosBasicos: TcxTabSheet
       Caption = 'Informa'#231#245'es'
       ImageIndex = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitWidth = 548
+      ExplicitHeight = 381
     end
   end
   object RzPanel1: TRzPanel
     Left = 0
     Top = 0
-    Width = 548
+    Width = 550
     Height = 38
     Align = alTop
     BorderInner = fsFlatRounded
     BorderOuter = fsNone
     TabOrder = 1
+    ExplicitWidth = 548
     DesignSize = (
-      548
+      550
       38)
     object imgCadBase: TImage
       Left = 2
@@ -50,7 +54,7 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
         000000200806000000737A7AF4000000017352474200AECE1CE9000000046741
         4D410000B18F0BFC6105000000206348524D00007A26000080840000FA000000
         80E8000075300000EA6000003A98000017709CBA513C00000009704859730000
-        0B0300000B0301498E8CD20000076B494441545847AD960F4CD3671AC7DF5370
+        0B0100000B010136704F5B0000076B494441545847AD960F4CD3671AC7DF5370
         0185B0732EA748A8F1929D2E3BC4CD2209C76876DD7937A764D311773782479C
         1A66ECF0E28C44A8188910584702C201A18DC091525A03A5212D10B410C29F23
         054D5A4A1A0A49F99374B449D13442ECF79EF78778328103BC1F7952487FBCDF
@@ -114,7 +118,7 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
       ExplicitHeight = 33
     end
     object lblCadAuxiliar: TLabel
-      Left = 188
+      Left = 190
       Top = 14
       Width = 131
       Height = 13
@@ -123,7 +127,7 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
       ExplicitLeft = 314
     end
     object Label4: TLabel
-      Left = 38
+      Left = 40
       Top = 1
       Width = 115
       Height = 19
@@ -135,14 +139,16 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      ExplicitLeft = 38
     end
     object Label5: TLabel
-      Left = 40
+      Left = 42
       Top = 21
       Width = 69
       Height = 13
       Anchors = [akTop, akRight]
       Caption = 'Configura'#231#245'es'
+      ExplicitLeft = 40
     end
     object btnAbrirCadAuxiliar: TJvSpeedButton
       Left = 518
@@ -192,7 +198,7 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
       HotTrackFont.Style = []
     end
     object cbbCadAuxiliar: TComboBox
-      Left = 324
+      Left = 326
       Top = 10
       Width = 193
       Height = 21
@@ -204,37 +210,42 @@ inherited frmKernel_Parametro: TfrmKernel_Parametro
       Text = 'Informe a Tela que Deseja Abrir '
       Items.Strings = (
         'Informe a Tela que Deseja Abrir ')
+      ExplicitLeft = 324
     end
   end
   object RzPanel2: TRzPanel
     Left = 0
-    Top = 443
-    Width = 548
+    Top = 445
+    Width = 550
     Height = 31
     Align = alBottom
     BorderInner = fsGroove
     BorderOuter = fsNone
     TabOrder = 2
+    ExplicitTop = 443
+    ExplicitWidth = 548
     DesignSize = (
-      548
+      550
       31)
     object btnSalvar: TJvXPButton
-      Left = 368
+      Left = 370
       Top = 4
       Width = 86
       Height = 22
       Action = actSalvar
       TabOrder = 0
       Anchors = [akTop, akRight]
+      ExplicitLeft = 368
     end
     object btnCancelar: TJvXPButton
-      Left = 458
+      Left = 460
       Top = 4
       Width = 86
       Height = 22
       Action = actCancelar
       TabOrder = 1
       Anchors = [akTop, akRight]
+      ExplicitLeft = 458
     end
   end
   object ilCadBase: TImageList

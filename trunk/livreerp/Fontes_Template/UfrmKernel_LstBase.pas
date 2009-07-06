@@ -53,7 +53,7 @@ uses
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
   dxSkinscxPCPainter, cxLookAndFeelPainters, cxButtons, cxContainer, cxTextEdit,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  pngextra;
+  pngextra, Dialogs;
 
 type
   TfrmKernel_LstBase = class(TfrmKernel_Base)
@@ -95,7 +95,6 @@ type
     Label11: TLabel;
     lblTitulo: TLabel;
     lblSubtitulo: TLabel;
-    cbbRelatorios: TcxComboBox;
     RzToolbar1: TRzToolbar;
     btnNovo: TRzToolButton;
     btnAlterar: TRzToolButton;
@@ -113,7 +112,10 @@ type
     actFiltraCampos: TAction;
     btnFiltraCampos: TJvXPButton;
     pnlFiltro: TRzPanel;
-    cbbCampos: TcxComboBox;
+    cbbcampos: TcxComboBox;
+    JvXPButton1: TJvXPButton;
+    actDesigner: TAction;
+    cbbRelatorios: TcxComboBox;
     procedure btnLstTodosClick(Sender: TObject);
     procedure dbgBaseKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -133,9 +135,13 @@ type
     procedure edtValorKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edtValorKeyPress(Sender: TObject; var Key: Char);
-    procedure cbbCampoEnter(Sender: TObject);
     procedure cbbCampoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure cbbcamposEnter(Sender: TObject);
+    procedure actFiltraCamposExecute(Sender: TObject);
+    procedure cbbcamposKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cbbRelatoriosEnter(Sender: TObject);
   private
    obj_Dt: TDataModule;
   public
@@ -193,9 +199,10 @@ type
 
     procedure CaregaColunas;
 
+    procedure CaregaColunasFiltra();
+
     procedure VerificaDataType(cds: TClientDataSet); virtual;
-    procedure PreencheComboFiltro(J: Integer; cbb : TComboBox); virtual;
-    function Poscampo(campo: String): Integer; virtual;    
+   
   end;
 
   TDataModuleClass = class of TDataModule;  
@@ -216,7 +223,7 @@ uses
   UKernel_Grid,
   UdmKernel_CadBase,
   UfrmKernel_Aguarde,
-  UKernel_Exception;
+  UKernel_Exception, UfrmKernel_Confirma_Exclusao, UdmKernel_Relatorio;
 
 {$R *.dfm}
 
@@ -254,6 +261,12 @@ procedure TfrmKernel_LstBase.actFecharExecute(Sender: TObject);
 begin
   inherited;
   Executa_Fechar;
+end;
+
+procedure TfrmKernel_LstBase.actFiltraCamposExecute(Sender: TObject);
+begin
+  inherited;
+  VerificaDataType(dsbase.dataset as TClientDataSet);
 end;
 
 procedure TfrmKernel_LstBase.actFiltrarExecute(Sender: TObject);
@@ -393,7 +406,7 @@ begin
             while not eof do
             begin
               {Ordem que a coluna vai ficar no grid}
-              int_coluna := DatasetColunas.FieldByName('CLN_ORDEM').Value;
+              int_coluna := DatasetColunas.FieldByName('CLN_ORDEM').Value-1;
 
               {Cria a nova coluna}
               cxgrdLst_BaseDBTableView1.CreateColumn;
@@ -432,10 +445,31 @@ begin
     End;
 end;
 
-procedure TfrmKernel_LstBase.cbbCampoEnter(Sender: TObject);
+procedure TfrmKernel_LstBase.CaregaColunasFiltra;
 begin
-  inherited;
-  edtValor.Text := '';
+  with DatasetColunas do
+  begin
+    close;
+    Params[0].Value := Kernel_Cadastro.str_view;
+    Open;
+
+    cbbcampos.Properties.Items.Clear;
+
+    if not IsEmpty then
+      begin
+        First;
+
+        while not eof do
+        begin
+          cbbcampos.Properties.Items.Add(DatasetColunas.FieldByName('CLN_CAPTION').Value);
+
+          next;
+        end;
+      end;
+
+    // Seta o primeiro campo como index  
+    cbbcampos.ItemIndex := 0;      
+  end;
 end;
 
 procedure TfrmKernel_LstBase.cbbCampoKeyDown(Sender: TObject; var Key: Word;
@@ -448,6 +482,49 @@ begin
   end;
 end;
 
+procedure TfrmKernel_LstBase.cbbcamposEnter(Sender: TObject);
+begin
+  inherited;
+  edtValor.Text := '';
+end;
+
+procedure TfrmKernel_LstBase.cbbcamposKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if key = vk_return  then
+    begin
+      edtValor.SetFocus;
+    end;
+end;
+
+procedure TfrmKernel_LstBase.cbbRelatoriosEnter(Sender: TObject);
+ var
+  str_caminho : string;
+  i: integer;
+  mmo: Tmemo;
+begin
+  inherited;
+  mmo := Tmemo.Create(nil);
+  try
+    mmo.parent := PnlTitulo.Parent;
+    str_caminho:= Kernel_Caminho_Relatorio('LCT_PARAMETRO','PMT_CAMINHO_RELATORIO');
+
+    mmo.lines :=  GetFileList(str_caminho+'\'+Kernel_Cadastro.str_Tabela + '\'+'*.fr3');
+
+    cbbRelatorios.Properties.Items.Clear;
+
+    for i:=0 to mmo.Lines.Count do
+    begin
+      cbbRelatorios.Properties.Items.Add(mmo.Lines[i]);
+    end;
+
+    mmo.Clear;
+  finally
+    mmo.free;
+  end;
+end;
+
 procedure TfrmKernel_LstBase.NovoRegistro;
 var
   obj: TForm;
@@ -456,7 +533,7 @@ begin
   // Localiza classe
   frmclass := TFormClass(FindClass(strclass));
   try
-    // So pega o valor da chave se nao estiver vazio 
+    // So pega o valor da chave se nao estiver vazio
     if not (DsBase.DataSet.IsEmpty) then    
       int_chave := DsBase.DataSet.FieldByName(Kernel_Cadastro.str_CampoChave).value;
       
@@ -544,7 +621,7 @@ begin
     for J := 0 to fields.count -1 do
     begin
       // verifica se o campo e igual ao escolhido
-      if Fields[j].FieldName =  Kernel_Nome_Coluna(cbbCampos.Text) then
+      if Fields[j].FieldName =  Kernel_Nome_Coluna(cbbCampos.Text,Kernel_Cadastro.str_view) then
         Begin
           // Verifica se e Integer
           if Fields[j] is TIntegerField  then
@@ -601,16 +678,6 @@ begin
   // Sobrescrever no form filho
 end;
 
-function TfrmKernel_LstBase.Poscampo(campo: String): Integer;
-begin
-
-end;
-
-procedure TfrmKernel_LstBase.PreencheComboFiltro(J: Integer; cbb: TComboBox);
-begin
-
-end;
-
 procedure TfrmKernel_LstBase.VerificaDataType(cds: TClientDataSet);
 Var
   j: Integer;
@@ -621,19 +688,30 @@ begin
     for J := 0 to fields.count -1 do
     begin
       // verifica se o campo e igual ao escolhido
-      if Fields[j].FieldName =  Kernel_Nome_Coluna(cbbCampos.Text) then
+      if Fields[j].FieldName =  Kernel_Nome_Coluna(cbbCampos.Text,Kernel_Cadastro.str_view) then
         Begin
+
+          // Se nao tiver valor filtra todos
+          if edtValor.text = ''  then
+            Begin
+              FilterOptions:= [foCaseInsensitive];
+              Filtered := False;
+              exit;
+            end;
+            
           // Verifica se e inteiro
-          if Fields[j] is TIntegerField  then begin
-            Filter :=  Kernel_Nome_Coluna(cbbCampos.Text) + '=' + quotedstr(edtValor.Text);
-          end;
+          if Fields[j] is TIntegerField  then
+            begin
+              Filter :=  Kernel_Nome_Coluna(cbbCampos.Text, Kernel_Cadastro.str_view ) + '=' + quotedstr(edtValor.Text);
+            end;
 
           // Verifica se e string
           if Fields[j] is TStringField  then
             Begin
               FilterOptions:= [foCaseInsensitive];
-              Filter :=  Kernel_Nome_Coluna(cbbCampos.Text) + ' like ' + quotedstr(edtValor.Text + '%' ) ;
+              Filter :=  Kernel_Nome_Coluna(cbbCampos.Text,Kernel_Cadastro.str_view) + ' like ' + quotedstr(edtValor.Text + '%' ) ;
             end;
+            
           // faz o filtro (Ativa)
           Filtered := True;
         end;
@@ -644,8 +722,12 @@ end;
 
 procedure TfrmKernel_LstBase.ExcluirRegistro;
 begin
-  Kernel_Apaga_Registro(Kernel_Cadastro.str_Tabela, Kernel_Cadastro.str_CampoChave,
-    DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value);
+  with frmKernel_Confirma_Exclusao do
+  begin
+    mmoExclusao.Lines.Add('Tabela: '+ Kernel_Cadastro.str_Tabela + Kernel_SKIP +
+    'Registro : '+ IntToStr( DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value) + Kernel_SKIP +
+    'Data Exclusão: ' + DateToStr(Kernel_Data_Servidor));
+  end;
 end;
 
 procedure TfrmKernel_LstBase.ExecutaPesquisaBase;
@@ -678,16 +760,27 @@ begin
         try
           int_codigo:= DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value;
 
-          ExcluirRegistro;
+          Application.CreateForm(TfrmKernel_Confirma_Exclusao,frmKernel_Confirma_Exclusao);
+          try
+            ExcluirRegistro;
+                
+            frmKernel_Confirma_Exclusao.ShowModal;
+          finally
+            if frmKernel_Confirma_Exclusao.ModalResult = mrok then
+              Begin
+                // Chama o Evento Apos Excluir
+                DepoisExcluirRegistro;
 
-          // Chama o Evento Apos Excluir
-          DepoisExcluirRegistro;
+                Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(PropriedadesPrj.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
 
-          Application.MessageBox(pchar(Kernel_Aviso_Exclusao), pchar(PropriedadesPrj.str_SoftHouse), MB_OK + MB_ICONINFORMATION);
+                ExecutaPesquisaBase;
 
-          ExecutaPesquisaBase;
+                DatasetListagem.Locate( Kernel_Cadastro.str_CampoChave,int_codigo ,[]);
+              End;
 
-          DatasetListagem.Locate( Kernel_Cadastro.str_CampoChave,int_codigo ,[]);          
+
+            FreeAndNil(frmKernel_Confirma_Exclusao);
+          end;
         except
           raise Livre_Mensagem_Global.CreateFmt(Kernel_Erro_FalhaInesperada +' o registro %s . ', ['(' +
             IntToStr(DatasetListagem.FieldByName(Kernel_Cadastro.str_CampoChave).Value) + ')']);
@@ -786,16 +879,47 @@ end;
 procedure TfrmKernel_LstBase.FormShow(Sender: TObject);
 begin
   inherited;
-
   {Datasource recebe o seu dataset}
   dsBase.DataSet := DatasetListagem;
   // Carega Colunas do grid
   CaregaColunas;
+
+  // Carega Colunas para filtro
+  CaregaColunasFiltra;
 end;
 
 procedure TfrmKernel_LstBase.ImprimirRegistro(int_codrel: Integer);
+ var
+ str_caminho, str_arquivo: string;
 begin
-  
+  with dmKernel_Relatorio, rprtCadBase do
+  begin
+    if cbbRelatorios.Text = '' then
+      Begin
+        cbbRelatorios.setfocus;
+        raise Livre_Mensagem_Global.CreateFmt('Atenção: Informe um relatorio valido',['( )']);
+      End;
+      
+    str_caminho := Kernel_Caminho_Relatorio('LCT_PARAMETRO','PMT_CAMINHO_RELATORIO');
+    str_arquivo := str_caminho + Kernel_Cadastro.str_Tabela +'\'+ trim(cbbRelatorios.Text);
+
+    if str_arquivo = '' then
+      begin
+        cbbRelatorios.setfocus;
+        raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_Relatorio_NaoEncontrado,['( '+ str_arquivo +' )']);
+      end;
+
+    if FileExists(str_arquivo) then
+      Begin
+        LoadFromFile(str_arquivo);
+
+        ShowReport();
+      End
+     else
+      Begin
+        raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_Relatorio_NaoEncontrado,['( '+ str_arquivo +' )']);
+      End;
+  end;
 end;
 
 

@@ -52,6 +52,8 @@ uses
   {retona serador de texto. pula uma linha com alinhamento}
   function Kernel_SKIP(pLinhas: Integer = 1): String;
 
+  function GetFileList(const Path: string): TStringList;
+
   function Kernel_Copia_Arquivos_Mascara(cFrom, cTo, Mask: string): Boolean;
   function Kernel_Copia_Arquivos(cFrom, cTo: string): Boolean;
 
@@ -60,6 +62,25 @@ implementation
 uses UfrmKernel_Splash, UKernel_Mensagem, UfrmKernel_Mensagem,  UKernel_Registry,
   UKernel_DB, UdmPrincipal, uKernel_Sistema,  UKernel_VariaveisPublic,
   csDXFunctions, UKernel_Exception, UfrmKernel_Aguarde;
+
+function GetFileList(const Path: string): TStringList;
+var
+   I: Integer;
+   SearchRec: TSearchRec;
+begin
+   Result := TStringList.Create;
+   try
+     I := FindFirst(Path, 0, SearchRec);
+     while I = 0 do
+     begin
+       Result.Add(SearchRec.Name);  // alterar esta linha
+       I := FindNext(SearchRec);
+     end;
+   except
+     Result.Free;
+     raise;
+   end;
+end;
 
 function Kernel_Copia_Arquivos(cFrom, cTo: string): Boolean;
 var

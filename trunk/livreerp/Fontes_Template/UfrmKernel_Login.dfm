@@ -2302,6 +2302,7 @@ inherited frmKernel_Login: TfrmKernel_Login
       Top = 169
       Width = 196
       Height = 21
+      CharCase = ecUpperCase
       ItemHeight = 13
       TabOrder = 4
       Text = '['

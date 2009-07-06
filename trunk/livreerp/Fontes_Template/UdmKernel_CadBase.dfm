@@ -178,4 +178,80 @@ inherited dmKernel_CadBase: TdmKernel_CadBase
       Size = 100
     end
   end
+  object cdsLstColunasFiltro: TClientDataSet
+    Aggregates = <>
+    CommandText = 
+      'SELECT * FROM VW_LST_COLUNAS'#13#10'WHERE TLA_NOME=:TLS_NOME_TELA'#13#10'ORD' +
+      'ER BY CLN_ORDEM'#13#10
+    Params = <
+      item
+        DataType = ftString
+        Name = 'TLS_NOME_TELA'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspLstAux'
+    Left = 376
+    Top = 152
+    object cdsLstColunasFiltroTLA_TELA: TIntegerField
+      FieldName = 'TLA_TELA'
+      Required = True
+    end
+    object cdsLstColunasFiltroTLA_NOME: TStringField
+      FieldName = 'TLA_NOME'
+      Size = 100
+    end
+    object cdsLstColunasFiltroTLA_TITULO: TStringField
+      FieldName = 'TLA_TITULO'
+      Size = 100
+    end
+    object cdsLstColunasFiltroTLA_CLASSE: TStringField
+      FieldName = 'TLA_CLASSE'
+      Size = 100
+    end
+    object cdsLstColunasFiltroCLN_COLUNA: TIntegerField
+      FieldName = 'CLN_COLUNA'
+      Required = True
+    end
+    object cdsLstColunasFiltroCLN_NOME: TStringField
+      FieldName = 'CLN_NOME'
+      Size = 100
+    end
+    object cdsLstColunasFiltroCLN_SOMA: TStringField
+      FieldName = 'CLN_SOMA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsLstColunasFiltroCLN_FILTRA: TStringField
+      FieldName = 'CLN_FILTRA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsLstColunasFiltroCLN_TAMANHO: TIntegerField
+      FieldName = 'CLN_TAMANHO'
+    end
+    object cdsLstColunasFiltroCLN_ORDEM: TIntegerField
+      FieldName = 'CLN_ORDEM'
+    end
+    object cdsLstColunasFiltroCLN_CHAVE: TStringField
+      FieldName = 'CLN_CHAVE'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsLstColunasFiltroCLN_CAPTION: TStringField
+      FieldName = 'CLN_CAPTION'
+      Size = 100
+    end
+    object cdsLstColunasFiltroSMA_NOME: TStringField
+      FieldName = 'SMA_NOME'
+      Size = 100
+    end
+    object cdsLstColunasFiltroSMA_SOMA: TIntegerField
+      FieldName = 'SMA_SOMA'
+      Required = True
+    end
+    object cdsLstColunasFiltroCLN_NOME_AMIGAVEL: TStringField
+      FieldName = 'CLN_NOME_AMIGAVEL'
+      Size = 100
+    end
+  end
 end

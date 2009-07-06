@@ -1,10 +1,10 @@
 inherited dmKernel_Relatorio: TdmKernel_Relatorio
   OldCreateOrder = True
+  OnCreate = DataModuleCreate
   Height = 233
   Width = 417
   object rprtCadBase: TfrxReport
     Version = '4.7.9'
-    ParentReport = '..\Relatorios_Template\Kernel_RelatorioBase.fr3'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -12,68 +12,24 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 39922.060748206000000000
-    ReportOptions.LastChange = 39998.486535185200000000
+    ReportOptions.LastChange = 40000.609851342600000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 112
-    Top = 64
+    Left = 144
+    Top = 48
     Datasets = <
       item
-        DataSet = rprtCadBase.qryLstBase
-        DataSetName = 'qryLstBase'
+        DataSet = dbdtstLstEmpresa
+        DataSetName = 'dbdtstLstEmpresa'
+      end
+      item
+        DataSet = dmTipos.dbdtstTipos
+        DataSetName = 'dbdtstTipos'
       end>
     Variables = <
-      item
-        Name = ' vr_Titulo'
-        Value = Null
-      end
-      item
-        Name = 'moEmpresa'
-        Value = Null
-      end
-      item
-        Name = 'moEndereco'
-        Value = Null
-      end
-      item
-        Name = 'moBairro'
-        Value = Null
-      end
-      item
-        Name = 'moTelefone'
-        Value = Null
-      end
-      item
-        Name = 'moEmail'
-        Value = Null
-      end
-      item
-        Name = 'moFantasia'
-        Value = Null
-      end
-      item
-        Name = 'moNumero'
-        Value = Null
-      end
-      item
-        Name = 'moCidade'
-        Value = Null
-      end
-      item
-        Name = 'moEstado'
-        Value = Null
-      end
-      item
-        Name = 'moFax'
-        Value = Null
-      end
-      item
-        Name = 'moSite'
-        Value = Null
-      end
       item
         Name = ' vr_Cabecalho'
         Value = Null
@@ -85,64 +41,15 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
       item
         Name = 'Usuario'
         Value = Null
+      end
+      item
+        Name = 'Titulo'
+        Value = ''
       end>
     Style = <>
     object Data: TfrxDataPage
       Height = 1000.000000000000000000
       Width = 1000.000000000000000000
-      object DBXCon: TfrxDBXDatabase
-        ConnectionName = 'VAPGESTLIC'
-        DriverName = 'MSSQL'
-        GetDriverFunc = 'getSQLDriverMSSQL'
-        LibraryName = 'dbxmss.dll'
-        LoginPrompt = False
-        Params.Strings = (
-          'DriverName=MSSQL'
-          'SchemaOverride=%.dbo'
-          'DriverUnit=DBXMSSQL'
-          
-            'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver120.' +
-            'bpl'
-          
-            'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-            'nd.Data.DbxCommonDriver,Version=12.0.0.0,Culture=neutral,PublicK' +
-            'eyToken=91d62ebb5b0d1b1b'
-          
-            'MetaDataPackageLoader=TDBXMsSqlMetaDataCommandFactory,DbxMSSQLDr' +
-            'iver120.bpl'
-          
-            'MetaDataAssemblyLoader=Borland.Data.TDBXMsSqlMetaDataCommandFact' +
-            'ory,Borland.Data.DbxMSSQLDriver,Version=12.0.0.0,Culture=neutral' +
-            ',PublicKeyToken=91d62ebb5b0d1b1b'
-          'HostName=CPD02\SQL'
-          'DataBase=CORPORERM'
-          'User_Name=SA'
-          'Password=12345'
-          'BlobSize=-1'
-          'ErrorResourceFile='
-          'LocaleCode=0000'
-          'MSSQL TransIsolation=ReadCommited'
-          'OS Authentication=False'
-          'Prepare SQL=False')
-        VendorLib = 'oledb'
-        Connected = True
-        pLeft = 92
-        pTop = 128
-      end
-      object qryLstBase: TfrxDBXQuery
-        UserName = 'qryLstBase'
-        CloseDataSource = True
-        IgnoreDupParams = False
-        Params = <>
-        SQL.Strings = (
-          
-            'SELECT * FROM VAP_VW_LCT_TIPO                                   ' +
-            '  ')
-        Database = rprtCadBase.DBXCon
-        pLeft = 196
-        pTop = 132
-        Parameters = <>
-      end
     end
     object Page1: TfrxReportPage
       PaperWidth = 210.000000000000000000
@@ -330,13 +237,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 302.362400000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_EMPRESA'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moEmpresa]')
+            '[dbdtstLstEmpresa."EMP_EMPRESA"]')
           ParentFont = False
         end
         object moEndereco: TfrxMemoView
@@ -345,13 +255,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 302.362400000000000000
           Height = 18.897650000000000000
           ShowHint = False
+          DataField = 'EMP_ENDERECO'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moEndereco]')
+            '[dbdtstLstEmpresa."EMP_ENDERECO"]')
           ParentFont = False
         end
         object moTelefonne: TfrxMemoView
@@ -360,13 +273,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 132.283550000000000000
           Height = 18.897650000000000000
           ShowHint = False
+          DataField = 'EMP_TELEFONE'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moTelefone]')
+            '[dbdtstLstEmpresa."EMP_TELEFONE"]')
           ParentFont = False
         end
         object moEmail: TfrxMemoView
@@ -375,13 +291,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 219.212740000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_EMAIL'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moEmail]')
+            '[dbdtstLstEmpresa."EMP_EMAIL"]')
           ParentFont = False
         end
         object moBairro: TfrxMemoView
@@ -390,13 +309,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 196.535560000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_BAIRRO'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moBairro]')
+            '[dbdtstLstEmpresa."EMP_BAIRRO"]')
           ParentFont = False
         end
         object moNumero: TfrxMemoView
@@ -405,13 +327,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 162.519790000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_NUMERO'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moNumero]')
+            '[dbdtstLstEmpresa."EMP_NUMERO"]')
           ParentFont = False
         end
         object moCidade: TfrxMemoView
@@ -420,13 +345,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 128.504020000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_CIDADE'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moCidade]')
+            '[dbdtstLstEmpresa."EMP_CIDADE"]')
           ParentFont = False
         end
         object moEstado: TfrxMemoView
@@ -435,13 +363,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 128.504020000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_ESTADO'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moEstado]')
+            '[dbdtstLstEmpresa."EMP_ESTADO"]')
           ParentFont = False
         end
         object moFax: TfrxMemoView
@@ -450,13 +381,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 162.519790000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_FAX'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moFax]')
+            '[dbdtstLstEmpresa."EMP_FAX"]')
           ParentFont = False
         end
         object moSite: TfrxMemoView
@@ -465,13 +399,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 241.889920000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_SITE'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moSite]')
+            '[dbdtstLstEmpresa."EMP_SITE"]')
           ParentFont = False
         end
         object cmFantasia: TfrxMemoView
@@ -479,13 +416,16 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Width = 230.551330000000000000
           Height = 15.118120000000000000
           ShowHint = False
+          DataField = 'EMP_FANTASIA'
+          DataSet = dbdtstLstEmpresa
+          DataSetName = 'dbdtstLstEmpresa'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[moFantasia]')
+            '[dbdtstLstEmpresa."EMP_FANTASIA"]')
           ParentFont = False
         end
       end
@@ -493,41 +433,41 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
         Height = 22.677180000000000000
         Top = 275.905690000000000000
         Width = 793.701300000000000000
-        DataSet = rprtCadBase.qryLstBase
-        DataSetName = 'qryLstBase'
+        DataSet = dmTipos.dbdtstTipos
+        DataSetName = 'dbdtstTipos'
         RowCount = 0
         object qryLstBaseTIP_TIPO: TfrxMemoView
-          Left = 11.338590000000000000
-          Width = 86.929190000000000000
+          Left = 7.559060000000000000
+          Width = 79.370130000000000000
           Height = 18.897650000000000000
           ShowHint = False
           DataField = 'TIP_TIPO'
-          DataSet = rprtCadBase.qryLstBase
-          DataSetName = 'qryLstBase'
+          DataSet = dmTipos.dbdtstTipos
+          DataSetName = 'dbdtstTipos'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[qryLstBase."TIP_TIPO"]')
+            '[dbdtstTipos."TIP_TIPO"]')
           ParentFont = False
         end
         object qryLstBaseTIP_DESCRICAO: TfrxMemoView
-          Left = 102.047310000000000000
+          Left = 98.267780000000000000
           Width = 377.952755910000000000
           Height = 18.897650000000000000
           ShowHint = False
           DataField = 'TIP_DESCRICAO'
-          DataSet = rprtCadBase.qryLstBase
-          DataSetName = 'qryLstBase'
+          DataSet = dmTipos.dbdtstTipos
+          DataSetName = 'dbdtstTipos'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
           Memo.UTF8 = (
-            '[qryLstBase."TIP_DESCRICAO"]')
+            '[dbdtstTipos."TIP_DESCRICAO"]')
           ParentFont = False
         end
       end
@@ -583,7 +523,7 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           Font.Style = [fsBold]
           HAlign = haCenter
           Memo.UTF8 = (
-            'moTitulo_Relatorio')
+            '[Usuario]')
           ParentFont = False
         end
         object Memo7: TfrxMemoView
@@ -677,9 +617,9 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           ParentFont = False
         end
         object Memo18: TfrxMemoView
-          Left = 11.338590000000000000
+          Left = 7.559060000000000000
           Top = 56.692950000000000000
-          Width = 86.929190000000000000
+          Width = 79.370130000000000000
           Height = 18.897650000000000000
           ShowHint = False
           Font.Charset = DEFAULT_CHARSET
@@ -692,7 +632,7 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
           ParentFont = False
         end
         object Memo19: TfrxMemoView
-          Left = 102.047310000000000000
+          Left = 98.267780000000000000
           Top = 56.692950000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
@@ -734,6 +674,94 @@ inherited dmKernel_Relatorio: TdmKernel_Relatorio
     Restrictions = []
     RTLLanguage = False
     Left = 232
-    Top = 72
+    Top = 48
+  end
+  object cdsLstEmpresa: TClientDataSet
+    Active = True
+    Aggregates = <>
+    CommandText = 
+      'SELECT EMP_EMPRESA, EMP_ENDERECO, EMP_BAIRRO, EMP_TELEFONE, EMP_' +
+      'EMAIL,'#13#10' EMP_FANTASIA, EMP_NUMERO, EMP_CIDADE, EMP_ESTADO, EMP_F' +
+      'AX, EMP_SITE'#13#10' FROM LCT_EMPRESA'
+    Params = <>
+    ProviderName = 'dspLstAux'
+    Left = 232
+    Top = 112
+    object cdsLstEmpresaEMP_EMPRESA: TIntegerField
+      FieldName = 'EMP_EMPRESA'
+      Required = True
+    end
+    object cdsLstEmpresaEMP_ENDERECO: TStringField
+      FieldName = 'EMP_ENDERECO'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_BAIRRO: TStringField
+      FieldName = 'EMP_BAIRRO'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_TELEFONE: TStringField
+      FieldName = 'EMP_TELEFONE'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_EMAIL: TStringField
+      FieldName = 'EMP_EMAIL'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_FANTASIA: TStringField
+      FieldName = 'EMP_FANTASIA'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_NUMERO: TStringField
+      FieldName = 'EMP_NUMERO'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_CIDADE: TStringField
+      FieldName = 'EMP_CIDADE'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_ESTADO: TStringField
+      FieldName = 'EMP_ESTADO'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_FAX: TStringField
+      FieldName = 'EMP_FAX'
+      Size = 100
+    end
+    object cdsLstEmpresaEMP_SITE: TStringField
+      FieldName = 'EMP_SITE'
+      Size = 100
+    end
+  end
+  object qryLstAux: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = dmPrincipal.conPrincipalKernel
+    Left = 40
+    Top = 112
+  end
+  object dspLstAux: TDataSetProvider
+    DataSet = qryLstAux
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 120
+    Top = 112
+  end
+  object dbdtstLstEmpresa: TfrxDBDataset
+    UserName = 'dbdtstLstEmpresa'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'EMP_EMPRESA=EMP_EMPRESA'
+      'EMP_ENDERECO=EMP_ENDERECO'
+      'EMP_BAIRRO=EMP_BAIRRO'
+      'EMP_TELEFONE=EMP_TELEFONE'
+      'EMP_EMAIL=EMP_EMAIL'
+      'EMP_FANTASIA=EMP_FANTASIA'
+      'EMP_NUMERO=EMP_NUMERO'
+      'EMP_CIDADE=EMP_CIDADE'
+      'EMP_ESTADO=EMP_ESTADO'
+      'EMP_FAX=EMP_FAX'
+      'EMP_SITE=EMP_SITE')
+    DataSet = cdsLstEmpresa
+    Left = 328
+    Top = 112
   end
 end

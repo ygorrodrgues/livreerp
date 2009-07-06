@@ -16,7 +16,6 @@ uses
 type
   TfrmKernel_CadColunas = class(TfrmKernel_CadMovBase)
     Label1: TLabel;
-    dbedtTLA_NOME: TDBEdit;
     Label2: TLabel;
     dbedtTLA_TITULO: TDBEdit;
     Label3: TLabel;
@@ -34,6 +33,7 @@ type
     cxgrdLst_BaseDBTableView1CLN_CAPTION: TcxGridDBColumn;
     cxgrdLst_BaseDBTableView1SMA_SOMA: TcxGridDBColumn;
     cxgrdLst_BaseDBTableView1CLN_NOME_AMIGAVEL: TcxGridDBColumn;
+    dbedtTLA_NOME: TDBEdit;
     procedure dbedtTLA_TABELAKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure dbedtTLA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -50,7 +50,7 @@ var
 implementation
 
 uses UdmKernel_Colunas, UfrmKernel_CadItemColunas, UKernel_Exception,
-  UKernel_Mensagem;
+  UKernel_Mensagem, UKernel_DB;
 
 {$R *.dfm}
 
@@ -84,17 +84,17 @@ begin
       raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_CampoObrigatorio + '%s ',['(Nome da View)']);
     End;
 
-  if dbedtTLA_TITULO.Text = '' then
+  {if dbedtTLA_TITULO.Text = '' then
     Begin
       dbedtTLA_TITULO.SetFocus;
       raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_CampoObrigatorio + '%s ',['(Titulo da Tela)']);
-    End;
+    End;   }
 
-  if dbedtTLA_CLASSE.Text = '' then
+ { if dbedtTLA_CLASSE.Text = '' then
     Begin
       dbedtTLA_CLASSE.SetFocus;
       raise Livre_Mensagem_Global.CreateFmt(Kernel_Aviso_CampoObrigatorio + '%s ',['(Classe Tela de Cadastro)']);
-    End;
+    End;   }
 
   if dbedtTLA_TABELA.Text = '' then
     Begin
