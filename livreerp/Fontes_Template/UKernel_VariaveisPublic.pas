@@ -72,6 +72,7 @@ interface
     DatasetCadastroItem: TClientDataSet;
     DatasetListagemItem: TClientDataSet;
     DatasetColunas: TClientDataSet;
+    DatasetColunasFiltro: TClientDataSet;    
     DatasetqryCadastro: TSQLQuery;
 
     DatasetCadastro_Anterior: TClientDataSet;

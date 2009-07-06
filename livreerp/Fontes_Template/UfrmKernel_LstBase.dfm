@@ -138,8 +138,8 @@ object frmKernel_LstBase: TfrmKernel_LstBase
         CAA40000000049454E44AE426082}
     end
     object Label11: TLabel
-      Left = 461
-      Top = 10
+      Left = 442
+      Top = 9
       Width = 85
       Height = 13
       Anchors = [akTop, akRight, akBottom]
@@ -179,15 +179,22 @@ object frmKernel_LstBase: TfrmKernel_LstBase
       ParentFont = False
       Transparent = True
     end
-    object cbbRelatorios: TcxComboBox
-      Left = 551
-      Top = 8
-      Anchors = [akTop, akRight, akBottom]
-      Properties.Items.Strings = (
-        '')
+    object JvXPButton1: TJvXPButton
+      Left = 716
+      Top = 7
+      Width = 24
+      Action = actDesigner
       TabOrder = 0
-      Text = 'Escolha um Relat'#243'rio'
-      Width = 183
+    end
+    object cbbRelatorios: TcxComboBox
+      Left = 531
+      Top = 9
+      Properties.Items.Strings = (
+        'Escolha o relatorio')
+      TabOrder = 1
+      Text = 'Escolha o relatorio'
+      OnEnter = cbbRelatoriosEnter
+      Width = 178
     end
   end
   object RzToolbar1: TRzToolbar
@@ -292,7 +299,6 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     Align = alTop
     BorderOuter = fsNone
     TabOrder = 2
-    Visible = False
     VisualStyle = vsClassic
     object Label1: TLabel
       Left = 12
@@ -320,12 +326,14 @@ object frmKernel_LstBase: TfrmKernel_LstBase
       Action = actFiltraCampos
       TabOrder = 1
     end
-    object cbbCampos: TcxComboBox
-      Left = 91
-      Top = 7
+    object cbbcampos: TcxComboBox
+      Left = 90
+      Top = 6
       Properties.ReadOnly = False
       TabOrder = 2
-      Width = 150
+      OnEnter = cbbcamposEnter
+      OnKeyDown = cbbcamposKeyDown
+      Width = 151
     end
   end
   object pnlFiltro: TRzPanel
@@ -1095,6 +1103,10 @@ object frmKernel_LstBase: TfrmKernel_LstBase
     end
     object actFiltraCampos: TAction
       ImageIndex = 12
+      OnExecute = actFiltraCamposExecute
+    end
+    object actDesigner: TAction
+      ImageIndex = 0
     end
   end
   object cxspyBase: TcxStyleRepository

@@ -13,11 +13,10 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
         end
         object Label1: TLabel [3]
           Left = 10
-          Top = 44
+          Top = 40
           Width = 71
           Height = 13
           Caption = 'Nome da View:'
-          FocusControl = dbedtTLA_NOME
         end
         object Label2: TLabel [4]
           Left = 223
@@ -45,16 +44,6 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
         end
         inherited dbedtCODIGO: TDBEdit
           DataField = 'TLA_TELA'
-        end
-        object dbedtTLA_NOME: TDBEdit
-          Left = 10
-          Top = 60
-          Width = 207
-          Height = 21
-          DataField = 'TLA_NOME'
-          DataSource = dsBase
-          TabOrder = 1
-          OnKeyPress = dbedtTLA_NOMEKeyPress
         end
         object dbedtTLA_TITULO: TDBEdit
           Left = 223
@@ -85,6 +74,16 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
           DataSource = dsBase
           TabOrder = 4
           OnKeyDown = dbedtTLA_TABELAKeyDown
+        end
+        object dbedtTLA_NOME: TDBEdit
+          Left = 9
+          Top = 57
+          Width = 208
+          Height = 21
+          DataField = 'TLA_NOME'
+          DataSource = dsBase
+          TabOrder = 1
+          OnKeyPress = dbedtTLA_NOMEKeyPress
         end
       end
       inherited RzToolbar2: TRzToolbar
@@ -157,11 +156,6 @@ inherited frmKernel_CadColunas: TfrmKernel_CadColunas
           end
         end
       end
-    end
-  end
-  inherited PnlTitulo: TRzPanel
-    inherited DBlcbCadastros: TcxDBLookupComboBox
-      ExplicitHeight = 22
     end
   end
   inherited RzToolbar1: TRzToolbar

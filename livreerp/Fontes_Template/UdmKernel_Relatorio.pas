@@ -4,12 +4,29 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UdmKernel_Base, frxDesgn, frxClass,SqlExpr;
+  Dialogs, UdmKernel_Base, frxDesgn, frxClass,SqlExpr, frxDBSet,
+  frxDBXComponents, FMTBcd, Provider, DB, DBClient;
 
 type
   TdmKernel_Relatorio = class(TdmKernel_Base)
     rprtCadBase: TfrxReport;
     dsgnrCadBase: TfrxDesigner;
+    cdsLstEmpresa: TClientDataSet;
+    qryLstAux: TSQLQuery;
+    dspLstAux: TDataSetProvider;
+    cdsLstEmpresaEMP_EMPRESA: TIntegerField;
+    cdsLstEmpresaEMP_ENDERECO: TStringField;
+    cdsLstEmpresaEMP_BAIRRO: TStringField;
+    cdsLstEmpresaEMP_TELEFONE: TStringField;
+    cdsLstEmpresaEMP_EMAIL: TStringField;
+    cdsLstEmpresaEMP_FANTASIA: TStringField;
+    cdsLstEmpresaEMP_NUMERO: TStringField;
+    cdsLstEmpresaEMP_CIDADE: TStringField;
+    cdsLstEmpresaEMP_ESTADO: TStringField;
+    cdsLstEmpresaEMP_FAX: TStringField;
+    cdsLstEmpresaEMP_SITE: TStringField;
+    dbdtstLstEmpresa: TfrxDBDataset;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,7 +42,7 @@ var
 implementation
 
 uses UKernel_DB, UKernel_VariaveisPublic, UKernel_SysUtils, UKernel_Exception,
-  UKernel_Mensagem;
+  UKernel_Mensagem, UdmPrincipal;
 
 {$R *.dfm}
 
@@ -37,6 +54,13 @@ begin
   begin
     Variables[str_parametro] :=str_vl_parametro;
   end;
+end;
+
+procedure TdmKernel_Relatorio.DataModuleCreate(Sender: TObject);
+begin
+  inherited;
+  // Dados da empresa
+  kernel_RefreshCds(cdsLstEmpresa);
 end;
 
 procedure TdmKernel_Relatorio.Kernel_Cabecalho_Relatorio;
@@ -85,7 +109,7 @@ begin
     if FileExists(str_relatorio) then
       Begin
         LoadFromFile(str_relatorio);
-        
+
         // Passa as informacoes da empresa por parametro
         if Mostra_Cabecalho then       
           Kernel_Cabecalho_Relatorio;

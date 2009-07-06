@@ -3,7 +3,7 @@ inherited frmKernel_CadBaseDB: TfrmKernel_CadBaseDB
   ClientHeight = 435
   ClientWidth = 740
   ExplicitWidth = 746
-  ExplicitHeight = 461
+  ExplicitHeight = 467
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcntrlcadastro: TcxPageControl
@@ -53,6 +53,7 @@ inherited frmKernel_CadBaseDB: TfrmKernel_CadBaseDB
     inherited DBlcbCadastros: TcxDBLookupComboBox
       Left = 530
       ExplicitLeft = 530
+      ExplicitHeight = 22
     end
   end
   inherited RzToolbar1: TRzToolbar

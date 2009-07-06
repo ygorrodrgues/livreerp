@@ -6,7 +6,7 @@ interface
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Grids, DBGrids, Db, DBTables, StdCtrls, Buttons, Mask, DBCtrls, ADODB,
   IniFiles, Registry, ShellAPI,ComObj, ExtCtrls, DBClient, Provider,FMTBcd,
-  SqlExpr, Variants, untKernel_Interface_RegrasBD ;
+  SqlExpr, Variants, untKernel_Interface_RegrasBD, cxDropDownEdit ;
 
   {Incrementa Chave Primaria da tabela}
   function Kernel_Incrementa(TableName, Campo: String): Integer;
@@ -42,7 +42,7 @@ interface
   Autor: Sérgio Guedes  }
   procedure Kernel_Apaga_Registro(str_tabela, str_campo_chave: string; vrt_valor_chave: Variant);
 
-  function Kernel_Nome_Coluna(str_titulo_coluna: String): string;
+  function Kernel_Nome_Coluna(str_titulo_coluna, str_tabelaview: String): string;
     
   {Descrição: Instancia objeto Tsqlquery na memoria, economizando codigo
   Autor: Sérgio Guedes  }    
@@ -56,7 +56,7 @@ interface
 implementation
 
 uses UdmPrincipal, UfrmKernel_Mensagem, UKernel_Mensagem, uKernel_Sistema,
-  UKernel_VariaveisPublic;
+  UKernel_VariaveisPublic, UKernel_SysUtils;
 
 procedure Kernel_Preenche_TComobox(var Cb: TComboBox;  Tabela,
   campo, condicao : String);
@@ -114,7 +114,7 @@ begin
    QuotedStr(vrt_valor_chave) );
 end;
 
-function Kernel_Nome_Coluna(str_titulo_coluna: String): string;
+function Kernel_Nome_Coluna(str_titulo_coluna, str_tabelaview : String): string;
 var
   Qry:TsqlQuery;
 begin
@@ -124,7 +124,8 @@ begin
     with Qry do
     begin
       close;
-      SQL.Add('SELECT CLN_NOME FROM VW_LST_COLUNAS WHERE CLN_CAPTION='+ str_titulo_coluna);
+      SQL.Add('SELECT CLN_NOME FROM VW_LST_COLUNAS WHERE CLN_CAPTION='+  QuotedStr(str_titulo_coluna));
+      SQL.Add('AND TLA_NOME='+ QuotedStr(str_tabelaview)) ;
       Open;
 
       if not IsEmpty then
@@ -148,7 +149,7 @@ begin
       Open;
 
       if not IsEmpty then
-        Result := Fields[0].asstring;
+        Result := Kernel_DiretorioBarras(Fields[0].asstring);
     end;
   finally
     FreeAndNil(Qry);  {: libera o objeto da memória}
