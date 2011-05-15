@@ -9,19 +9,21 @@ inherited frmPrincipal: TfrmPrincipal
   inherited Image1: TImage
     Width = 777
     Height = 438
+    ExplicitWidth = 777
+    ExplicitHeight = 438
   end
   inherited RzStatusBar1: TRzStatusBar
     Top = 467
     Width = 777
-    ExplicitTop = -19
-    ExplicitWidth = 116
+    ExplicitTop = 467
+    ExplicitWidth = 777
     inherited RzStatusPane1: TRzStatusPane
       Caption = 'Sia Manaus - (92) 8153-0969'
     end
   end
   inherited RzToolbar1: TRzToolbar
     Width = 777
-    ExplicitWidth = 116
+    ExplicitWidth = 777
     ToolbarControls = (
       RzSpacer1
       RzToolButton1)
@@ -38,7 +40,7 @@ inherited frmPrincipal: TfrmPrincipal
     Left = 344
     Top = 80
     Bitmap = {
-      494C010103000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000824B4B004E1E1F0000000000000000000000

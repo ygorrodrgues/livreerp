@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, jpeg, ExtCtrls, Buttons, JvExControls, JvLinkLabel, UfrmKernel_Base,
-  RzLabel;
+  RzLabel, GIFImg;
 
 type
   TfrmKernel_Sobre = class(TfrmKernel_Base)
