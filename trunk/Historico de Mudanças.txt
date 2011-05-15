@@ -1,3 +1,22 @@
-Historico de Mudanças
+{
+  #
+  #  Projeto: LivreERP
+  #
+  #  Criador: Sérgio Guedes (SDM Sistemas)
+  #
+}
 
-http://siaconsult.forumeiros.com/sobre-o-livre-erp-f1/historico-de-mudancas-t59.htm#188
+
+* - Novo Recurso
+# - Alteração
+$ - Correções de bugs
+
+Versão 0.1
+
+* Criado a primeira tela de cadastro de Banco.
+* Primeira versão do sistema com uma base boa para desenvolvimento de telas de cadastro.
+
+
+
+Equipe LivreERP
+
