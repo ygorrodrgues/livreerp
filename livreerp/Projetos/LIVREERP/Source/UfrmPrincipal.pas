@@ -15,7 +15,6 @@ type
     Cadastros1: TMenuItem;
     DadosBancarios1: TMenuItem;
     Cadastrodebancos1: TMenuItem;
-    procedure actSobreExecute(Sender: TObject);
     procedure Cadastrodebancos1Click(Sender: TObject);
   private
     { Private declarations }
@@ -31,12 +30,6 @@ implementation
 uses UKernel_SysUtils, UfrmKernel_Sobre, UfrmLstBanco;
 
 {$R *.dfm}
-
-procedure TfrmPrincipal.actSobreExecute(Sender: TObject);
-begin
-  inherited;
-  Kernel_AbreForm(TfrmKernel_Sobre,frmKernel_Sobre);
-end;
 
 procedure TfrmPrincipal.Cadastrodebancos1Click(Sender: TObject);
 begin

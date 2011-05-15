@@ -86,6 +86,8 @@ begin
   with dmBanco do
   begin
     cdsLstBase.Close;
+    cdsLstBase.Params[0].AsString := Trim(edtcodbanco.Text)+'%';
+    cdsLstBase.Params[1].AsString := Trim(edtnomebanco.Text)+'%';
     cdsLstBase.Open;
   end;
 

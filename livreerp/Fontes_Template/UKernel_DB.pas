@@ -282,9 +282,9 @@ begin
     Begin
       close;
       SQL.Clear;
-      SQL.Add('insert into ADI_AUDITORIAITM (ADI_AUDITORIAITM,ADT_AUDITORIA,ADI_CAMPO, ADI_NOVO_VALOR, ADI_ANTIGO_VALOR) values');
-      SQL.Add('(:ADI_AUDITORIAITM,:ADT_AUDITORIA,:ADI_CAMPO, :ADI_NOVO_VALOR, :ADI_ANTIGO_VALOR)');
-      Params[0].Value := Kernel_Incrementa('ADI_AUDITORIAITM','ADI_AUDITORIAITM');
+      SQL.Add('insert into AUDITORIAITM (CODAUDITM,CODAUD,CAMPOAUD, NOVOVALORAUD, ANTIGOVALORAUD) values');
+      SQL.Add('(:CODAUDITM,:CODAUD,:CAMPOAUD, :NOVOVALORAUD, :ANTIGOVALORAUD)');
+      Params[0].Value := Kernel_Incrementa('AUDITORIAITM','CODAUDITM');
       Params[1].Value := CODAUD;
       Params[2].Value := CAMPOAUD;
       Params[3].Value := NOVOVALORAUD;
@@ -308,9 +308,9 @@ begin
     Begin
       close;
       SQL.Clear;
-      SQL.Add('insert into ADI_AUDITORIA (ADT_AUDITORIA, ADT_TIPO, ADT_USUARIO_CADASTRO, ADT_MOTIVO, ADT_IP, ADT_TABELA) values');
-      SQL.Add('(:ADT_AUDITORIA, :ADT_TIPO, :ADT_USUARIO_CADASTRO, :ADT_MOTIVO, :ADT_IP, :ADT_TABELA)');
-      cod:= Kernel_Incrementa('ADI_AUDITORIA','ADT_AUDITORIA');
+      SQL.Add('insert into AUDITORIA (CODAUD, CODTPAUD, CODUSUCADAUD, MOTIVOAUD, IPAUD, TABELAAUD) values');
+      SQL.Add('(:CODAUD, :CODTPAUD, :CODUSUCADAUD, :MOTIVOAUD, :IPAUD, :TABELAAUD)');
+      cod:= Kernel_Incrementa('AUDITORIA','CODAUD');
       Params[0].Value := cod;
       Params[1].Value := CODTPAUD;
       Params[2].Value := CODUSUCADAUD;

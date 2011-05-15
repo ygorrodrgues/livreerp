@@ -505,7 +505,7 @@ procedure TfrmKernel_LstBase.cbbRelatoriosEnter(Sender: TObject);
   mmo: Tmemo;
 begin
   inherited;
-  mmo := Tmemo.Create(nil);
+{  mmo := Tmemo.Create(nil);
   try
     mmo.parent := PnlTitulo.Parent;
     str_caminho:= Kernel_Caminho_Relatorio('LCT_PARAMETRO','PMT_CAMINHO_RELATORIO');
@@ -522,7 +522,7 @@ begin
     mmo.Clear;
   finally
     mmo.free;
-  end;
+  end;    }
 end;
 
 procedure TfrmKernel_LstBase.NovoRegistro;
@@ -886,6 +886,8 @@ begin
 
   // Carega Colunas para filtro
   CaregaColunasFiltra;
+
+  WindowState := wsMaximized;
 end;
 
 procedure TfrmKernel_LstBase.ImprimirRegistro(int_codrel: Integer);
