@@ -19,6 +19,9 @@ interface
     untKernel_Interface_RegrasBD,
     uclKernel_Terminal;
 
+type
+  // Tipo de Exclusao adotado nos cadastros
+  TExclusao_Cadastro = (ExHistorico, ExApagar);
   var
     // ----------------- variaveis de classe ----------------------
 
@@ -39,6 +42,8 @@ interface
 
     // Variavel recebe classe de Propriedades Projeto
     PropriedadesPrj: TKernel_PropriedadesProjeto;
+
+    Kernel_Tipo_Exclusao: TExclusao_Cadastro;
 
     kernel_config : Tkernel_config;
     // Variavel recebe classe de leitura e gravação de ini

@@ -1,150 +1,228 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectGuid>{18f1a2dd-675f-4625-b52e-5ede1a5f19dd}</ProjectGuid>
-    <MainSource>LIVREERP.dpr</MainSource>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-    <DCC_DependencyCheckOutputName>LIVREERP.exe</DCC_DependencyCheckOutputName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Version>7.0</Version>
-    <DCC_DebugInformation>False</DCC_DebugInformation>
-    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
-    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
-    <DCC_Define>RELEASE</DCC_Define>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Version>7.0</Version>
-    <DCC_Define>DEBUG</DCC_Define>
-  </PropertyGroup>
-  <ProjectExtensions>
-    <Borland.Personality>Delphi.Personality</Borland.Personality>
-    <Borland.ProjectType>VCLApplication</Borland.ProjectType>
-    <BorlandProject>
-<BorlandProject><Delphi.Personality><Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><VersionInfo><VersionInfo Name="IncludeVerInfo">False</VersionInfo><VersionInfo Name="AutoIncBuild">False</VersionInfo><VersionInfo Name="MajorVer">1</VersionInfo><VersionInfo Name="MinorVer">0</VersionInfo><VersionInfo Name="Release">0</VersionInfo><VersionInfo Name="Build">0</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">False</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">False</VersionInfo><VersionInfo Name="Locale">1046</VersionInfo><VersionInfo Name="CodePage">1252</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName"></VersionInfoKeys><VersionInfoKeys Name="FileDescription"></VersionInfoKeys><VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="InternalName"></VersionInfoKeys><VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys><VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys><VersionInfoKeys Name="ProductName"></VersionInfoKeys><VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="Comments"></VersionInfoKeys></VersionInfoKeys><Excluded_Packages>
-      <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-      <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-    </Excluded_Packages><Source><Source Name="MainSource">LIVREERP.dpr</Source></Source></Delphi.Personality></BorlandProject></BorlandProject>
-  </ProjectExtensions>
-  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
-  <ItemGroup>
-    <DelphiCompile Include="LIVREERP.dpr">
-      <MainSource>MainSource</MainSource>
-    </DelphiCompile>
-    <DCCReference Include="..\..\..\Template\csDXFunctions.pas" />
-    <DCCReference Include="..\..\..\Template\UclKernel_Cadastro.pas" />
-    <DCCReference Include="..\..\..\Template\UclKernel_Conexao.pas" />
-    <DCCReference Include="..\..\..\Template\Uclkernel_Config.pas" />
-    <DCCReference Include="..\..\..\Template\UclKernel_Login.pas" />
-    <DCCReference Include="..\..\..\Template\UclKernel_PropriedadesProjeto.pas" />
-    <DCCReference Include="..\..\..\Template\UclKernel_Terminal.pas" />
-    <DCCReference Include="..\..\..\Template\UdmKernelPrincipal.pas">
-      <Form>dmKernelPrincipal</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UdmKernel_Acesso.pas">
-      <Form>dmKernel_Acesso</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UdmKernel_Base.pas">
-      <Form>dmKernel_Base</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UdmKernel_CadBase.pas">
-      <Form>dmKernel_CadBase</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UdmKernel_CadMovBase.pas">
-      <Form>dmKernel_CadMovBase</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UdmTeste.pas">
-      <Form>dmTeste</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmCadTeste.pas">
-      <Form>frmCadTeste</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Aguarde.pas">
-      <Form>frmKernel_Aguarde</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Base.pas">
-      <Form>frmKernel_Base</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_CadBase.pas">
-      <Form>frmKernel_CadBase</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_CadBaseDB.pas">
-      <Form>frmKernel_CadBaseDB</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_CadItemBase.pas">
-      <Form>frmKernel_CadItemBase</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_CadMovBase.pas">
-      <Form>frmKernel_CadMovBase</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UFrmKernel_Exclusao.pas">
-      <Form>FrmKernel_Exclusao</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Filtro.pas">
-      <Form>frmKernel_Filtro</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Login.pas">
-      <Form>frmKernel_Login</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_LstBase.pas">
-      <Form>frmKernel_LstBase</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Mensagem.pas">
-      <Form>frmKernel_Mensagem</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Parametro.pas">
-      <Form>frmKernel_Parametro</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Principal.pas">
-      <Form>frmKernel_Principal</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_RegistroLicenca.pas">
-      <Form>frmKernel_RegistroLicenca</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Sobre.pas">
-      <Form>frmKernel_Sobre</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmKernel_Splash.pas">
-      <Form>frmKernel_Splash</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UfrmLstTeste.pas">
-      <Form>frmLstTeste</Form>
-    </DCCReference>
-    <DCCReference Include="..\..\..\Template\UKernel_AcessoSistema.pas" />
-    <DCCReference Include="..\..\..\Template\Ukernel_Config.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_DATA.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_DB.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Exception.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Grid.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Internet.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Mensagem.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Mensagem_Usuario.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Mouse.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Registry.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_Security.pas" />
-    <DCCReference Include="..\..\..\Template\uKernel_Sistema.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_String.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_SysUtils.pas" />
-    <DCCReference Include="..\..\..\Template\UKernel_VariaveisPublic.pas" />
-    <DCCReference Include="..\..\..\Template\UntKernel_Classe_Firebird.pas" />
-    <DCCReference Include="..\..\..\Template\UntKernel_Classe_SQLServer.pas" />
-    <DCCReference Include="..\..\..\Template\untKernel_Interface_RegrasBD.pas" />
-    <DCCReference Include="UdmPrincipal.pas">
-      <Form>dmPrincipal</Form>
-      <DesignClass>TDataModule</DesignClass>
-    </DCCReference>
-    <DCCReference Include="UfrmLogin.pas">
-      <Form>frmLogin</Form>
-    </DCCReference>
-    <DCCReference Include="UfrmPrincipal.pas">
-      <Form>frmPrincipal</Form>
-    </DCCReference>
-  </ItemGroup>
-</Project>
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{18f1a2dd-675f-4625-b52e-5ede1a5f19dd}</ProjectGuid>
+			<MainSource>LIVREERP.dpr</MainSource>
+			<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<DCC_DependencyCheckOutputName>LIVREERP.exe</DCC_DependencyCheckOutputName>
+			<ProjectVersion>12.3</ProjectVersion>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform>Win32</Platform>
+			<AppType>Application</AppType>
+			<FrameworkType>VCL</FrameworkType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<Version>7.0</Version>
+			<DCC_DebugInformation>False</DCC_DebugInformation>
+			<DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<Version>7.0</Version>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Parameters/>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1046</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+					<Source>
+						<Source Name="MainSource">LIVREERP.dpr</Source>
+					</Source>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<ItemGroup>
+			<DelphiCompile Include="LIVREERP.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="..\..\..\Fontes_Template\csDXFunctions.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UclKernel_Cadastro.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UclKernel_Conexao.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UclKernel_Login.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_AcessoSistema.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_DATA.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_DB.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Exception.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Grid.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Internet.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Mensagem.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Mensagem_Usuario.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Mouse.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Registry.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_Security.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\uKernel_Sistema.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_String.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_SysUtils.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UKernel_VariaveisPublic.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Base.pas">
+				<Form>frmKernel_Base</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Login.pas">
+				<Form>frmKernel_Login</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_LstBase.pas">
+				<Form>frmKernel_LstBase</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Mensagem.pas">
+				<Form>frmKernel_Mensagem</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Parametro.pas">
+				<Form>frmKernel_Parametro</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_RegistroLicenca.pas">
+				<Form>frmKernel_RegistroLicenca</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Sobre.pas">
+				<Form>frmKernel_Sobre</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Splash.pas">
+				<Form>frmKernel_Splash</Form>
+			</DCCReference>
+			<DCCReference Include="UfrmLogin.pas">
+				<Form>frmLogin</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmKernel_Base.pas">
+				<Form>dmKernel_Base</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmKernel_Acesso.pas">
+				<Form>dmKernel_Acesso</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmKernel_CadBase.pas">
+				<Form>dmKernel_CadBase</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmKernel_CadMovBase.pas">
+				<Form>dmKernel_CadMovBase</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmKernelPrincipal.pas">
+				<Form>dmKernelPrincipal</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="UdmPrincipal.pas">
+				<Form>dmPrincipal</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Aguarde.pas">
+				<Form>frmKernel_Aguarde</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_CadBase.pas">
+				<Form>frmKernel_CadBase</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_CadBaseDB.pas">
+				<Form>frmKernel_CadBaseDB</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_CadItemBase.pas">
+				<Form>frmKernel_CadItemBase</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_CadMovBase.pas">
+				<Form>frmKernel_CadMovBase</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UFrmKernel_Exclusao.pas">
+				<Form>FrmKernel_Exclusao</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Filtro.pas">
+				<Form>frmKernel_Filtro</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UclKernel_PropriedadesProjeto.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Principal.pas">
+				<Form>frmKernel_Principal</Form>
+			</DCCReference>
+			<DCCReference Include="UfrmPrincipal.pas">
+				<Form>frmPrincipal</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\untKernel_Interface_RegrasBD.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmTeste.pas">
+				<Form>dmTeste</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmCadTeste.pas">
+				<Form>frmCadTeste</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmLstTeste.pas">
+				<Form>frmLstTeste</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UntKernel_Classe_Firebird.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UclKernel_Terminal.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UntKernel_Classe_SQLServer.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\Uclkernel_Config.pas"/>
+			<DCCReference Include="UUserControl.pas"/>
+			<DCCReference Include="..\..\..\Fontes_Template\UfrmKernel_Confirma_Exclusao.pas">
+				<Form>frmKernel_Confirma_Exclusao</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\..\Fontes_Template\UdmKernel_Relatorio.pas">
+				<Form>dmKernel_Relatorio</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+	</Project>
