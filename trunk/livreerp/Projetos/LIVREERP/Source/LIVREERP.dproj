@@ -36,6 +36,8 @@
 			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_ExeOutput>C:\LivreERP</DCC_ExeOutput>
+			<DCC_DcuOutput>C:\LivreERP\dcu</DCC_DcuOutput>
 			<Version>7.0</Version>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
