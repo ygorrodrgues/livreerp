@@ -51,12 +51,12 @@ end;
 
 function TRegrasFirebird.GetDriverName: string;
 begin
-  Result := 'Interbase';
+  Result := 'Firebird';
 end;
 
 function TRegrasFirebird.GetLibraryName: string;
 begin
-  Result := 'dbxint.dll';
+  Result := 'dbxfb.dll';
 end;
 
 function TRegrasFirebird.Getstr_Senha: string;

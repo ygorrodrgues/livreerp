@@ -10,8 +10,8 @@ implementation
 
 procedure Configura_Controle_Usuario;
 Begin
-  Kernel_Login.str_Tabela_Parametro := 'CONFIG_PARAMETRO';
-  Kernel_Login.str_Qtd_Tent_Login   := 'PRM_QTD_TENTATIVAS';
+  Kernel_Login.str_Tabela_Parametro := 'PARAMETRO';
+  Kernel_Login.str_Qtd_Tent_Login   := 'QTDTENTLOGIN';
 End;
 
 end.

@@ -1,2 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject/>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2011/05/15 13:33:11.000.242,D:\Desenvolvimento\Open source\LivreERP\livreerp\Projetos\LIVREERP\Source\UdmBanco.dfm=D:\Desenvolvimento\Open source\LivreERP\livreerp\Projetos\LIVREERP\Source\Unit1.dfm</Transaction>
+    <Transaction>2011/05/15 13:33:29.000.285,D:\Desenvolvimento\Open source\LivreERP\livreerp\Projetos\LIVREERP\Source\UfrmLstBanco.dfm=D:\Desenvolvimento\Open source\LivreERP\livreerp\Projetos\LIVREERP\Source\Unit1.dfm</Transaction>
+    <Transaction>2011/05/15 13:33:47.000.919,D:\Desenvolvimento\Open source\LivreERP\livreerp\Projetos\LIVREERP\Source\UfrmCadBanco.dfm=D:\Desenvolvimento\Open source\LivreERP\livreerp\Projetos\LIVREERP\Source\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

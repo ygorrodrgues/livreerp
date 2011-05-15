@@ -1,15 +1,27 @@
 inherited frmPrincipal: TfrmPrincipal
   Caption = 'frmPrincipal'
-  ExplicitWidth = 320
-  ExplicitHeight = 240
+  ClientHeight = 486
+  ClientWidth = 777
+  ExplicitWidth = 793
+  ExplicitHeight = 544
   PixelsPerInch = 96
   TextHeight = 13
+  inherited Image1: TImage
+    Width = 777
+    Height = 438
+  end
   inherited RzStatusBar1: TRzStatusBar
+    Top = 467
+    Width = 777
+    ExplicitTop = -19
+    ExplicitWidth = 116
     inherited RzStatusPane1: TRzStatusPane
       Caption = 'Sia Manaus - (92) 8153-0969'
     end
   end
   inherited RzToolbar1: TRzToolbar
+    Width = 777
+    ExplicitWidth = 116
     ToolbarControls = (
       RzSpacer1
       RzToolButton1)
@@ -26,7 +38,7 @@ inherited frmPrincipal: TfrmPrincipal
     Left = 344
     Top = 80
     Bitmap = {
-      494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000824B4B004E1E1F0000000000000000000000
@@ -166,24 +178,20 @@ inherited frmPrincipal: TfrmPrincipal
       000000000000}
   end
   inherited mmPrincipal: TMainMenu
-    object Sistema1: TMenuItem
-      Caption = 'Sistema'
-      object SobreoSistema1: TMenuItem
-        Action = actSobre
+    object Cadastros1: TMenuItem [1]
+      Caption = 'Cadastros'
+      object DadosBancarios1: TMenuItem
+        Caption = 'Dados Bancarios'
+        object Cadastrodebancos1: TMenuItem
+          Caption = 'Cadastro de bancos'
+          OnClick = Cadastrodebancos1Click
+        end
       end
     end
   end
   inherited actlstPrincipal: TActionList
-    object actFechamentoConvenio: TAction
-      Category = 'Movimenta'#231#227'o'
-      Caption = '&Fechamento de Convenio'
-      ImageIndex = 1
-    end
-    object actSobre: TAction
-      Category = 'Sistema'
-      Caption = 'Sobre o Sistema'
-      ImageIndex = 2
-      OnExecute = actSobreExecute
+    object actCadastroBanco: TAction
+      Caption = 'Cadastro de Bancos'
     end
   end
 end

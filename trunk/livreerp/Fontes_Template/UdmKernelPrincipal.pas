@@ -32,7 +32,7 @@ implementation
 
 uses UKernel_VariaveisPublic, // Unit de variaveis publicas a todo kernel
   UclKernel_Login, UclKernel_PropriedadesProjeto, UclKernel_Terminal,
-  UKernel_Exception;
+  UKernel_Exception, UfrmKernel_Mensagem;
 
 {$R *.dfm}
 
@@ -46,75 +46,85 @@ var
   vRegrasBD: IRegrasBD;
 begin
   AntesConectaServidor;
-  
+
   with conPrincipalKernel DO
   begin
     Connected := False;
     try
       Params.Clear;
       case TTipoBD(Tipo_DB) of
-        bdFirebird: Begin
-                      vRegrasBD := TRegrasFirebird.Create;
+        bdFirebird:
+          Begin
+            vRegrasBD := TRegrasFirebird.Create;
 
-                      Params.Add('DriverName='+ vRegrasBD.DriverName);
-                      Params.Add('LibraryName='+ vRegrasBD.LibraryName);
-                      Params.Add('VendorLib='+ vRegrasBD.VendorLib);
-                      Params.Add('database=' + Kernel_Conexao.str_server);
-                      Params.Add('User_Name='+ vRegrasBD.str_usuario);
-                      Params.Add('password='+ vRegrasBD.str_Senha);
-                      Params.Add('blobsize=-1');
-                      Params.Add('commitretain=False');
-                      Params.Add('localecode=0000');
-                      Params.Add('rolename=RoleName');
-                      Params.Add('sqldialect=3');
-                      Params.Add('interbase transisolation=ReadCommited');
-                      Params.Add('waitonlocks=True');
-                      Params.Add('trim char=False');
-                    End;
+            Params.Add('DriverName=' + vRegrasBD.DriverName);
+            Params.Add('LibraryName=' + vRegrasBD.LibraryName);
+            Params.Add('VendorLib=' + vRegrasBD.VendorLib);
+            Params.Add('database=' + Kernel_Conexao.str_database);
+            Params.Add('User_Name=' + vRegrasBD.str_usuario);
+            Params.Add('password=' + vRegrasBD.str_Senha);
+            Params.Add('blobsize=-1');
+            Params.Add('commitretain=False');
+            Params.Add('localecode=0000');
+            Params.Add('rolename=RoleName');
+            Params.Add('sqldialect=3');
+            Params.Add('interbase transisolation=ReadCommited');
+            Params.Add('waitonlocks=True');
+            Params.Add('trim char=False');
+          End;
 
-        bdSQLServer:  Begin
-                        vRegrasBD := TRegrasSQLServer.Create;
+        bdSQLServer:
+          Begin
+            vRegrasBD := TRegrasSQLServer.Create;
 
-                        Params.Add('DriverName='+ vRegrasBD.DriverName);
-                        Params.Add('LibraryName='+ vRegrasBD.LibraryName);
-                        Params.Add('VendorLib='+ vRegrasBD.VendorLib);
-                        Params.Add('HostName='   + Kernel_Conexao.str_server);
-                        Params.Add('DataBase='   + Kernel_Conexao.str_database);
-                        Params.Add('User_Name='  + vRegrasBD.str_usuario);
-                        Params.Add('Password='   + vRegrasBD.str_Senha);
+            Params.Add('DriverName=' + vRegrasBD.DriverName);
+            Params.Add('LibraryName=' + vRegrasBD.LibraryName);
+            Params.Add('VendorLib=' + vRegrasBD.VendorLib);
+            Params.Add('HostName=' + Kernel_Conexao.str_server);
+            Params.Add('DataBase=' + Kernel_Conexao.str_database);
+            Params.Add('User_Name=' + vRegrasBD.str_usuario);
+            Params.Add('Password=' + vRegrasBD.str_Senha);
 
-                        Params.Add('BlobSize=-1');
-                        Params.Add('ErrorResourceFile=');
-                        Params.Add('LocaleCode=0000');
-                        Params.Add('MSSQL TransIsolation=ReadCommited');
-                        Params.Add('OS Authentication=False');
-                        Params.Add('Prepare SQL=False');
-                      End;
+            Params.Add('BlobSize=-1');
+            Params.Add('ErrorResourceFile=');
+            Params.Add('LocaleCode=0000');
+            Params.Add('MSSQL TransIsolation=ReadCommited');
+            Params.Add('OS Authentication=False');
+            Params.Add('Prepare SQL=False');
+          End;
 
-        bdOracle:  Begin
-                     raise Exception.Create('Banco de dados Oracle ainda não suportado.');
-                   End;                      
-                      
-        bdPostGreeSQL: Begin
-                         raise Exception.Create('Banco de dados PostGreeSQL ainda não suportado.');
-                       End;
+        bdOracle:
+          Begin
+            raise Exception.Create
+              ('Banco de dados Oracle ainda não suportado.');
+          End;
 
-        bdMySQL:  Begin
-                    raise  Exception.Create('Banco de dados MySQL ainda não suportado.');
-                  End;                      
+        bdPostGreeSQL:
+          Begin
+            raise Exception.Create(
+              'Banco de dados PostGreeSQL ainda não suportado.');
+          End;
+
+
       end;
 
       Connected := True;
 
-    except on E: Exception do
+    except
+      on E: Exception do
       begin
-        raise Livre_Mensagem_Global.CreateFmt('Ocorreu um erro ao conectar-se ao banco %s ',['('+ E.Message +')']);
+        TFrmKernel_Mensagem.Mensagem('Problemas ao acessar o banco de dados local! Verifique as configurações do sistema.','I',[mbOk]);
+        TFrmKernel_Mensagem.Mensagem('Erro Apresentado: ' + Uppercase(E.Message),'E',[mbOk]);
+
+        //Configura_Conexao_DB;
+
         Application.Terminate;
+        Raise ;
       end;
     end;
   end;
 
-  DepoisConectaServidor;  
+  DepoisConectaServidor;
 end;
 
 procedure TdmKernelPrincipal.DataModuleCreate(Sender: TObject);

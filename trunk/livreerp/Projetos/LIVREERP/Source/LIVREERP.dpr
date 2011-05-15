@@ -71,13 +71,19 @@ uses
   Uclkernel_Config in '..\..\..\Fontes_Template\Uclkernel_Config.pas',
   UUserControl in 'UUserControl.pas',
   UfrmKernel_Confirma_Exclusao in '..\..\..\Fontes_Template\UfrmKernel_Confirma_Exclusao.pas' {frmKernel_Confirma_Exclusao},
-  UdmKernel_Relatorio in '..\..\..\Fontes_Template\UdmKernel_Relatorio.pas' {dmKernel_Relatorio: TDataModule};
+  UdmKernel_Relatorio in '..\..\..\Fontes_Template\UdmKernel_Relatorio.pas' {dmKernel_Relatorio: TDataModule},
+  UdmBanco in 'UdmBanco.pas' {dmBanco: TDataModule},
+  UfrmLstBanco in 'UfrmLstBanco.pas' {frmLstBanco},
+  UfrmCadBanco in 'UfrmCadBanco.pas' {frmCadBanco};
+
+{$R *.res}
 
 begin
   Application.Initialize; 
   Application.MainFormOnTaskbar := True;
 
   {Cria o datamodule principal na memoria}
+  Application.Title := 'Livre ERP';
   Application.CreateForm(TdmPrincipal, dmPrincipal);
   Application.CreateForm(TdmKernel_Acesso, dmKernel_Acesso);
   frmlogin := TfrmLogin.Create(nil);
