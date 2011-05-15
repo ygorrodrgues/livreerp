@@ -53,7 +53,7 @@ uses
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
   dxSkinscxPCPainter, cxLookAndFeelPainters, cxButtons, cxContainer, cxTextEdit,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  pngextra, Dialogs;
+  pngextra, Dialogs, cxLookAndFeels;
 
 type
   TfrmKernel_LstBase = class(TfrmKernel_Base)

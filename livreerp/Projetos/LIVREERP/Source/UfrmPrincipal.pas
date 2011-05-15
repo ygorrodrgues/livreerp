@@ -10,12 +10,13 @@ uses
 
 type
   TfrmPrincipal = class(TfrmKernel_Principal)
-    actFechamentoConvenio: TAction;
     RzSpacer1: TRzSpacer;
-    actSobre: TAction;
-    Sistema1: TMenuItem;
-    SobreoSistema1: TMenuItem;
+    actCadastroBanco: TAction;
+    Cadastros1: TMenuItem;
+    DadosBancarios1: TMenuItem;
+    Cadastrodebancos1: TMenuItem;
     procedure actSobreExecute(Sender: TObject);
+    procedure Cadastrodebancos1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,7 +28,7 @@ var
 
 implementation
 
-uses UKernel_SysUtils, UfrmKernel_Sobre;
+uses UKernel_SysUtils, UfrmKernel_Sobre, UfrmLstBanco;
 
 {$R *.dfm}
 
@@ -35,6 +36,12 @@ procedure TfrmPrincipal.actSobreExecute(Sender: TObject);
 begin
   inherited;
   Kernel_AbreForm(TfrmKernel_Sobre,frmKernel_Sobre);
+end;
+
+procedure TfrmPrincipal.Cadastrodebancos1Click(Sender: TObject);
+begin
+  inherited;
+  Kernel_AbreForm(TfrmLstBanco,frmLstBanco);
 end;
 
 end.

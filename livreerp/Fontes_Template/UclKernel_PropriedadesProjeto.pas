@@ -40,7 +40,7 @@ implementation
 
 constructor TKernel_PropriedadesProjeto.Create;
 begin
-  str_SoftHouse := 'Vap Informática';
+  str_SoftHouse := 'SDM Sistemas';
 end;
 
 destructor TKernel_PropriedadesProjeto.Destroy;

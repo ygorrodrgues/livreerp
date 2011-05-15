@@ -13,7 +13,8 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure Passa_COMSQL(str_usuario, str_senha: string); override;
+    procedure Retorno_SQL; override;
   end;
 
 var
@@ -21,7 +22,7 @@ var
 
 implementation
 
-uses UKernel_VariaveisPublic;
+uses UKernel_VariaveisPublic, UdmPrincipal;
 
 {$R *.dfm}
 
@@ -30,6 +31,34 @@ begin
   kernel_str_form := 'Login do Sistema';
   inherited;
 
+end;
+
+procedure TfrmLogin.Passa_COMSQL(str_usuario, str_senha: string);
+begin
+  inherited;
+  with dmPrincipal, qryKernel_Gerenerica do
+  begin
+    close;
+    sqlConnection:= FConexao; {: componente de conexão}
+    sql.Clear;
+    {Seleciona os campos na tabela onde o usuario e senha sejam igual aos passados nos edits.}
+    sql.Add (' SELECT CODUSU, SENHAUSU, LOGINUSU  ' +
+             '  FROM USUARIO ' +
+             ' WHERE (LOGINUSU) = ' + QuotedStr(trim(str_usuario)) +
+             ' AND (SENHAUSU) = ' + QuotedStr(Trim(str_senha)));
+    Open;
+  end;
+end;
+
+procedure TfrmLogin.Retorno_SQL;
+begin
+  inherited;
+  with dmPrincipal, qryKernel_Gerenerica do
+  begin
+    Kernel_Login.int_codusu        :=  Fields[0].Asinteger;
+    Kernel_Login.str_nomeusu       :=  Fields[2].AsString;
+    Kernel_Login.str_adminusu      :=  'T';
+  end;
 end;
 
 end.

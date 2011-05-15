@@ -17,7 +17,8 @@ uses
   cxGridDBTableView, cxGrid, ComCtrls, RzPanel, RzButton, Buttons,
   dxGDIPlusClasses, ExtCtrls, StdCtrls, Menus, cxLookAndFeelPainters, cxButtons,
   cxContainer, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox, JvExControls, JvXPCore, JvXPButtons;
+  cxDBLookupEdit, cxDBLookupComboBox, JvExControls, JvXPCore, JvXPButtons,
+  cxLookAndFeels;
 
 type
   TfrmLstTeste = class(TfrmKernel_LstBase)

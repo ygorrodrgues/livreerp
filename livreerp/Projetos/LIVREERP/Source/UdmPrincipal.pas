@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UdmKernelPrincipal, WideStrings, FMTBcd, ADODB, SqlExpr, DB,
-  DBClient, Provider, DBXDynalink, DBXMsSQL, inifiles;
+  DBClient, Provider, DBXDynalink, DBXMsSQL, inifiles, DBXFirebird;
 
 type
   TdmPrincipal = class(TdmKernelPrincipal)
@@ -23,7 +23,8 @@ var
 
 implementation
 
-uses UclKernel_Conexao, UKernel_VariaveisPublic;
+uses UclKernel_Conexao, UKernel_VariaveisPublic, untKernel_Interface_RegrasBD,
+  Uclkernel_Config;
 
 {$R *.dfm}
 
@@ -37,6 +38,10 @@ end;
 
 procedure TdmPrincipal.DataModuleCreate(Sender: TObject);
 begin
+  // Define qual o banco de dados sera utilizado
+  Tipo_DB := bdFirebird;
+  // Define qual o tipo de arquivo ini usado
+  Tipo_CON := conlivre;
   inherited;
   // Passa a conexao atual para uma variavel
   FConexao := conPrincipalKernel;

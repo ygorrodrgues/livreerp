@@ -180,8 +180,8 @@ procedure Kernel_CaregaPropriedades;
 begin
   //  Kernel_PropriedadesProjeto.str_ImagemSplash   :=
   //  Kernel_PropriedadesProjeto.str_Background     :=
-  PropriedadesPrj.str_TituloPrograma := 'Sistema Comercial';
-  PropriedadesPrj.str_SoftHouse      := 'Vap Informática';
+  PropriedadesPrj.str_TituloPrograma := 'Livre ERP';
+  PropriedadesPrj.str_SoftHouse      := 'SDM Sistemas';
 end;
 
 function Kernel_Confirmacao_acao(str_msn_acao: string; str_acao: char):Boolean;

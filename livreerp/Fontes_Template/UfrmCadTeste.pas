@@ -15,7 +15,7 @@ uses
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
   dxSkinscxPCPainter, cxPC, cxControls, cxContainer, cxEdit, cxTextEdit,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  Menus, cxLookAndFeelPainters, cxButtons;
+  Menus, cxLookAndFeelPainters, cxButtons, cxLookAndFeels;
 
 type
   TfrmCadTeste = class(TfrmKernel_CadBaseDB)

@@ -1,8 +1,103 @@
-inherited frmCadTeste: TfrmCadTeste
-  Caption = 'frmCadTeste'
+inherited frmCadBanco: TfrmCadBanco
+  Caption = 'frmCadBanco'
+  ClientHeight = 338
+  ClientWidth = 555
+  ExplicitWidth = 561
+  ExplicitHeight = 366
   PixelsPerInch = 96
   TextHeight = 13
+  inherited pgcntrlcadastro: TcxPageControl
+    Width = 555
+    Height = 217
+    ExplicitWidth = 555
+    ExplicitHeight = 217
+    ClientRectBottom = 217
+    ClientRectRight = 555
+    inherited tbshtDados: TcxTabSheet
+      ExplicitWidth = 555
+      ExplicitHeight = 198
+      inherited pnlIdentificacao: TRzPanel
+        Width = 555
+        Height = 198
+        ExplicitWidth = 555
+        ExplicitHeight = 198
+        inherited lblAtalhoF5: TLabel
+          Left = 136
+          ExplicitLeft = 136
+        end
+        inherited lblCamposObrigatorio: TLabel
+          Left = 260
+          Top = 185
+          ExplicitLeft = 260
+          ExplicitTop = 185
+        end
+        object Label1: TLabel
+          Left = 16
+          Top = 32
+          Width = 37
+          Height = 13
+          Caption = 'C'#243'digo:'
+          FocusControl = dbedtCODBANCO
+        end
+        object Label2: TLabel
+          Left = 16
+          Top = 93
+          Width = 95
+          Height = 13
+          Caption = 'Nome do Banco (*):'
+          FocusControl = dbedtNOMEBANCO
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label3: TLabel
+          Left = 345
+          Top = 96
+          Width = 39
+          Height = 13
+          Caption = 'Licen'#231'a:'
+          FocusControl = dbedtLICENCABANCO
+        end
+        object dbedtCODBANCO: TDBEdit
+          Left = 16
+          Top = 51
+          Width = 134
+          Height = 21
+          TabStop = False
+          DataField = 'CODBANCO'
+          DataSource = dsBase
+          ReadOnly = True
+          TabOrder = 0
+        end
+        object dbedtNOMEBANCO: TDBEdit
+          Left = 16
+          Top = 112
+          Width = 300
+          Height = 21
+          DataField = 'NOMEBANCO'
+          DataSource = dsBase
+          TabOrder = 1
+          OnKeyPress = dbedtNOMEBANCOKeyPress
+        end
+        object dbedtLICENCABANCO: TDBEdit
+          Left = 345
+          Top = 112
+          Width = 179
+          Height = 21
+          DataField = 'LICENCABANCO'
+          DataSource = dsBase
+          TabOrder = 2
+          OnKeyPress = dbedtNOMEBANCOKeyPress
+        end
+      end
+    end
+  end
   inherited PnlTitulo: TRzPanel
+    Width = 555
+    ExplicitWidth = 555
     inherited imgCadBase: TImage
       Picture.Data = {
         0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000020
@@ -71,13 +166,51 @@ inherited frmCadTeste: TfrmCadTeste
         515E54CBA7D9BAE3BDC28B6BD4C0AB6FF3CDF5FF137DE5E4FF00B9B63853832C
         CAA40000000049454E44AE426082}
     end
+    inherited Label11: TLabel
+      Left = 254
+      ExplicitLeft = 254
+    end
+    inherited DBlcbCadastros: TcxDBLookupComboBox
+      Left = 345
+      ExplicitLeft = 345
+      ExplicitHeight = 22
+    end
   end
   inherited RzToolbar1: TRzToolbar
+    Width = 555
+    ExplicitWidth = 555
     ToolbarControls = (
       btnNovo
       btnAlterar
       btnImprimir
       RzSpacer1)
+  end
+  inherited rzstsbrStatus: TRzStatusBar
+    Top = 319
+    Width = 555
+    ExplicitTop = 319
+    ExplicitWidth = 555
+  end
+  inherited RzPanel1: TRzPanel
+    Top = 285
+    Width = 555
+    ExplicitTop = 285
+    ExplicitWidth = 555
+    inherited btnCancelarK: TJvXPButton
+      Left = 370
+      ExplicitLeft = 370
+      ExplicitHeight = 18
+    end
+    inherited btnFecharK: TJvXPButton
+      Left = 459
+      ExplicitLeft = 459
+      ExplicitHeight = 18
+    end
+    inherited btnSalvarK: TJvXPButton
+      Left = 290
+      ExplicitLeft = 290
+      ExplicitHeight = 18
+    end
   end
   inherited imglPageBase: TImageList
     Bitmap = {
@@ -756,5 +889,8 @@ inherited frmCadTeste: TfrmCadTeste
       0003C001800FC0010001C001C3FFC0010000C001FFFFC0010000C001FFFFC003
       0010F001FFFFC0070039FC7FFFFFC00F00000000000000000000000000000000
       000000000000}
+  end
+  inherited dsBase: TDataSource
+    DataSet = dmBanco.cdsCadBase
   end
 end

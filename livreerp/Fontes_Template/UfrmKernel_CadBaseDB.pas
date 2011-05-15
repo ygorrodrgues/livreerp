@@ -18,7 +18,7 @@ uses
   dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
   dxSkinXmas2008Blue, dxSkinscxPCPainter, cxPC, cxControls, cxContainer, cxEdit,
   cxTextEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, Menus, cxLookAndFeelPainters, cxButtons;
+  cxDBLookupComboBox, Menus, cxLookAndFeelPainters, cxButtons, cxLookAndFeels;
 
 type
   TfrmKernel_CadBaseDB = class(TfrmKernel_CadBase)

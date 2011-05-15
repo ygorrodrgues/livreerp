@@ -58,7 +58,7 @@ uses
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue, cxControls,
   cxContainer, cxEdit, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
   cxDBLookupEdit, cxDBLookupComboBox, dxSkinscxPCPainter, cxPC, Menus,
-  cxLookAndFeelPainters, cxButtons, cxGrid;
+  cxLookAndFeelPainters, cxButtons, cxGrid, cxLookAndFeels;
 
 type
   TfrmKernel_CadBase = class(TfrmKernel_Base)
@@ -187,6 +187,9 @@ type
     procedure HabilitaBotoes;
     {Atualiza os datasets auxiliares que podem existir na tela}
     procedure Atualiza_Datasets_Auxiliares; virtual;
+    { usado para quando for novo pela listagem, novo e alterar pela tela
+      de cadastro, ja vim no foco no componente certo}
+    procedure Foco_Inicial; virtual;
   end;
 
 var
@@ -272,6 +275,12 @@ begin
         end;
 end;
 
+procedure TfrmKernel_CadBase.Foco_Inicial;
+begin
+  { usado para quando for novo pela listagem, novo e alterar pela tela
+   de cadastro, ja vim no foco no componente certo}
+end;
+
 procedure TfrmKernel_CadBase.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   inherited;
@@ -344,6 +353,9 @@ begin
   primeiroControle;
 
   bol_salvou := False;
+
+  // Joga o foco no componente
+  Foco_Inicial;
 end;
 
 procedure TfrmKernel_CadBase.HabilitaBotoes;
@@ -558,6 +570,8 @@ procedure TfrmKernel_CadBase.AntesAlterarRegistro;
 begin
   // Ativa a aba de cadastro quando for inserir um novo registro
   pgcntrlcadastro.ActivePage := tbshtDados;
+  // Joga o foco no componente
+  Foco_Inicial;
 end;
 
 procedure TfrmKernel_CadBase.AntesCancelarRegistro;
@@ -581,6 +595,8 @@ procedure TfrmKernel_CadBase.AntesNovoRegistro;
 begin
   // Ativa a aba de cadastro quando for inserir um novo registro
   pgcntrlcadastro.ActivePage := tbshtDados;
+  // Joga o foco no componente
+  Foco_Inicial;
 end;
 
 procedure TfrmKernel_CadBase.AntesSalvarRegistro;
