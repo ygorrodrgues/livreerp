@@ -11,8 +11,8 @@ inherited frmLstBanco: TfrmLstBanco
     Width = 759
     Height = 359
     ExplicitTop = 161
-    ExplicitWidth = 0
-    ExplicitHeight = 342
+    ExplicitWidth = 759
+    ExplicitHeight = 359
     inherited cxgrdLst_BaseDBTableView1: TcxGridDBTableView
       DataController.Summary.FooterSummaryItems = <
         item
@@ -41,20 +41,24 @@ inherited frmLstBanco: TfrmLstBanco
   inherited PnlTitulo: TRzPanel
     Width = 759
     TabOrder = 1
+    ExplicitWidth = 759
     inherited Label11: TLabel
       Left = 452
+      ExplicitLeft = 452
     end
     inherited JvXPButton1: TJvXPButton
       Left = 726
+      ExplicitLeft = 726
     end
     inherited cbbRelatorios: TcxComboBox
       Left = 541
+      ExplicitLeft = 541
     end
   end
   inherited RzToolbar1: TRzToolbar
     Width = 759
     TabOrder = 0
-    ExplicitWidth = 744
+    ExplicitWidth = 759
     ToolbarControls = (
       btnNovo
       btnAlterar
@@ -69,18 +73,18 @@ inherited frmLstBanco: TfrmLstBanco
   inherited RzStatusBar1: TRzStatusBar
     Top = 520
     Width = 759
-    ExplicitTop = -19
-    ExplicitWidth = 0
+    ExplicitTop = 520
+    ExplicitWidth = 759
   end
   inherited pnlFiltraCampos: TRzPanel
     Width = 759
+    ExplicitWidth = 759
   end
   inherited pnlFiltro: TRzPanel
     Width = 759
     Height = 61
     Visible = True
-    ExplicitTop = 300
-    ExplicitWidth = 0
+    ExplicitWidth = 759
     ExplicitHeight = 61
     object Label2: TLabel
       Left = 8
@@ -115,7 +119,7 @@ inherited frmLstBanco: TfrmLstBanco
   end
   inherited imgLBase: TImageList
     Bitmap = {
-      494C0101030005001C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000500200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -256,7 +260,7 @@ inherited frmLstBanco: TfrmLstBanco
   end
   inherited ilLstBase: TImageList
     Bitmap = {
-      494C01010D000F001C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010D000F00200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000B7818300B781
       8300B7818300B7818300B7818300B7818300B7818300B7818300B7818300B781

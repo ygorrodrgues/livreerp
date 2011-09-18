@@ -92,7 +92,7 @@ begin
   Kernel_InicializaVariaveis;
 
   if frmlogin.showmodal=mrok then 
-    begin 
+    begin
       {Carega propriedades do Projeto} 
       Kernel_CaregaPropriedades; 
       {Cria Formulario Principal na memoria} 
