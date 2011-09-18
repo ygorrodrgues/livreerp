@@ -2,8 +2,8 @@ object dmKernelPrincipal: TdmKernelPrincipal
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Height = 314
-  Width = 348
+  Height = 327
+  Width = 364
   object qryKernel_Gerenerica: TSQLQuery
     MaxBlobSize = -1
     Params = <>
@@ -25,6 +25,6 @@ object dmKernelPrincipal: TdmKernelPrincipal
     TableScope = [tsTable]
     VendorLib = 'oledb'
     Left = 96
-    Top = 64
+    Top = 80
   end
 end
